@@ -51,7 +51,10 @@ namespace EstateFlow.Forms
                     var u = UserService.GetById(userId);
                     if (u != null)
                     {
-                        txtFullName.Content = u.FullName;
+                        Validator.SplitFullName(u.FullName, out string last, out string first, out string middle);
+                        txtLastName.Content = last;
+                        txtFirstName.Content = first;
+                        txtMiddleName.Content = middle;
                         txtLogin.Content = u.Login;
                         txtEmail.Content = u.Email;
                         txtPhone.Content = u.Phone;
@@ -68,15 +71,24 @@ namespace EstateFlow.Forms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            string fullName = (txtFullName.Content ?? "").Trim();
+            string lastName = (txtLastName.Content ?? "").Trim();
+            string firstName = (txtFirstName.Content ?? "").Trim();
+            string middleName = (txtMiddleName.Content ?? "").Trim();
             string login = (txtLogin.Content ?? "").Trim();
             string email = (txtEmail.Content ?? "").Trim();
             string phone = (txtPhone.Content ?? "").Trim();
             string secret = (txtSecret.Content ?? "").Trim();
             string pass = txtPassword.Content ?? "";
 
-            string nameErr = Validator.FullName(fullName);
-            if (nameErr != null) { UiTheme.Warning(nameErr); txtFullName.Focus(); return; }
+            string nameErr = Validator.FullNameParts(lastName, firstName, middleName, out string fullName);
+            if (nameErr != null)
+            {
+                UiTheme.Warning(nameErr);
+                if (string.IsNullOrWhiteSpace(lastName)) txtLastName.Focus();
+                else if (string.IsNullOrWhiteSpace(firstName)) txtFirstName.Focus();
+                else txtLastName.Focus();
+                return;
+            }
 
             string loginErr = Validator.Login(login);
             if (loginErr != null) { UiTheme.Warning(loginErr); txtLogin.Focus(); return; }

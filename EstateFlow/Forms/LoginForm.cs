@@ -9,13 +9,15 @@ namespace EstateFlow.Forms
         public LoginForm()
         {
             InitializeComponent();
+            LoadRemembered();
 
-            string remembered = AppConfig.GetRememberedLogin();
-            if (!string.IsNullOrWhiteSpace(remembered))
+            chkRemember.CheckedChanged += (s, e) =>
             {
-                cuiTextBox1.Content = remembered;
-                chkRemember.Checked = true;
-            }
+                if (!chkRemember.Checked)
+                    AppConfig.SaveRememberedCredentials("", "");
+                else if (!string.IsNullOrWhiteSpace(cuiTextBox1.Content))
+                    AppConfig.SaveRememberedCredentials(cuiTextBox1.Content.Trim(), cuiTextBox2.Content);
+            };
 
             KeyDown += (s, e) =>
             {
@@ -29,6 +31,17 @@ namespace EstateFlow.Forms
                     btnAutorization_Click(this, EventArgs.Empty);
                 }
             };
+        }
+
+        private void LoadRemembered()
+        {
+            var (remLogin, remPass) = AppConfig.GetRememberedCredentials();
+            if (!string.IsNullOrWhiteSpace(remLogin))
+            {
+                cuiTextBox1.Content = remLogin;
+                cuiTextBox2.Content = remPass;
+                chkRemember.Checked = true;
+            }
         }
 
         // логика кнопки вход
@@ -76,9 +89,12 @@ namespace EstateFlow.Forms
                 return;
             }
 
-            AppConfig.SaveRememberedLogin(chkRemember.Checked ? login : "");
+            if (chkRemember.Checked)
+                AppConfig.SaveRememberedCredentials(login, password);
+            else
+                AppConfig.SaveRememberedCredentials("", "");
+
             Session.CurrentUser = user;
-            cuiTextBox2.Content = "";
 
             using var main = new MainForm();
             main.ShowDialog(this);
@@ -87,6 +103,14 @@ namespace EstateFlow.Forms
             if (!main.LogoutRequested)
             {
                 Close();
+            }
+            else if (chkRemember.Checked)
+            {
+                LoadRemembered();
+            }
+            else
+            {
+                cuiTextBox2.Content = "";
             }
         }
 

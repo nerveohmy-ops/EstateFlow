@@ -21,13 +21,15 @@ namespace EstateFlow.Forms
             errorProvider1.Clear();
             lblError.Text = "";
 
-            string fullName = txtFullName.Content.Trim();
-            string login = txtLogin.Content.Trim();
-            string email = txtEmail.Content.Trim();
-            string phone = txtPhone.Content.Trim();
-            string password = txtPassword.Content;
-            string confirm = txtConfirmPassword.Content;
-            string secret = txtSecret.Content.Trim();
+            string lastName = (txtLastName.Content ?? "").Trim();
+            string firstName = (txtFirstName.Content ?? "").Trim();
+            string middleName = (txtMiddleName.Content ?? "").Trim();
+            string login = (txtLogin.Content ?? "").Trim();
+            string email = (txtEmail.Content ?? "").Trim();
+            string phone = (txtPhone.Content ?? "").Trim();
+            string password = txtPassword.Content ?? "";
+            string confirm = txtConfirmPassword.Content ?? "";
+            string secret = (txtSecret.Content ?? "").Trim();
 
             Control firstField = null;
             string firstError = null;
@@ -43,10 +45,19 @@ namespace EstateFlow.Forms
                 }
             }
 
+            string fullName = "";
+
             // проверка полей
             bool dbOk = UiTheme.Try(() =>
             {
-                AddError(txtFullName, Validator.FullName(fullName));
+                string nameErr = Validator.FullNameParts(lastName, firstName, middleName, out fullName);
+                if (nameErr != null)
+                {
+                    Control target = string.IsNullOrWhiteSpace(lastName) ? txtLastName :
+                                     string.IsNullOrWhiteSpace(firstName) ? txtFirstName : txtLastName;
+                    AddError(target, nameErr);
+                }
+
                 AddError(txtLogin, Validator.Login(login) ??
                     (UserService.LoginExists(login) ? "Такой логин уже занят" : null));
                 AddError(txtEmail, Validator.Email(email) ??
@@ -57,7 +68,7 @@ namespace EstateFlow.Forms
                 AddError(txtConfirmPassword, string.IsNullOrEmpty(confirm) ? "Повторите пароль" : Validator.PasswordRepeat(password, confirm));
                 AddError(txtSecret, Validator.SecretWord(secret));
 
-                if (cmbRole.SelectedIndex == 1 && txtInvite.Content.Trim() != AppConfig.Current.AgentInviteCode)
+                if (cmbRole.SelectedIndex == 1 && (txtInvite.Content ?? "").Trim() != AppConfig.Current.AgentInviteCode)
                 {
                     AddError(txtInvite, "Неверный код сотрудника");
                 }

@@ -26,7 +26,9 @@ namespace EstateFlow.Forms
             cmbAgent = new ComboBox();
             lblDate = new Label();
             dtpDate = new DateTimePicker();
+            lblAmount = new Label();
             txtAmount = new HartUI.Controls.cuiTextBox();
+            lblAmountHint = new Label();
             lblStatus = new Label();
             cmbStatus = new ComboBox();
             btnSave = new HartUI.Controls.cuiButton();
@@ -134,29 +136,54 @@ namespace EstateFlow.Forms
             dtpDate.Size = new Size(262, 24);
             dtpDate.TabIndex = 8;
             // 
+            // lblAmount
+            // 
+            lblAmount.Anchor = AnchorStyles.None;
+            lblAmount.AutoSize = true;
+            lblAmount.BackColor = Color.White;
+            lblAmount.Font = new Font("Segoe UI", 9F);
+            lblAmount.Location = new Point(504, 190);
+            lblAmount.Name = "lblAmount";
+            lblAmount.Size = new Size(115, 15);
+            lblAmount.TabIndex = 8;
+            lblAmount.Text = "Сумма сделки (₽):";
+            // 
             // txtAmount
             // 
             txtAmount.Anchor = AnchorStyles.None;
             txtAmount.BackColor = Color.White;
-            txtAmount.BackgroundColor = Color.White;
+            txtAmount.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtAmount.Content = "";
             txtAmount.FocusBackgroundColor = Color.White;
             txtAmount.FocusImageTint = Color.White;
             txtAmount.FocusOutlineColor = Color.Black;
-            txtAmount.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAmount.Font = new Font("Segoe UI", 9.5F);
             txtAmount.ForeColor = Color.Black;
-            txtAmount.Location = new Point(502, 205);
+            txtAmount.Location = new Point(502, 209);
             txtAmount.Name = "txtAmount";
             txtAmount.NormalImageTint = Color.White;
-            txtAmount.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtAmount.Padding = new Padding(16, 14, 16, 0);
+            txtAmount.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtAmount.Padding = new Padding(14, 12, 14, 0);
             txtAmount.PasswordChar = false;
-            txtAmount.PlaceholderColor = Color.LightGray;
+            txtAmount.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtAmount.PlaceholderText = "Сумма сделки (₽)";
-            txtAmount.Rounding = new Padding(20);
-            txtAmount.Size = new Size(266, 45);
+            txtAmount.Rounding = new Padding(12);
+            txtAmount.Size = new Size(266, 42);
             txtAmount.TabIndex = 9;
-            txtAmount.UnderlinedStyle = true;
+            txtAmount.UnderlinedStyle = false;
+            // 
+            // lblAmountHint
+            // 
+            lblAmountHint.Anchor = AnchorStyles.None;
+            lblAmountHint.AutoSize = true;
+            lblAmountHint.BackColor = Color.White;
+            lblAmountHint.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+            lblAmountHint.ForeColor = Color.FromArgb(50, 50, 50);
+            lblAmountHint.Location = new Point(504, 253);
+            lblAmountHint.Name = "lblAmountHint";
+            lblAmountHint.Size = new Size(210, 15);
+            lblAmountHint.TabIndex = 10;
+            lblAmountHint.Text = "Например: 7 800 000 (= 7,8 млн ₽)";
             // 
             // lblStatus
             // 
@@ -246,7 +273,9 @@ namespace EstateFlow.Forms
             Controls.Add(btnSave);
             Controls.Add(cmbStatus);
             Controls.Add(lblStatus);
+            Controls.Add(lblAmountHint);
             Controls.Add(txtAmount);
+            Controls.Add(lblAmount);
             Controls.Add(dtpDate);
             Controls.Add(lblDate);
             Controls.Add(cmbAgent);
@@ -275,7 +304,9 @@ namespace EstateFlow.Forms
         private ComboBox cmbAgent;
         private Label lblDate;
         private DateTimePicker dtpDate;
+        private Label lblAmount;
         private HartUI.Controls.cuiTextBox txtAmount;
+        private Label lblAmountHint;
         private Label lblStatus;
         private ComboBox cmbStatus;
         private HartUI.Controls.cuiButton btnSave;

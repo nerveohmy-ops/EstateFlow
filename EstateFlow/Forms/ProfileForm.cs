@@ -1,3 +1,4 @@
+using EstateFlow.Data;
 using EstateFlow.Helpers;
 using EstateFlow.Models;
 using EstateFlow.Services;
@@ -26,7 +27,10 @@ namespace EstateFlow.Forms
         private void LoadData()
         {
             var u = Session.CurrentUser;
-            txtFullName.Content = u.FullName;
+            Validator.SplitFullName(u.FullName, out string last, out string first, out string middle);
+            txtLastName.Content = last;
+            txtFirstName.Content = first;
+            txtMiddleName.Content = middle;
             txtLogin.Content = u.Login;
             txtEmail.Content = u.Email;
             txtPhone.Content = u.Phone;
@@ -35,13 +39,22 @@ namespace EstateFlow.Forms
 
         private void BtnSaveProfile_Click(object sender, EventArgs e)
         {
-            string fullName = (txtFullName.Content ?? "").Trim();
+            string lastName = (txtLastName.Content ?? "").Trim();
+            string firstName = (txtFirstName.Content ?? "").Trim();
+            string middleName = (txtMiddleName.Content ?? "").Trim();
             string email = (txtEmail.Content ?? "").Trim();
             string phone = (txtPhone.Content ?? "").Trim();
             string secret = (txtSecret.Content ?? "").Trim();
 
-            string nameErr = Validator.FullName(fullName);
-            if (nameErr != null) { UiTheme.Warning(nameErr); txtFullName.Focus(); return; }
+            string nameErr = Validator.FullNameParts(lastName, firstName, middleName, out string fullName);
+            if (nameErr != null)
+            {
+                UiTheme.Warning(nameErr);
+                if (string.IsNullOrWhiteSpace(lastName)) txtLastName.Focus();
+                else if (string.IsNullOrWhiteSpace(firstName)) txtFirstName.Focus();
+                else txtLastName.Focus();
+                return;
+            }
 
             string emailErr = Validator.Email(email);
             if (emailErr != null) { UiTheme.Warning(emailErr); txtEmail.Focus(); return; }
@@ -126,6 +139,11 @@ namespace EstateFlow.Forms
             {
                 UserService.ChangePassword(Session.CurrentUser.Id, newP);
                 Session.CurrentUser.PasswordHash = PasswordHasher.Hash(newP);
+                var remembered = AppConfig.GetRememberedCredentials();
+                if (string.Equals(remembered.Login, Session.CurrentUser.Login, StringComparison.OrdinalIgnoreCase))
+                {
+                    AppConfig.SaveRememberedCredentials(Session.CurrentUser.Login, newP);
+                }
             }))
             {
                 txtOldPassword.Content = "";

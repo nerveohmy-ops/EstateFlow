@@ -14,6 +14,7 @@ namespace EstateFlow.Forms
             dealId = id;
             initialPropertyId = propId;
             InitializeComponent();
+            UiTheme.AttachPriceFormatter(txtAmount, lblAmountHint);
             dtpDate.Value = DateTime.Today;
             cmbStatus.SelectedIndex = 0;
 
@@ -55,7 +56,7 @@ namespace EstateFlow.Forms
                     UiTheme.SelectById(cmbClient, existingDeal.ClientId);
                     UiTheme.SelectById(cmbAgent, existingDeal.AgentId);
                     dtpDate.Value = existingDeal.DealDate;
-                    txtAmount.Content = existingDeal.Amount.ToString("0.##");
+                    txtAmount.Content = ((long)existingDeal.Amount).ToString();
                     cmbStatus.SelectedItem = existingDeal.Status;
                 }
                 else
@@ -82,7 +83,7 @@ namespace EstateFlow.Forms
                 var p = PropertyService.GetById(item.Id);
                 if (p != null)
                 {
-                    txtAmount.Content = p.Price.ToString("0.##");
+                    txtAmount.Content = ((long)p.Price).ToString();
                     if (p.AgentId.HasValue) UiTheme.SelectById(cmbAgent, p.AgentId.Value);
                 }
             }

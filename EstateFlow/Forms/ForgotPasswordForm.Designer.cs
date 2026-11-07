@@ -58,49 +58,49 @@ namespace EstateFlow.Forms
             // 
             txtIdentity.Anchor = AnchorStyles.None;
             txtIdentity.BackColor = Color.White;
-            txtIdentity.BackgroundColor = Color.White;
+            txtIdentity.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtIdentity.Content = "";
             txtIdentity.FocusBackgroundColor = Color.White;
             txtIdentity.FocusImageTint = Color.White;
             txtIdentity.FocusOutlineColor = Color.Black;
-            txtIdentity.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtIdentity.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtIdentity.ForeColor = Color.Black;
             txtIdentity.Location = new Point(353, 140);
             txtIdentity.Name = "txtIdentity";
             txtIdentity.NormalImageTint = Color.White;
-            txtIdentity.OutlineColor = Color.FromArgb(128, 128, 128, 128);
+            txtIdentity.OutlineColor = Color.FromArgb(95, 95, 95);
             txtIdentity.Padding = new Padding(16, 14, 16, 0);
             txtIdentity.PasswordChar = false;
-            txtIdentity.PlaceholderColor = Color.LightGray;
+            txtIdentity.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtIdentity.PlaceholderText = "Логин, email или телефон..";
-            txtIdentity.Rounding = new Padding(20);
+            txtIdentity.Rounding = new Padding(12);
             txtIdentity.Size = new Size(266, 45);
             txtIdentity.TabIndex = 2;
-            txtIdentity.UnderlinedStyle = true;
+            txtIdentity.UnderlinedStyle = false;
             // 
             // txtSecret
             // 
             txtSecret.Anchor = AnchorStyles.None;
             txtSecret.BackColor = Color.White;
-            txtSecret.BackgroundColor = Color.White;
+            txtSecret.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtSecret.Content = "";
             txtSecret.FocusBackgroundColor = Color.White;
             txtSecret.FocusImageTint = Color.White;
             txtSecret.FocusOutlineColor = Color.Black;
-            txtSecret.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSecret.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSecret.ForeColor = Color.Black;
             txtSecret.Location = new Point(353, 195);
             txtSecret.Name = "txtSecret";
             txtSecret.NormalImageTint = Color.White;
-            txtSecret.OutlineColor = Color.FromArgb(128, 128, 128, 128);
+            txtSecret.OutlineColor = Color.FromArgb(95, 95, 95);
             txtSecret.Padding = new Padding(16, 14, 16, 0);
             txtSecret.PasswordChar = false;
-            txtSecret.PlaceholderColor = Color.LightGray;
+            txtSecret.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSecret.PlaceholderText = "Секретное слово..";
-            txtSecret.Rounding = new Padding(20);
+            txtSecret.Rounding = new Padding(12);
             txtSecret.Size = new Size(266, 45);
             txtSecret.TabIndex = 3;
-            txtSecret.UnderlinedStyle = true;
+            txtSecret.UnderlinedStyle = false;
             // 
             // btnReset
             // 

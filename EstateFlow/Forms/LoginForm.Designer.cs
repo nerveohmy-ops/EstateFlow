@@ -51,12 +51,12 @@ namespace EstateFlow.Forms
             cuiTextBox1.Anchor = AnchorStyles.None;
             cuiTextBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             cuiTextBox1.BackColor = Color.White;
-            cuiTextBox1.BackgroundColor = Color.White;
+            cuiTextBox1.BackgroundColor = Color.FromArgb(245, 246, 248);
             cuiTextBox1.Content = "";
             cuiTextBox1.FocusBackgroundColor = Color.White;
             cuiTextBox1.FocusImageTint = Color.White;
             cuiTextBox1.FocusOutlineColor = Color.Black;
-            cuiTextBox1.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cuiTextBox1.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 204);
             cuiTextBox1.ForeColor = Color.Black;
             cuiTextBox1.Image = null;
             cuiTextBox1.ImageExpand = new Point(0, 0);
@@ -67,48 +67,48 @@ namespace EstateFlow.Forms
             cuiTextBox1.Multiline = false;
             cuiTextBox1.Name = "cuiTextBox1";
             cuiTextBox1.NormalImageTint = Color.White;
-            cuiTextBox1.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            cuiTextBox1.Padding = new Padding(16, 14, 16, 0);
+            cuiTextBox1.OutlineColor = Color.FromArgb(95, 95, 95);
+            cuiTextBox1.Padding = new Padding(14, 12, 14, 0);
             cuiTextBox1.PasswordChar = false;
-            cuiTextBox1.PlaceholderColor = Color.LightGray;
+            cuiTextBox1.PlaceholderColor = Color.FromArgb(115, 115, 115);
             cuiTextBox1.PlaceholderText = "Логин, email или телефон..";
-            cuiTextBox1.Rounding = new Padding(20);
-            cuiTextBox1.Size = new Size(266, 45);
+            cuiTextBox1.Rounding = new Padding(12);
+            cuiTextBox1.Size = new Size(266, 44);
             cuiTextBox1.TabIndex = 1;
             cuiTextBox1.TextOffset = new Size(0, 0);
-            cuiTextBox1.UnderlinedStyle = true;
+            cuiTextBox1.UnderlinedStyle = false;
             // 
             // cuiTextBox2
             // 
             cuiTextBox2.Anchor = AnchorStyles.None;
             cuiTextBox2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             cuiTextBox2.BackColor = Color.White;
-            cuiTextBox2.BackgroundColor = Color.White;
+            cuiTextBox2.BackgroundColor = Color.FromArgb(245, 246, 248);
             cuiTextBox2.Content = "";
             cuiTextBox2.FocusBackgroundColor = Color.White;
             cuiTextBox2.FocusImageTint = Color.White;
             cuiTextBox2.FocusOutlineColor = Color.Black;
-            cuiTextBox2.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cuiTextBox2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 204);
             cuiTextBox2.ForeColor = Color.Black;
             cuiTextBox2.Image = null;
             cuiTextBox2.ImageExpand = new Point(0, 0);
             cuiTextBox2.ImageOffset = new Point(0, 0);
             cuiTextBox2.ImageTextSpacing = 8;
-            cuiTextBox2.Location = new Point(353, 173);
+            cuiTextBox2.Location = new Point(353, 172);
             cuiTextBox2.Margin = new Padding(4);
             cuiTextBox2.Multiline = false;
             cuiTextBox2.Name = "cuiTextBox2";
             cuiTextBox2.NormalImageTint = Color.White;
-            cuiTextBox2.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            cuiTextBox2.Padding = new Padding(16, 14, 16, 0);
+            cuiTextBox2.OutlineColor = Color.FromArgb(95, 95, 95);
+            cuiTextBox2.Padding = new Padding(14, 12, 14, 0);
             cuiTextBox2.PasswordChar = true;
-            cuiTextBox2.PlaceholderColor = Color.LightGray;
+            cuiTextBox2.PlaceholderColor = Color.FromArgb(115, 115, 115);
             cuiTextBox2.PlaceholderText = "Введите пароль..";
-            cuiTextBox2.Rounding = new Padding(20);
-            cuiTextBox2.Size = new Size(266, 45);
+            cuiTextBox2.Rounding = new Padding(12);
+            cuiTextBox2.Size = new Size(266, 44);
             cuiTextBox2.TabIndex = 2;
             cuiTextBox2.TextOffset = new Size(0, 0);
-            cuiTextBox2.UnderlinedStyle = true;
+            cuiTextBox2.UnderlinedStyle = false;
             // 
             // chkShowPassword
             // 

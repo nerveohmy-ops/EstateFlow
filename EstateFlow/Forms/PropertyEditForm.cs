@@ -12,6 +12,7 @@ namespace EstateFlow.Forms
         {
             propertyId = id;
             InitializeComponent();
+            UiTheme.AttachPriceFormatter(txtPrice, lblPriceHint);
             cmbStatus.SelectedIndex = 0;
             if (id > 0)
             {
@@ -45,11 +46,16 @@ namespace EstateFlow.Forms
                     var p = PropertyService.GetById(propertyId);
                     if (p != null)
                     {
-                        txtAddress.Content = p.Address;
+                        Validator.SplitAddress(p.Address, out string city, out string street, out string house, out string apt);
+                        txtCity.Content = city;
+                        txtStreet.Content = street;
+                        txtHouse.Content = house;
+                        txtApartment.Content = apt;
+
                         UiTheme.SelectById(cmbType, p.TypeId);
                         cmbStatus.SelectedItem = p.Status;
                         txtArea.Content = p.Area.ToString("0.##");
-                        txtPrice.Content = p.Price.ToString("0.##");
+                        txtPrice.Content = ((long)p.Price).ToString();
                         if (p.AgentId.HasValue) UiTheme.SelectById(cmbAgent, p.AgentId.Value);
                         txtDescription.Content = p.Description;
                     }
@@ -63,11 +69,11 @@ namespace EstateFlow.Forms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            string addr = (txtAddress.Content ?? "").Trim();
-            if (string.IsNullOrEmpty(addr))
+            string addrErr = Validator.AddressParts(
+                txtCity.Content, txtStreet.Content, txtHouse.Content, txtApartment.Content, out string addr);
+            if (addrErr != null)
             {
-                UiTheme.Warning("Укажите адрес объекта недвижимости.");
-                txtAddress.Focus();
+                UiTheme.Warning(addrErr);
                 return;
             }
 

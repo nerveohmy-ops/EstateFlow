@@ -26,20 +26,35 @@ namespace EstateFlow.Data
         private static AppConfig _current;
         public static AppConfig Current => _current ??= Load();
 
-        private static string RememberFilePath => Path.Combine(AppContext.BaseDirectory, "remember.txt");
+        private static string RememberFilePath
+        {
+            get
+            {
+                string dir = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "EstateFlow");
+                Directory.CreateDirectory(dir);
+                return Path.Combine(dir, "remember.txt");
+            }
+        }
 
-        public static string GetRememberedLogin()
+        public static (string Login, string Password) GetRememberedCredentials()
         {
             try
             {
                 if (File.Exists(RememberFilePath))
-                    return File.ReadAllText(RememberFilePath, Encoding.UTF8).Trim();
+                {
+                    var lines = File.ReadAllLines(RememberFilePath, Encoding.UTF8);
+                    string login = lines.Length > 0 ? lines[0].Trim() : "";
+                    string password = lines.Length > 1 ? lines[1] : "";
+                    return (login, password);
+                }
             }
             catch { }
-            return "";
+            return ("", "");
         }
 
-        public static void SaveRememberedLogin(string login)
+        public static void SaveRememberedCredentials(string login, string password)
         {
             try
             {
@@ -50,7 +65,7 @@ namespace EstateFlow.Data
                 }
                 else
                 {
-                    File.WriteAllText(RememberFilePath, login.Trim(), Encoding.UTF8);
+                    File.WriteAllLines(RememberFilePath, new[] { login.Trim(), password ?? "" }, Encoding.UTF8);
                 }
             }
             catch { }

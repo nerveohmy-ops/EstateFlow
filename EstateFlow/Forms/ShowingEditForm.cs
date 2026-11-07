@@ -14,7 +14,10 @@ namespace EstateFlow.Forms
             showingId = id;
             initialPropertyId = propId;
             InitializeComponent();
-            dtpDate.Value = DateTime.Today.AddDays(1).AddHours(14);
+            dtpDate.Value = DateTime.Today.AddDays(1);
+            cmbTime.SelectedItem = "14:00";
+            if (cmbTime.SelectedIndex < 0 && cmbTime.Items.Count > 0)
+                cmbTime.SelectedIndex = 0;
             cmbStatus.SelectedIndex = 0;
 
             if (id > 0)
@@ -55,7 +58,11 @@ namespace EstateFlow.Forms
                     UiTheme.SelectById(cmbProperty, existingShowing.PropertyId);
                     UiTheme.SelectById(cmbClient, existingShowing.ClientId);
                     if (existingShowing.AgentId.HasValue) UiTheme.SelectById(cmbAgent, existingShowing.AgentId.Value);
-                    dtpDate.Value = existingShowing.ShowDate;
+                    dtpDate.Value = existingShowing.ShowDate.Date;
+                    string timeSlot = existingShowing.ShowDate.ToString("HH:mm");
+                    if (!cmbTime.Items.Contains(timeSlot))
+                        cmbTime.Items.Add(timeSlot);
+                    cmbTime.SelectedItem = timeSlot;
                     cmbStatus.SelectedItem = existingShowing.Status;
                     txtComment.Content = existingShowing.Comment;
                 }
@@ -121,13 +128,16 @@ namespace EstateFlow.Forms
             if (cmbAgent.SelectedItem is LookupItem aItem && aItem.Id > 0)
                 agentId = aItem.Id;
 
+            if (!TimeSpan.TryParse(cmbTime.SelectedItem?.ToString() ?? "14:00", out var timeOfDay))
+                timeOfDay = new TimeSpan(14, 0, 0);
+
             var showing = new Showing
             {
                 Id = showingId,
                 PropertyId = propItem.Id,
                 ClientId = clientId,
                 AgentId = agentId,
-                ShowDate = dtpDate.Value,
+                ShowDate = dtpDate.Value.Date.Add(timeOfDay),
                 Status = cmbStatus.SelectedItem?.ToString() ?? ShowingStatus.New,
                 Comment = (txtComment.Content ?? "").Trim()
             };

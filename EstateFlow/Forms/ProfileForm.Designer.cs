@@ -18,7 +18,9 @@ namespace EstateFlow.Forms
         private void InitializeComponent()
         {
             lblTitle = new Label();
-            txtFullName = new HartUI.Controls.cuiTextBox();
+            txtLastName = new HartUI.Controls.cuiTextBox();
+            txtFirstName = new HartUI.Controls.cuiTextBox();
+            txtMiddleName = new HartUI.Controls.cuiTextBox();
             txtLogin = new HartUI.Controls.cuiTextBox();
             txtEmail = new HartUI.Controls.cuiTextBox();
             txtPhone = new HartUI.Controls.cuiTextBox();
@@ -38,132 +40,180 @@ namespace EstateFlow.Forms
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.White;
             lblTitle.Font = new Font("Microsoft Sans Serif", 18F);
-            lblTitle.Location = new Point(216, 18);
+            lblTitle.Location = new Point(216, 16);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(198, 29);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Личный кабинет";
             // 
-            // txtFullName
+            // txtLastName
             // 
-            txtFullName.Anchor = AnchorStyles.None;
-            txtFullName.BackColor = Color.White;
-            txtFullName.BackgroundColor = Color.White;
-            txtFullName.Content = "";
-            txtFullName.FocusBackgroundColor = Color.White;
-            txtFullName.FocusImageTint = Color.White;
-            txtFullName.FocusOutlineColor = Color.Black;
-            txtFullName.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFullName.ForeColor = Color.Black;
-            txtFullName.Location = new Point(216, 62);
-            txtFullName.Name = "txtFullName";
-            txtFullName.NormalImageTint = Color.White;
-            txtFullName.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtFullName.Padding = new Padding(16, 14, 16, 0);
-            txtFullName.PasswordChar = false;
-            txtFullName.PlaceholderColor = Color.LightGray;
-            txtFullName.PlaceholderText = "ФИО";
-            txtFullName.Rounding = new Padding(20);
-            txtFullName.Size = new Size(266, 45);
-            txtFullName.TabIndex = 1;
-            txtFullName.UnderlinedStyle = true;
+            txtLastName.Anchor = AnchorStyles.None;
+            txtLastName.BackColor = Color.White;
+            txtLastName.BackgroundColor = Color.FromArgb(245, 246, 248);
+            txtLastName.Content = "";
+            txtLastName.FocusBackgroundColor = Color.White;
+            txtLastName.FocusImageTint = Color.White;
+            txtLastName.FocusOutlineColor = Color.Black;
+            txtLastName.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLastName.ForeColor = Color.Black;
+            txtLastName.Location = new Point(216, 56);
+            txtLastName.Name = "txtLastName";
+            txtLastName.NormalImageTint = Color.White;
+            txtLastName.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtLastName.Padding = new Padding(14, 12, 14, 0);
+            txtLastName.PasswordChar = false;
+            txtLastName.PlaceholderColor = Color.FromArgb(115, 115, 115);
+            txtLastName.PlaceholderText = "Фамилия";
+            txtLastName.Rounding = new Padding(12);
+            txtLastName.Size = new Size(176, 44);
+            txtLastName.TabIndex = 1;
+            txtLastName.UnderlinedStyle = false;
+            // 
+            // txtFirstName
+            // 
+            txtFirstName.Anchor = AnchorStyles.None;
+            txtFirstName.BackColor = Color.White;
+            txtFirstName.BackgroundColor = Color.FromArgb(245, 246, 248);
+            txtFirstName.Content = "";
+            txtFirstName.FocusBackgroundColor = Color.White;
+            txtFirstName.FocusImageTint = Color.White;
+            txtFirstName.FocusOutlineColor = Color.Black;
+            txtFirstName.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtFirstName.ForeColor = Color.Black;
+            txtFirstName.Location = new Point(404, 56);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.NormalImageTint = Color.White;
+            txtFirstName.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtFirstName.Padding = new Padding(14, 12, 14, 0);
+            txtFirstName.PasswordChar = false;
+            txtFirstName.PlaceholderColor = Color.FromArgb(115, 115, 115);
+            txtFirstName.PlaceholderText = "Имя";
+            txtFirstName.Rounding = new Padding(12);
+            txtFirstName.Size = new Size(176, 44);
+            txtFirstName.TabIndex = 2;
+            txtFirstName.UnderlinedStyle = false;
+            // 
+            // txtMiddleName
+            // 
+            txtMiddleName.Anchor = AnchorStyles.None;
+            txtMiddleName.BackColor = Color.White;
+            txtMiddleName.BackgroundColor = Color.FromArgb(245, 246, 248);
+            txtMiddleName.Content = "";
+            txtMiddleName.FocusBackgroundColor = Color.White;
+            txtMiddleName.FocusImageTint = Color.White;
+            txtMiddleName.FocusOutlineColor = Color.Black;
+            txtMiddleName.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtMiddleName.ForeColor = Color.Black;
+            txtMiddleName.Location = new Point(592, 56);
+            txtMiddleName.Name = "txtMiddleName";
+            txtMiddleName.NormalImageTint = Color.White;
+            txtMiddleName.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtMiddleName.Padding = new Padding(14, 12, 14, 0);
+            txtMiddleName.PasswordChar = false;
+            txtMiddleName.PlaceholderColor = Color.FromArgb(115, 115, 115);
+            txtMiddleName.PlaceholderText = "Отчество";
+            txtMiddleName.Rounding = new Padding(12);
+            txtMiddleName.Size = new Size(176, 44);
+            txtMiddleName.TabIndex = 3;
+            txtMiddleName.UnderlinedStyle = false;
             // 
             // txtLogin
             // 
             txtLogin.Anchor = AnchorStyles.None;
             txtLogin.BackColor = Color.White;
-            txtLogin.BackgroundColor = Color.White;
+            txtLogin.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtLogin.Content = "";
             txtLogin.Enabled = false;
             txtLogin.FocusBackgroundColor = Color.White;
             txtLogin.FocusImageTint = Color.White;
             txtLogin.FocusOutlineColor = Color.Black;
-            txtLogin.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLogin.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtLogin.ForeColor = Color.Black;
-            txtLogin.Location = new Point(502, 62);
+            txtLogin.Location = new Point(216, 110);
             txtLogin.Name = "txtLogin";
             txtLogin.NormalImageTint = Color.White;
-            txtLogin.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtLogin.Padding = new Padding(16, 14, 16, 0);
+            txtLogin.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtLogin.Padding = new Padding(14, 12, 14, 0);
             txtLogin.PasswordChar = false;
-            txtLogin.PlaceholderColor = Color.LightGray;
+            txtLogin.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtLogin.PlaceholderText = "Логин";
-            txtLogin.Rounding = new Padding(20);
-            txtLogin.Size = new Size(266, 45);
-            txtLogin.TabIndex = 2;
-            txtLogin.UnderlinedStyle = true;
+            txtLogin.Rounding = new Padding(12);
+            txtLogin.Size = new Size(176, 44);
+            txtLogin.TabIndex = 4;
+            txtLogin.UnderlinedStyle = false;
             // 
             // txtEmail
             // 
             txtEmail.Anchor = AnchorStyles.None;
             txtEmail.BackColor = Color.White;
-            txtEmail.BackgroundColor = Color.White;
+            txtEmail.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtEmail.Content = "";
             txtEmail.FocusBackgroundColor = Color.White;
             txtEmail.FocusImageTint = Color.White;
             txtEmail.FocusOutlineColor = Color.Black;
-            txtEmail.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.Black;
-            txtEmail.Location = new Point(216, 117);
+            txtEmail.Location = new Point(404, 110);
             txtEmail.Name = "txtEmail";
             txtEmail.NormalImageTint = Color.White;
-            txtEmail.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtEmail.Padding = new Padding(16, 14, 16, 0);
+            txtEmail.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtEmail.Padding = new Padding(14, 12, 14, 0);
             txtEmail.PasswordChar = false;
-            txtEmail.PlaceholderColor = Color.LightGray;
+            txtEmail.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtEmail.PlaceholderText = "Email";
-            txtEmail.Rounding = new Padding(20);
-            txtEmail.Size = new Size(266, 45);
-            txtEmail.TabIndex = 3;
-            txtEmail.UnderlinedStyle = true;
+            txtEmail.Rounding = new Padding(12);
+            txtEmail.Size = new Size(176, 44);
+            txtEmail.TabIndex = 5;
+            txtEmail.UnderlinedStyle = false;
             // 
             // txtPhone
             // 
             txtPhone.Anchor = AnchorStyles.None;
             txtPhone.BackColor = Color.White;
-            txtPhone.BackgroundColor = Color.White;
+            txtPhone.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtPhone.Content = "";
             txtPhone.FocusBackgroundColor = Color.White;
             txtPhone.FocusImageTint = Color.White;
             txtPhone.FocusOutlineColor = Color.Black;
-            txtPhone.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPhone.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhone.ForeColor = Color.Black;
-            txtPhone.Location = new Point(502, 117);
+            txtPhone.Location = new Point(592, 110);
             txtPhone.Name = "txtPhone";
             txtPhone.NormalImageTint = Color.White;
-            txtPhone.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtPhone.Padding = new Padding(16, 14, 16, 0);
+            txtPhone.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtPhone.Padding = new Padding(14, 12, 14, 0);
             txtPhone.PasswordChar = false;
-            txtPhone.PlaceholderColor = Color.LightGray;
-            txtPhone.PlaceholderText = "Телефон +7(XXX)XXX-XX-XX";
-            txtPhone.Rounding = new Padding(20);
-            txtPhone.Size = new Size(266, 45);
-            txtPhone.TabIndex = 4;
-            txtPhone.UnderlinedStyle = true;
+            txtPhone.PlaceholderColor = Color.FromArgb(115, 115, 115);
+            txtPhone.PlaceholderText = "+7(XXX)XXX-XX-XX";
+            txtPhone.Rounding = new Padding(12);
+            txtPhone.Size = new Size(176, 44);
+            txtPhone.TabIndex = 6;
+            txtPhone.UnderlinedStyle = false;
             // 
             // txtSecret
             // 
             txtSecret.Anchor = AnchorStyles.None;
             txtSecret.BackColor = Color.White;
-            txtSecret.BackgroundColor = Color.White;
+            txtSecret.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtSecret.Content = "";
             txtSecret.FocusBackgroundColor = Color.White;
             txtSecret.FocusImageTint = Color.White;
             txtSecret.FocusOutlineColor = Color.Black;
-            txtSecret.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSecret.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSecret.ForeColor = Color.Black;
-            txtSecret.Location = new Point(216, 172);
+            txtSecret.Location = new Point(216, 166);
             txtSecret.Name = "txtSecret";
             txtSecret.NormalImageTint = Color.White;
-            txtSecret.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtSecret.Padding = new Padding(16, 14, 16, 0);
+            txtSecret.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtSecret.Padding = new Padding(14, 12, 14, 0);
             txtSecret.PasswordChar = false;
-            txtSecret.PlaceholderColor = Color.LightGray;
+            txtSecret.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSecret.PlaceholderText = "Секретное слово";
-            txtSecret.Rounding = new Padding(20);
-            txtSecret.Size = new Size(266, 45);
-            txtSecret.TabIndex = 5;
-            txtSecret.UnderlinedStyle = true;
+            txtSecret.Rounding = new Padding(12);
+            txtSecret.Size = new Size(266, 44);
+            txtSecret.TabIndex = 7;
+            txtSecret.UnderlinedStyle = false;
             // 
             // btnSaveProfile
             // 
@@ -178,7 +228,7 @@ namespace EstateFlow.Forms
             btnSaveProfile.HoverBackground = Color.FromArgb(40, 40, 40);
             btnSaveProfile.HoverForeColor = Color.White;
             btnSaveProfile.HoverOutline = Color.Black;
-            btnSaveProfile.Location = new Point(502, 172);
+            btnSaveProfile.Location = new Point(502, 166);
             btnSaveProfile.Name = "btnSaveProfile";
             btnSaveProfile.NormalBackground = Color.Black;
             btnSaveProfile.NormalForeColor = Color.White;
@@ -189,8 +239,8 @@ namespace EstateFlow.Forms
             btnSaveProfile.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnSaveProfile.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnSaveProfile.Rounding = new Padding(20);
-            btnSaveProfile.Size = new Size(266, 45);
-            btnSaveProfile.TabIndex = 6;
+            btnSaveProfile.Size = new Size(266, 44);
+            btnSaveProfile.TabIndex = 8;
             btnSaveProfile.TextAlignment = StringAlignment.Center;
             btnSaveProfile.Click += BtnSaveProfile_Click;
             // 
@@ -200,83 +250,83 @@ namespace EstateFlow.Forms
             lblPassHeader.AutoSize = true;
             lblPassHeader.BackColor = Color.White;
             lblPassHeader.Font = new Font("Segoe UI", 10.5F);
-            lblPassHeader.Location = new Point(216, 232);
+            lblPassHeader.Location = new Point(216, 228);
             lblPassHeader.Name = "lblPassHeader";
             lblPassHeader.Size = new Size(109, 19);
-            lblPassHeader.TabIndex = 7;
+            lblPassHeader.TabIndex = 9;
             lblPassHeader.Text = "Смена пароля:";
             // 
             // txtOldPassword
             // 
             txtOldPassword.Anchor = AnchorStyles.None;
             txtOldPassword.BackColor = Color.White;
-            txtOldPassword.BackgroundColor = Color.White;
+            txtOldPassword.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtOldPassword.Content = "";
             txtOldPassword.FocusBackgroundColor = Color.White;
             txtOldPassword.FocusImageTint = Color.White;
             txtOldPassword.FocusOutlineColor = Color.Black;
-            txtOldPassword.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtOldPassword.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtOldPassword.ForeColor = Color.Black;
-            txtOldPassword.Location = new Point(216, 260);
+            txtOldPassword.Location = new Point(216, 256);
             txtOldPassword.Name = "txtOldPassword";
             txtOldPassword.NormalImageTint = Color.White;
-            txtOldPassword.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtOldPassword.Padding = new Padding(16, 14, 16, 0);
+            txtOldPassword.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtOldPassword.Padding = new Padding(14, 12, 14, 0);
             txtOldPassword.PasswordChar = true;
-            txtOldPassword.PlaceholderColor = Color.LightGray;
+            txtOldPassword.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtOldPassword.PlaceholderText = "Текущий пароль";
-            txtOldPassword.Rounding = new Padding(20);
-            txtOldPassword.Size = new Size(175, 45);
-            txtOldPassword.TabIndex = 8;
-            txtOldPassword.UnderlinedStyle = true;
+            txtOldPassword.Rounding = new Padding(12);
+            txtOldPassword.Size = new Size(176, 44);
+            txtOldPassword.TabIndex = 10;
+            txtOldPassword.UnderlinedStyle = false;
             // 
             // txtNewPassword
             // 
             txtNewPassword.Anchor = AnchorStyles.None;
             txtNewPassword.BackColor = Color.White;
-            txtNewPassword.BackgroundColor = Color.White;
+            txtNewPassword.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtNewPassword.Content = "";
             txtNewPassword.FocusBackgroundColor = Color.White;
             txtNewPassword.FocusImageTint = Color.White;
             txtNewPassword.FocusOutlineColor = Color.Black;
-            txtNewPassword.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNewPassword.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNewPassword.ForeColor = Color.Black;
-            txtNewPassword.Location = new Point(404, 260);
+            txtNewPassword.Location = new Point(404, 256);
             txtNewPassword.Name = "txtNewPassword";
             txtNewPassword.NormalImageTint = Color.White;
-            txtNewPassword.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtNewPassword.Padding = new Padding(16, 14, 16, 0);
+            txtNewPassword.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtNewPassword.Padding = new Padding(14, 12, 14, 0);
             txtNewPassword.PasswordChar = true;
-            txtNewPassword.PlaceholderColor = Color.LightGray;
+            txtNewPassword.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtNewPassword.PlaceholderText = "Новый пароль";
-            txtNewPassword.Rounding = new Padding(20);
-            txtNewPassword.Size = new Size(175, 45);
-            txtNewPassword.TabIndex = 9;
-            txtNewPassword.UnderlinedStyle = true;
+            txtNewPassword.Rounding = new Padding(12);
+            txtNewPassword.Size = new Size(176, 44);
+            txtNewPassword.TabIndex = 11;
+            txtNewPassword.UnderlinedStyle = false;
             // 
             // txtRepeatPassword
             // 
             txtRepeatPassword.Anchor = AnchorStyles.None;
             txtRepeatPassword.BackColor = Color.White;
-            txtRepeatPassword.BackgroundColor = Color.White;
+            txtRepeatPassword.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtRepeatPassword.Content = "";
             txtRepeatPassword.FocusBackgroundColor = Color.White;
             txtRepeatPassword.FocusImageTint = Color.White;
             txtRepeatPassword.FocusOutlineColor = Color.Black;
-            txtRepeatPassword.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRepeatPassword.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRepeatPassword.ForeColor = Color.Black;
-            txtRepeatPassword.Location = new Point(593, 260);
+            txtRepeatPassword.Location = new Point(592, 256);
             txtRepeatPassword.Name = "txtRepeatPassword";
             txtRepeatPassword.NormalImageTint = Color.White;
-            txtRepeatPassword.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtRepeatPassword.Padding = new Padding(16, 14, 16, 0);
+            txtRepeatPassword.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtRepeatPassword.Padding = new Padding(14, 12, 14, 0);
             txtRepeatPassword.PasswordChar = true;
-            txtRepeatPassword.PlaceholderColor = Color.LightGray;
+            txtRepeatPassword.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtRepeatPassword.PlaceholderText = "Повтор пароля";
-            txtRepeatPassword.Rounding = new Padding(20);
-            txtRepeatPassword.Size = new Size(175, 45);
-            txtRepeatPassword.TabIndex = 10;
-            txtRepeatPassword.UnderlinedStyle = true;
+            txtRepeatPassword.Rounding = new Padding(12);
+            txtRepeatPassword.Size = new Size(176, 44);
+            txtRepeatPassword.TabIndex = 12;
+            txtRepeatPassword.UnderlinedStyle = false;
             // 
             // btnChangePassword
             // 
@@ -303,7 +353,7 @@ namespace EstateFlow.Forms
             btnChangePassword.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnChangePassword.Rounding = new Padding(20);
             btnChangePassword.Size = new Size(266, 45);
-            btnChangePassword.TabIndex = 11;
+            btnChangePassword.TabIndex = 13;
             btnChangePassword.TextAlignment = StringAlignment.Center;
             btnChangePassword.Click += BtnChangePassword_Click;
             // 
@@ -332,7 +382,7 @@ namespace EstateFlow.Forms
             btnClose.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnClose.Rounding = new Padding(20);
             btnClose.Size = new Size(266, 45);
-            btnClose.TabIndex = 12;
+            btnClose.TabIndex = 14;
             btnClose.TextAlignment = StringAlignment.Center;
             btnClose.Click += btnClose_Click;
             // 
@@ -350,7 +400,9 @@ namespace EstateFlow.Forms
             Controls.Add(txtPhone);
             Controls.Add(txtEmail);
             Controls.Add(txtLogin);
-            Controls.Add(txtFullName);
+            Controls.Add(txtMiddleName);
+            Controls.Add(txtFirstName);
+            Controls.Add(txtLastName);
             Controls.Add(lblTitle);
             DoubleBuffered = true;
             Name = "ProfileForm";
@@ -363,7 +415,9 @@ namespace EstateFlow.Forms
         #endregion
 
         private Label lblTitle;
-        private HartUI.Controls.cuiTextBox txtFullName;
+        private HartUI.Controls.cuiTextBox txtLastName;
+        private HartUI.Controls.cuiTextBox txtFirstName;
+        private HartUI.Controls.cuiTextBox txtMiddleName;
         private HartUI.Controls.cuiTextBox txtLogin;
         private HartUI.Controls.cuiTextBox txtEmail;
         private HartUI.Controls.cuiTextBox txtPhone;

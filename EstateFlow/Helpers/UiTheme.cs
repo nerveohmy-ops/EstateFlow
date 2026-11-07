@@ -22,24 +22,111 @@ namespace EstateFlow.Helpers
             {
                 Anchor = AnchorStyles.None,
                 BackColor = Color.White,
-                BackgroundColor = Color.White,
+                BackgroundColor = Color.FromArgb(245, 246, 248),
                 Content = "",
                 FocusBackgroundColor = Color.White,
                 FocusImageTint = Color.White,
                 FocusOutlineColor = Color.Black,
-                Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 204),
                 ForeColor = Color.Black,
                 NormalImageTint = Color.White,
-                OutlineColor = Color.FromArgb(128, 128, 128, 128),
-                Padding = new Padding(16, 14, 16, 0),
+                OutlineColor = Color.FromArgb(95, 95, 95),
+                Padding = new Padding(14, 12, 14, 0),
                 PasswordChar = isPassword,
-                PlaceholderColor = Color.LightGray,
+                PlaceholderColor = Color.FromArgb(115, 115, 115),
                 PlaceholderText = placeholder,
-                Rounding = new Padding(20),
-                Size = new Size(width, 45),
-                UnderlinedStyle = true
+                Rounding = new Padding(12),
+                Size = new Size(width, 42),
+                UnderlinedStyle = false
             };
             return tb;
+        }
+
+        // делает все cuiTextBox на форме контрастными и выразительными
+        public static void StyleTextBoxes(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is cuiTextBox tb)
+                {
+                    tb.UnderlinedStyle = false;
+                    tb.BackgroundColor = tb.Enabled ? Color.FromArgb(245, 246, 248) : Color.FromArgb(232, 232, 235);
+                    tb.FocusBackgroundColor = Color.White;
+                    tb.OutlineColor = Color.FromArgb(95, 95, 95);
+                    tb.FocusOutlineColor = Color.Black;
+                    tb.PlaceholderColor = Color.FromArgb(115, 115, 115);
+                    tb.ForeColor = Color.Black;
+                    tb.Rounding = new Padding(12);
+                    tb.Invalidate();
+                }
+                if (c.HasChildren && c is not cuiTextBox)
+                {
+                    StyleTextBoxes(c);
+                }
+            }
+        }
+
+        // авторазбивка суммы по разрядам (7 800 000) + живая подсказка в миллионах
+        public static void AttachPriceFormatter(cuiTextBox tb, Label hintLabel = null)
+        {
+            bool formatting = false;
+            void UpdatePrice()
+            {
+                if (formatting) return;
+                formatting = true;
+
+                string raw = tb.Content ?? "";
+                string digits = new string(raw.Where(char.IsDigit).ToArray());
+                if (digits.Length > 12) digits = digits.Substring(0, 12);
+
+                if (long.TryParse(digits, out long val) && val > 0)
+                {
+                    string formatted = val.ToString("#,0", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"))
+                                          .Replace('\u00A0', ' ');
+                    if (tb.Content != formatted)
+                        tb.Content = formatted;
+
+                    if (hintLabel != null)
+                        hintLabel.Text = FormatPriceReadable(val);
+                }
+                else
+                {
+                    if (digits.Length == 0 && tb.Content != "")
+                        tb.Content = "";
+                    if (hintLabel != null)
+                        hintLabel.Text = "Например: 7 800 000 (= 7,8 млн ₽)";
+                }
+
+                formatting = false;
+            }
+
+            tb.ContentChanged += (s, e) => UpdatePrice();
+            UpdatePrice();
+        }
+
+        public static string FormatPriceReadable(decimal val)
+        {
+            if (val <= 0) return "";
+            if (val >= 1_000_000_000m)
+            {
+                decimal mlrd = val / 1_000_000_000m;
+                return $"≈ {mlrd:0.###} млрд ₽";
+            }
+            if (val >= 1_000_000m)
+            {
+                decimal mln = val / 1_000_000m;
+                long wholeMln = (long)(val / 1_000_000m);
+                long remTys = (long)((val % 1_000_000m) / 1_000m);
+                if (remTys > 0)
+                    return $"= {wholeMln} млн {remTys} тыс. ₽ ({mln:0.##} млн ₽)";
+                return $"= {wholeMln} млн ₽";
+            }
+            if (val >= 1_000m)
+            {
+                decimal tys = val / 1_000m;
+                return $"= {tys:0.##} тыс. ₽";
+            }
+            return $"= {val:N0} ₽".Replace('\u00A0', ' ');
         }
 
         public static cuiButton CreateButton(string text, bool isBlack = false, int width = 125, int height = 45)

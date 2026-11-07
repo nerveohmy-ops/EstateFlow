@@ -64,34 +64,34 @@ namespace EstateFlow.Forms
             // 
             txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtSearch.BackColor = Color.White;
-            txtSearch.BackgroundColor = Color.White;
+            txtSearch.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtSearch.Content = "";
             txtSearch.FocusBackgroundColor = Color.White;
             txtSearch.FocusImageTint = Color.White;
             txtSearch.FocusOutlineColor = Color.Black;
-            txtSearch.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.ForeColor = Color.Black;
             txtSearch.Location = new Point(102, 46);
             txtSearch.Name = "txtSearch";
             txtSearch.NormalImageTint = Color.White;
-            txtSearch.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtSearch.Padding = new Padding(16, 14, 16, 0);
+            txtSearch.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtSearch.Padding = new Padding(14, 12, 14, 0);
             txtSearch.PasswordChar = false;
-            txtSearch.PlaceholderColor = Color.LightGray;
+            txtSearch.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSearch.PlaceholderText = "Поиск по адресу или описанию";
-            txtSearch.Rounding = new Padding(20);
-            txtSearch.Size = new Size(220, 45);
+            txtSearch.Rounding = new Padding(12);
+            txtSearch.Size = new Size(214, 42);
             txtSearch.TabIndex = 2;
-            txtSearch.UnderlinedStyle = true;
+            txtSearch.UnderlinedStyle = false;
             // 
             // cmbType
             // 
             cmbType.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbType.Font = new Font("Segoe UI", 9.5F);
-            cmbType.Location = new Point(330, 56);
+            cmbType.Location = new Point(322, 54);
             cmbType.Name = "cmbType";
-            cmbType.Size = new Size(125, 25);
+            cmbType.Size = new Size(122, 25);
             cmbType.TabIndex = 3;
             // 
             // cmbStatus
@@ -100,58 +100,58 @@ namespace EstateFlow.Forms
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Все статусы", "Свободен", "Забронирован", "Продан" });
-            cmbStatus.Location = new Point(463, 56);
+            cmbStatus.Location = new Point(450, 54);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(118, 25);
+            cmbStatus.Size = new Size(114, 25);
             cmbStatus.TabIndex = 4;
             // 
             // txtMinPrice
             // 
             txtMinPrice.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtMinPrice.BackColor = Color.White;
-            txtMinPrice.BackgroundColor = Color.White;
+            txtMinPrice.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtMinPrice.Content = "";
             txtMinPrice.FocusBackgroundColor = Color.White;
             txtMinPrice.FocusImageTint = Color.White;
             txtMinPrice.FocusOutlineColor = Color.Black;
-            txtMinPrice.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtMinPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMinPrice.ForeColor = Color.Black;
-            txtMinPrice.Location = new Point(589, 46);
+            txtMinPrice.Location = new Point(570, 46);
             txtMinPrice.Name = "txtMinPrice";
             txtMinPrice.NormalImageTint = Color.White;
-            txtMinPrice.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtMinPrice.Padding = new Padding(14, 14, 14, 0);
+            txtMinPrice.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtMinPrice.Padding = new Padding(10, 12, 10, 0);
             txtMinPrice.PasswordChar = false;
-            txtMinPrice.PlaceholderColor = Color.LightGray;
-            txtMinPrice.PlaceholderText = "Цена от";
-            txtMinPrice.Rounding = new Padding(20);
-            txtMinPrice.Size = new Size(92, 45);
+            txtMinPrice.PlaceholderColor = Color.FromArgb(115, 115, 115);
+            txtMinPrice.PlaceholderText = "Цена от (₽)";
+            txtMinPrice.Rounding = new Padding(12);
+            txtMinPrice.Size = new Size(104, 42);
             txtMinPrice.TabIndex = 5;
-            txtMinPrice.UnderlinedStyle = true;
+            txtMinPrice.UnderlinedStyle = false;
             // 
             // txtMaxPrice
             // 
             txtMaxPrice.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtMaxPrice.BackColor = Color.White;
-            txtMaxPrice.BackgroundColor = Color.White;
+            txtMaxPrice.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtMaxPrice.Content = "";
             txtMaxPrice.FocusBackgroundColor = Color.White;
             txtMaxPrice.FocusImageTint = Color.White;
             txtMaxPrice.FocusOutlineColor = Color.Black;
-            txtMaxPrice.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtMaxPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMaxPrice.ForeColor = Color.Black;
-            txtMaxPrice.Location = new Point(687, 46);
+            txtMaxPrice.Location = new Point(678, 46);
             txtMaxPrice.Name = "txtMaxPrice";
             txtMaxPrice.NormalImageTint = Color.White;
-            txtMaxPrice.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtMaxPrice.Padding = new Padding(14, 14, 14, 0);
+            txtMaxPrice.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtMaxPrice.Padding = new Padding(10, 12, 10, 0);
             txtMaxPrice.PasswordChar = false;
-            txtMaxPrice.PlaceholderColor = Color.LightGray;
-            txtMaxPrice.PlaceholderText = "Цена до";
-            txtMaxPrice.Rounding = new Padding(20);
-            txtMaxPrice.Size = new Size(92, 45);
+            txtMaxPrice.PlaceholderColor = Color.FromArgb(115, 115, 115);
+            txtMaxPrice.PlaceholderText = "Цена до (₽)";
+            txtMaxPrice.Rounding = new Padding(12);
+            txtMaxPrice.Size = new Size(104, 42);
             txtMaxPrice.TabIndex = 6;
-            txtMaxPrice.UnderlinedStyle = true;
+            txtMaxPrice.UnderlinedStyle = false;
             // 
             // btnReset
             // 

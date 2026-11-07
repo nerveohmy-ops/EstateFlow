@@ -63,25 +63,25 @@ namespace EstateFlow.Forms
             // 
             txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtSearch.BackColor = Color.White;
-            txtSearch.BackgroundColor = Color.White;
+            txtSearch.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtSearch.Content = "";
             txtSearch.FocusBackgroundColor = Color.White;
             txtSearch.FocusImageTint = Color.White;
             txtSearch.FocusOutlineColor = Color.Black;
-            txtSearch.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.ForeColor = Color.Black;
             txtSearch.Location = new Point(102, 46);
             txtSearch.Name = "txtSearch";
             txtSearch.NormalImageTint = Color.White;
-            txtSearch.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtSearch.Padding = new Padding(16, 14, 16, 0);
+            txtSearch.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtSearch.Padding = new Padding(14, 12, 14, 0);
             txtSearch.PasswordChar = false;
-            txtSearch.PlaceholderColor = Color.LightGray;
+            txtSearch.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSearch.PlaceholderText = "Поиск (объект, клиент, агент)";
-            txtSearch.Rounding = new Padding(20);
-            txtSearch.Size = new Size(220, 45);
+            txtSearch.Rounding = new Padding(12);
+            txtSearch.Size = new Size(220, 42);
             txtSearch.TabIndex = 2;
-            txtSearch.UnderlinedStyle = true;
+            txtSearch.UnderlinedStyle = false;
             // 
             // cmbStatus
             // 

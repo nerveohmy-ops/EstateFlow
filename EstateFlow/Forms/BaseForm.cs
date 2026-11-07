@@ -39,6 +39,7 @@ namespace EstateFlow.Forms
 
         protected override void OnLoad(EventArgs e)
         {
+            Helpers.UiTheme.StyleTextBoxes(this);
             if (sharedLocation.HasValue && sharedWindowState == FormWindowState.Normal)
             {
                 StartPosition = FormStartPosition.Manual;

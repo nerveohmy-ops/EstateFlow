@@ -66,10 +66,129 @@ namespace EstateFlow.Helpers
             return null;
         }
 
+        public static string FullNameParts(string lastName, string firstName, string middleName, out string fullName)
+        {
+            fullName = "";
+            if (string.IsNullOrWhiteSpace(lastName)) return "Введите фамилию";
+            if (string.IsNullOrWhiteSpace(firstName)) return "Введите имя";
+
+            fullName = string.Join(" ", new[] { lastName.Trim(), firstName.Trim(), (middleName ?? "").Trim() }
+                .Where(s => !string.IsNullOrWhiteSpace(s)));
+
+            if (!Regex.IsMatch(fullName, @"^[А-Яа-яЁёA-Za-z\- ]+$"))
+                return "ФИО может содержать только буквы, пробел и дефис";
+            if (fullName.Length > 150)
+                return "ФИО слишком длинное";
+            return null;
+        }
+
+        public static void SplitFullName(string fullName, out string lastName, out string firstName, out string middleName)
+        {
+            var parts = (fullName ?? "").Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            lastName = parts.Length > 0 ? parts[0] : "";
+            firstName = parts.Length > 1 ? parts[1] : "";
+            middleName = parts.Length > 2 ? string.Join(" ", parts.Skip(2)) : "";
+        }
+
+        public static string AddressParts(string city, string street, string house, string apartment, out string fullAddress)
+        {
+            fullAddress = "";
+            city = (city ?? "").Trim();
+            street = (street ?? "").Trim();
+            house = (house ?? "").Trim();
+            apartment = (apartment ?? "").Trim();
+
+            if (string.IsNullOrWhiteSpace(city)) return "Укажите город (населённый пункт)";
+            if (string.IsNullOrWhiteSpace(street)) return "Укажите улицу";
+            if (string.IsNullOrWhiteSpace(house)) return "Укажите номер дома или участка";
+
+            string cityPart = (city.StartsWith("г.", StringComparison.OrdinalIgnoreCase) ||
+                               city.StartsWith("с.", StringComparison.OrdinalIgnoreCase) ||
+                               city.StartsWith("п.", StringComparison.OrdinalIgnoreCase) ||
+                               city.Contains("р-н", StringComparison.OrdinalIgnoreCase))
+                ? city : "г. " + city;
+
+            string streetPart = (street.StartsWith("ул.", StringComparison.OrdinalIgnoreCase) ||
+                                 street.StartsWith("пр", StringComparison.OrdinalIgnoreCase) ||
+                                 street.StartsWith("пер", StringComparison.OrdinalIgnoreCase) ||
+                                 street.StartsWith("б-р", StringComparison.OrdinalIgnoreCase) ||
+                                 street.StartsWith("ш.", StringComparison.OrdinalIgnoreCase))
+                ? street : "ул. " + street;
+
+            string housePart = (house.StartsWith("д.", StringComparison.OrdinalIgnoreCase) ||
+                                house.StartsWith("уч.", StringComparison.OrdinalIgnoreCase))
+                ? house : "д. " + house;
+
+            string aptPart = "";
+            if (!string.IsNullOrWhiteSpace(apartment))
+            {
+                aptPart = (apartment.StartsWith("кв.", StringComparison.OrdinalIgnoreCase) ||
+                           apartment.StartsWith("оф.", StringComparison.OrdinalIgnoreCase) ||
+                           apartment.StartsWith("пом.", StringComparison.OrdinalIgnoreCase))
+                    ? ", " + apartment
+                    : ", кв. " + apartment;
+            }
+
+            fullAddress = $"{cityPart}, {streetPart}, {housePart}{aptPart}";
+            return null;
+        }
+
+        public static void SplitAddress(string fullAddress, out string city, out string street, out string house, out string apartment)
+        {
+            city = "";
+            street = "";
+            house = "";
+            apartment = "";
+            if (string.IsNullOrWhiteSpace(fullAddress)) return;
+
+            var parts = fullAddress.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                   .Select(p => p.Trim())
+                                   .ToList();
+
+            foreach (var part in parts)
+            {
+                if (part.StartsWith("кв.", StringComparison.OrdinalIgnoreCase) ||
+                    part.StartsWith("оф.", StringComparison.OrdinalIgnoreCase) ||
+                    part.StartsWith("пом.", StringComparison.OrdinalIgnoreCase))
+                {
+                    apartment = Regex.Replace(part, @"^(кв\.|оф\.|пом\.)\s*", "", RegexOptions.IgnoreCase).Trim();
+                }
+                else if (part.StartsWith("д.", StringComparison.OrdinalIgnoreCase) ||
+                         part.StartsWith("дом ", StringComparison.OrdinalIgnoreCase) ||
+                         part.StartsWith("уч.", StringComparison.OrdinalIgnoreCase))
+                {
+                    house = Regex.Replace(part, @"^(д\.|дом)\s*", "", RegexOptions.IgnoreCase).Trim();
+                }
+                else if (part.StartsWith("ул.", StringComparison.OrdinalIgnoreCase) ||
+                         part.StartsWith("пр.", StringComparison.OrdinalIgnoreCase) ||
+                         part.StartsWith("пр-т", StringComparison.OrdinalIgnoreCase) ||
+                         part.StartsWith("пер.", StringComparison.OrdinalIgnoreCase))
+                {
+                    street = Regex.Replace(part, @"^ул\.\s*", "", RegexOptions.IgnoreCase).Trim();
+                }
+                else if (string.IsNullOrEmpty(city))
+                {
+                    city = Regex.Replace(part, @"^г\.\s*", "", RegexOptions.IgnoreCase).Trim();
+                }
+                else if (string.IsNullOrEmpty(street))
+                {
+                    street = Regex.Replace(part, @"^ул\.\s*", "", RegexOptions.IgnoreCase).Trim();
+                }
+                else if (string.IsNullOrEmpty(house))
+                {
+                    house = Regex.Replace(part, @"^д\.\s*", "", RegexOptions.IgnoreCase).Trim();
+                }
+                else if (string.IsNullOrEmpty(apartment))
+                {
+                    apartment = part;
+                }
+            }
+        }
+
         public static string PositiveDecimal(string value, string fieldName, out decimal result)
         {
             result = 0;
-            string normalized = (value ?? "").Replace(" ", "").Replace('.', ',');
+            string normalized = (value ?? "").Replace(" ", "").Replace("\u00A0", "").Replace('.', ',');
             if (!decimal.TryParse(normalized, System.Globalization.NumberStyles.Number,
                     System.Globalization.CultureInfo.GetCultureInfo("ru-RU"), out result))
                 return $"Поле «{fieldName}» должно быть числом";

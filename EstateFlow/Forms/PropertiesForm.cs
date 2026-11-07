@@ -10,6 +10,8 @@ namespace EstateFlow.Forms
         {
             InitializeComponent();
             UiTheme.StyleGrid(grid);
+            UiTheme.AttachPriceFormatter(txtMinPrice);
+            UiTheme.AttachPriceFormatter(txtMaxPrice);
 
             cmbStatus.SelectedIndex = 0;
             txtSearch.ContentChanged += (s, e) => LoadData();
@@ -83,8 +85,10 @@ namespace EstateFlow.Forms
                     typeId = item.Id;
 
                 string status = cmbStatus.SelectedIndex > 0 ? cmbStatus.SelectedItem.ToString() : "";
-                decimal? minP = decimal.TryParse((txtMinPrice.Content ?? "").Trim(), out var m1) ? m1 : null;
-                decimal? maxP = decimal.TryParse((txtMaxPrice.Content ?? "").Trim(), out var m2) ? m2 : null;
+                string rawMin = (txtMinPrice.Content ?? "").Replace(" ", "").Replace("\u00A0", "").Trim();
+                string rawMax = (txtMaxPrice.Content ?? "").Replace(" ", "").Replace("\u00A0", "").Trim();
+                decimal? minP = decimal.TryParse(rawMin, out var m1) ? m1 : null;
+                decimal? maxP = decimal.TryParse(rawMax, out var m2) ? m2 : null;
 
                 var table = PropertyService.GetList(txtSearch.Content ?? "", typeId, status, minP, maxP, null);
                 grid.DataSource = table;
