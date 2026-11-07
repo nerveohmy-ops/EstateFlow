@@ -32,7 +32,7 @@ namespace EstateFlow.Forms
             // 
             // lblHeader
             // 
-            lblHeader.Anchor = AnchorStyles.None;
+            lblHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
@@ -44,7 +44,7 @@ namespace EstateFlow.Forms
             // 
             // lblReportSummary
             // 
-            lblReportSummary.Anchor = AnchorStyles.None;
+            lblReportSummary.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblReportSummary.AutoSize = true;
             lblReportSummary.BackColor = Color.White;
             lblReportSummary.Font = new Font("Segoe UI", 9.5F);
@@ -57,7 +57,7 @@ namespace EstateFlow.Forms
             // 
             // cmbReportType
             // 
-            cmbReportType.Anchor = AnchorStyles.None;
+            cmbReportType.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbReportType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbReportType.Font = new Font("Segoe UI", 9.5F);
             cmbReportType.Location = new Point(102, 56);
@@ -67,7 +67,7 @@ namespace EstateFlow.Forms
             // 
             // lblPeriod
             // 
-            lblPeriod.Anchor = AnchorStyles.None;
+            lblPeriod.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblPeriod.AutoSize = true;
             lblPeriod.BackColor = Color.White;
             lblPeriod.Font = new Font("Segoe UI", 9.5F);
@@ -79,7 +79,7 @@ namespace EstateFlow.Forms
             // 
             // dtpFrom
             // 
-            dtpFrom.Anchor = AnchorStyles.None;
+            dtpFrom.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             dtpFrom.Format = DateTimePickerFormat.Short;
             dtpFrom.Location = new Point(428, 56);
             dtpFrom.Name = "dtpFrom";
@@ -89,7 +89,7 @@ namespace EstateFlow.Forms
             // 
             // dtpTo
             // 
-            dtpTo.Anchor = AnchorStyles.None;
+            dtpTo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             dtpTo.Format = DateTimePickerFormat.Short;
             dtpTo.Location = new Point(551, 56);
             dtpTo.Name = "dtpTo";
@@ -98,7 +98,7 @@ namespace EstateFlow.Forms
             // 
             // btnBuild
             // 
-            btnBuild.Anchor = AnchorStyles.None;
+            btnBuild.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             btnBuild.BackColor = Color.White;
             btnBuild.CheckButton = false;
             btnBuild.Checked = false;
@@ -127,7 +127,7 @@ namespace EstateFlow.Forms
             // 
             // grid
             // 
-            grid.Anchor = AnchorStyles.None;
+            grid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -140,7 +140,7 @@ namespace EstateFlow.Forms
             // 
             // btnExport
             // 
-            btnExport.Anchor = AnchorStyles.None;
+            btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnExport.BackColor = Color.White;
             btnExport.CheckButton = false;
             btnExport.Checked = false;
@@ -169,7 +169,7 @@ namespace EstateFlow.Forms
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.None;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.CheckButton = false;
             btnBack.Checked = false;

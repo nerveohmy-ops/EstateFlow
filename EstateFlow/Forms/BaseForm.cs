@@ -19,7 +19,6 @@ namespace EstateFlow.Forms
             StartPosition = FormStartPosition.CenterScreen;
             Size = new Size(1000, 500);
             MinimumSize = new Size(1000, 500);
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             MaximizeBox = true;
             MinimizeBox = true;
             BackColor = Color.White;
@@ -136,17 +135,6 @@ namespace EstateFlow.Forms
                     ClientSize.Width - 130, 0,
                     ClientSize.Width, 130);
             }
-        }
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_SIZE = 0xF000;
-
-            if (m.Msg == WM_SYSCOMMAND && (m.WParam.ToInt32() & 0xFFF0) == SC_SIZE)
-                return;
-
-            base.WndProc(ref m);
         }
     }
 }

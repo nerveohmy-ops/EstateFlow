@@ -33,7 +33,7 @@ namespace EstateFlow.Forms
             // 
             // lblHeader
             // 
-            lblHeader.Anchor = AnchorStyles.None;
+            lblHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
@@ -45,7 +45,7 @@ namespace EstateFlow.Forms
             // 
             // lblCount
             // 
-            lblCount.Anchor = AnchorStyles.None;
+            lblCount.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblCount.AutoSize = true;
             lblCount.BackColor = Color.White;
             lblCount.Font = new Font("Segoe UI", 9.5F);
@@ -58,7 +58,7 @@ namespace EstateFlow.Forms
             // 
             // lblStatus
             // 
-            lblStatus.Anchor = AnchorStyles.None;
+            lblStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblStatus.AutoSize = true;
             lblStatus.BackColor = Color.White;
             lblStatus.Font = new Font("Segoe UI", 9.5F);
@@ -70,7 +70,7 @@ namespace EstateFlow.Forms
             // 
             // cmbStatus
             // 
-            cmbStatus.Anchor = AnchorStyles.None;
+            cmbStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Все статусы", "Новая", "Подтверждена", "Проведена", "Отменена" });
@@ -81,7 +81,7 @@ namespace EstateFlow.Forms
             // 
             // grid
             // 
-            grid.Anchor = AnchorStyles.None;
+            grid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -95,7 +95,7 @@ namespace EstateFlow.Forms
             // 
             // btnAdd
             // 
-            btnAdd.Anchor = AnchorStyles.None;
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAdd.BackColor = Color.White;
             btnAdd.CheckButton = false;
             btnAdd.Checked = false;
@@ -124,7 +124,7 @@ namespace EstateFlow.Forms
             // 
             // btnConfirm
             // 
-            btnConfirm.Anchor = AnchorStyles.None;
+            btnConfirm.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnConfirm.BackColor = Color.White;
             btnConfirm.CheckButton = false;
             btnConfirm.Checked = false;
@@ -153,7 +153,7 @@ namespace EstateFlow.Forms
             // 
             // btnDone
             // 
-            btnDone.Anchor = AnchorStyles.None;
+            btnDone.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDone.BackColor = Color.White;
             btnDone.CheckButton = false;
             btnDone.Checked = false;
@@ -182,7 +182,7 @@ namespace EstateFlow.Forms
             // 
             // btnCancel
             // 
-            btnCancel.Anchor = AnchorStyles.None;
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancel.BackColor = Color.White;
             btnCancel.CheckButton = false;
             btnCancel.Checked = false;
@@ -211,7 +211,7 @@ namespace EstateFlow.Forms
             // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.None;
+            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDelete.BackColor = Color.White;
             btnDelete.CheckButton = false;
             btnDelete.Checked = false;
@@ -240,7 +240,7 @@ namespace EstateFlow.Forms
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.None;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.CheckButton = false;
             btnBack.Checked = false;

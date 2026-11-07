@@ -37,7 +37,7 @@ namespace EstateFlow.Forms
             // 
             // lblHeader
             // 
-            lblHeader.Anchor = AnchorStyles.None;
+            lblHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
@@ -49,7 +49,7 @@ namespace EstateFlow.Forms
             // 
             // lblCount
             // 
-            lblCount.Anchor = AnchorStyles.None;
+            lblCount.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblCount.AutoSize = true;
             lblCount.BackColor = Color.White;
             lblCount.Font = new Font("Segoe UI", 9.5F);
@@ -62,7 +62,7 @@ namespace EstateFlow.Forms
             // 
             // txtSearch
             // 
-            txtSearch.Anchor = AnchorStyles.None;
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtSearch.BackColor = Color.White;
             txtSearch.BackgroundColor = Color.White;
             txtSearch.Content = "";
@@ -86,7 +86,7 @@ namespace EstateFlow.Forms
             // 
             // cmbType
             // 
-            cmbType.Anchor = AnchorStyles.None;
+            cmbType.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbType.Font = new Font("Segoe UI", 9.5F);
             cmbType.Location = new Point(330, 56);
@@ -96,7 +96,7 @@ namespace EstateFlow.Forms
             // 
             // cmbStatus
             // 
-            cmbStatus.Anchor = AnchorStyles.None;
+            cmbStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Все статусы", "Свободен", "Забронирован", "Продан" });
@@ -107,7 +107,7 @@ namespace EstateFlow.Forms
             // 
             // txtMinPrice
             // 
-            txtMinPrice.Anchor = AnchorStyles.None;
+            txtMinPrice.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtMinPrice.BackColor = Color.White;
             txtMinPrice.BackgroundColor = Color.White;
             txtMinPrice.Content = "";
@@ -131,7 +131,7 @@ namespace EstateFlow.Forms
             // 
             // txtMaxPrice
             // 
-            txtMaxPrice.Anchor = AnchorStyles.None;
+            txtMaxPrice.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtMaxPrice.BackColor = Color.White;
             txtMaxPrice.BackgroundColor = Color.White;
             txtMaxPrice.Content = "";
@@ -155,7 +155,7 @@ namespace EstateFlow.Forms
             // 
             // btnReset
             // 
-            btnReset.Anchor = AnchorStyles.None;
+            btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnReset.BackColor = Color.White;
             btnReset.CheckButton = false;
             btnReset.Checked = false;
@@ -184,7 +184,7 @@ namespace EstateFlow.Forms
             // 
             // grid
             // 
-            grid.Anchor = AnchorStyles.None;
+            grid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -198,7 +198,7 @@ namespace EstateFlow.Forms
             // 
             // btnAdd
             // 
-            btnAdd.Anchor = AnchorStyles.None;
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAdd.BackColor = Color.White;
             btnAdd.CheckButton = false;
             btnAdd.Checked = false;
@@ -227,7 +227,7 @@ namespace EstateFlow.Forms
             // 
             // btnEdit
             // 
-            btnEdit.Anchor = AnchorStyles.None;
+            btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEdit.BackColor = Color.White;
             btnEdit.CheckButton = false;
             btnEdit.Checked = false;
@@ -256,7 +256,7 @@ namespace EstateFlow.Forms
             // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.None;
+            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDelete.BackColor = Color.White;
             btnDelete.CheckButton = false;
             btnDelete.Checked = false;
@@ -285,7 +285,7 @@ namespace EstateFlow.Forms
             // 
             // btnShowing
             // 
-            btnShowing.Anchor = AnchorStyles.None;
+            btnShowing.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnShowing.BackColor = Color.White;
             btnShowing.CheckButton = false;
             btnShowing.Checked = false;
@@ -314,7 +314,7 @@ namespace EstateFlow.Forms
             // 
             // btnDeal
             // 
-            btnDeal.Anchor = AnchorStyles.None;
+            btnDeal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDeal.BackColor = Color.White;
             btnDeal.CheckButton = false;
             btnDeal.Checked = false;
@@ -343,7 +343,7 @@ namespace EstateFlow.Forms
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.None;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.CheckButton = false;
             btnBack.Checked = false;

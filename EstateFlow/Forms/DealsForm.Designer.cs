@@ -36,7 +36,7 @@ namespace EstateFlow.Forms
             // 
             // lblHeader
             // 
-            lblHeader.Anchor = AnchorStyles.None;
+            lblHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
@@ -48,7 +48,7 @@ namespace EstateFlow.Forms
             // 
             // lblTotalSummary
             // 
-            lblTotalSummary.Anchor = AnchorStyles.None;
+            lblTotalSummary.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblTotalSummary.AutoSize = true;
             lblTotalSummary.BackColor = Color.White;
             lblTotalSummary.Font = new Font("Segoe UI", 9.5F);
@@ -61,7 +61,7 @@ namespace EstateFlow.Forms
             // 
             // txtSearch
             // 
-            txtSearch.Anchor = AnchorStyles.None;
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtSearch.BackColor = Color.White;
             txtSearch.BackgroundColor = Color.White;
             txtSearch.Content = "";
@@ -85,7 +85,7 @@ namespace EstateFlow.Forms
             // 
             // cmbStatus
             // 
-            cmbStatus.Anchor = AnchorStyles.None;
+            cmbStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Все статусы", "В процессе", "Завершена", "Отменена" });
@@ -96,7 +96,7 @@ namespace EstateFlow.Forms
             // 
             // chkUseDate
             // 
-            chkUseDate.Anchor = AnchorStyles.None;
+            chkUseDate.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             chkUseDate.BackColor = Color.White;
             chkUseDate.Checked = false;
             chkUseDate.CheckedForeground = Color.Black;
@@ -118,7 +118,7 @@ namespace EstateFlow.Forms
             // 
             // dtpFrom
             // 
-            dtpFrom.Anchor = AnchorStyles.None;
+            dtpFrom.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             dtpFrom.Enabled = false;
             dtpFrom.Format = DateTimePickerFormat.Short;
             dtpFrom.Location = new Point(544, 56);
@@ -129,7 +129,7 @@ namespace EstateFlow.Forms
             // 
             // dtpTo
             // 
-            dtpTo.Anchor = AnchorStyles.None;
+            dtpTo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             dtpTo.Enabled = false;
             dtpTo.Format = DateTimePickerFormat.Short;
             dtpTo.Location = new Point(662, 56);
@@ -139,7 +139,7 @@ namespace EstateFlow.Forms
             // 
             // btnReset
             // 
-            btnReset.Anchor = AnchorStyles.None;
+            btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnReset.BackColor = Color.White;
             btnReset.CheckButton = false;
             btnReset.Checked = false;
@@ -168,7 +168,7 @@ namespace EstateFlow.Forms
             // 
             // grid
             // 
-            grid.Anchor = AnchorStyles.None;
+            grid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -182,7 +182,7 @@ namespace EstateFlow.Forms
             // 
             // btnAdd
             // 
-            btnAdd.Anchor = AnchorStyles.None;
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAdd.BackColor = Color.White;
             btnAdd.CheckButton = false;
             btnAdd.Checked = false;
@@ -211,7 +211,7 @@ namespace EstateFlow.Forms
             // 
             // btnEdit
             // 
-            btnEdit.Anchor = AnchorStyles.None;
+            btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEdit.BackColor = Color.White;
             btnEdit.CheckButton = false;
             btnEdit.Checked = false;
@@ -240,7 +240,7 @@ namespace EstateFlow.Forms
             // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.None;
+            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDelete.BackColor = Color.White;
             btnDelete.CheckButton = false;
             btnDelete.Checked = false;
@@ -269,7 +269,7 @@ namespace EstateFlow.Forms
             // 
             // btnExport
             // 
-            btnExport.Anchor = AnchorStyles.None;
+            btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnExport.BackColor = Color.White;
             btnExport.CheckButton = false;
             btnExport.Checked = false;
@@ -298,7 +298,7 @@ namespace EstateFlow.Forms
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.None;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.CheckButton = false;
             btnBack.Checked = false;

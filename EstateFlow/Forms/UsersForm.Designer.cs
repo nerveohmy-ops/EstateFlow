@@ -34,7 +34,7 @@ namespace EstateFlow.Forms
             // 
             // lblHeader
             // 
-            lblHeader.Anchor = AnchorStyles.None;
+            lblHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
@@ -46,7 +46,7 @@ namespace EstateFlow.Forms
             // 
             // lblCount
             // 
-            lblCount.Anchor = AnchorStyles.None;
+            lblCount.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblCount.AutoSize = true;
             lblCount.BackColor = Color.White;
             lblCount.Font = new Font("Segoe UI", 9.5F);
@@ -59,7 +59,7 @@ namespace EstateFlow.Forms
             // 
             // txtSearch
             // 
-            txtSearch.Anchor = AnchorStyles.None;
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtSearch.BackColor = Color.White;
             txtSearch.BackgroundColor = Color.White;
             txtSearch.Content = "";
@@ -83,7 +83,7 @@ namespace EstateFlow.Forms
             // 
             // lblRole
             // 
-            lblRole.Anchor = AnchorStyles.None;
+            lblRole.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblRole.AutoSize = true;
             lblRole.BackColor = Color.White;
             lblRole.Font = new Font("Segoe UI", 9.5F);
@@ -95,7 +95,7 @@ namespace EstateFlow.Forms
             // 
             // cmbRole
             // 
-            cmbRole.Anchor = AnchorStyles.None;
+            cmbRole.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRole.Font = new Font("Segoe UI", 9.5F);
             cmbRole.Location = new Point(472, 56);
@@ -105,7 +105,7 @@ namespace EstateFlow.Forms
             // 
             // btnResetDb
             // 
-            btnResetDb.Anchor = AnchorStyles.None;
+            btnResetDb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnResetDb.BackColor = Color.White;
             btnResetDb.CheckButton = false;
             btnResetDb.Checked = false;
@@ -134,7 +134,7 @@ namespace EstateFlow.Forms
             // 
             // grid
             // 
-            grid.Anchor = AnchorStyles.None;
+            grid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -148,7 +148,7 @@ namespace EstateFlow.Forms
             // 
             // btnAdd
             // 
-            btnAdd.Anchor = AnchorStyles.None;
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAdd.BackColor = Color.White;
             btnAdd.CheckButton = false;
             btnAdd.Checked = false;
@@ -177,7 +177,7 @@ namespace EstateFlow.Forms
             // 
             // btnEdit
             // 
-            btnEdit.Anchor = AnchorStyles.None;
+            btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEdit.BackColor = Color.White;
             btnEdit.CheckButton = false;
             btnEdit.Checked = false;
@@ -206,7 +206,7 @@ namespace EstateFlow.Forms
             // 
             // btnResetPassword
             // 
-            btnResetPassword.Anchor = AnchorStyles.None;
+            btnResetPassword.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnResetPassword.BackColor = Color.White;
             btnResetPassword.CheckButton = false;
             btnResetPassword.Checked = false;
@@ -235,7 +235,7 @@ namespace EstateFlow.Forms
             // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.None;
+            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDelete.BackColor = Color.White;
             btnDelete.CheckButton = false;
             btnDelete.Checked = false;
@@ -264,7 +264,7 @@ namespace EstateFlow.Forms
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.None;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.CheckButton = false;
             btnBack.Checked = false;

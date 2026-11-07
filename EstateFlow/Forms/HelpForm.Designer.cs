@@ -25,19 +25,19 @@ namespace EstateFlow.Forms
             // 
             // lblHeader
             // 
-            lblHeader.Anchor = AnchorStyles.None;
+            lblHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
-            lblHeader.Font = new Font("Microsoft Sans Serif", 16F);
-            lblHeader.Location = new Point(140, 18);
+            lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.Location = new Point(102, 16);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(286, 26);
+            lblHeader.Size = new Size(286, 30);
             lblHeader.TabIndex = 0;
             lblHeader.Text = "Руководство пользователя";
             // 
             // lstTopics
             // 
-            lstTopics.Anchor = AnchorStyles.None;
+            lstTopics.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             lstTopics.BackColor = Color.White;
             lstTopics.BorderStyle = BorderStyle.FixedSingle;
             lstTopics.Font = new Font("Segoe UI", 9.5F);
@@ -55,40 +55,40 @@ namespace EstateFlow.Forms
                 "8. Личный кабинет",
                 "9. Отчёты и выгрузка"
             });
-            lstTopics.Location = new Point(140, 56);
+            lstTopics.Location = new Point(102, 56);
             lstTopics.Name = "lstTopics";
-            lstTopics.Size = new Size(235, 325);
+            lstTopics.Size = new Size(235, 334);
             lstTopics.TabIndex = 1;
             lstTopics.SelectedIndexChanged += LstTopics_SelectedIndexChanged;
             // 
             // rtbContent
             // 
-            rtbContent.Anchor = AnchorStyles.None;
+            rtbContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             rtbContent.BackColor = Color.White;
             rtbContent.BorderStyle = BorderStyle.FixedSingle;
             rtbContent.Font = new Font("Segoe UI", 10F);
             rtbContent.ForeColor = Color.Black;
-            rtbContent.Location = new Point(390, 56);
+            rtbContent.Location = new Point(352, 56);
             rtbContent.Name = "rtbContent";
             rtbContent.ReadOnly = true;
-            rtbContent.Size = new Size(510, 325);
+            rtbContent.Size = new Size(530, 334);
             rtbContent.TabIndex = 2;
             rtbContent.Text = "";
             // 
             // btnClose
             // 
-            btnClose.Anchor = AnchorStyles.None;
+            btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClose.BackColor = Color.White;
             btnClose.CheckButton = false;
             btnClose.Checked = false;
             btnClose.Content = "Назад";
             btnClose.Cursor = Cursors.Hand;
-            btnClose.Font = new Font("Segoe UI", 10.5F);
+            btnClose.Font = new Font("Segoe UI", 10F);
             btnClose.ForeColor = Color.White;
             btnClose.HoverBackground = Color.FromArgb(40, 40, 40);
             btnClose.HoverForeColor = Color.White;
             btnClose.HoverOutline = Color.Black;
-            btnClose.Location = new Point(740, 400);
+            btnClose.Location = new Point(742, 404);
             btnClose.Name = "btnClose";
             btnClose.NormalBackground = Color.Black;
             btnClose.NormalForeColor = Color.White;
@@ -99,7 +99,7 @@ namespace EstateFlow.Forms
             btnClose.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnClose.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnClose.Rounding = new Padding(20);
-            btnClose.Size = new Size(160, 42);
+            btnClose.Size = new Size(140, 40);
             btnClose.TabIndex = 3;
             btnClose.TextAlignment = StringAlignment.Center;
             btnClose.Click += btnClose_Click;
