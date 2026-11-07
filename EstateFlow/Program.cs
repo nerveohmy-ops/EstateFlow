@@ -1,7 +1,6 @@
 using EstateFlow.Data;
 using EstateFlow.Forms;
 using EstateFlow.Helpers;
-using EstateFlow.Services;
 
 namespace EstateFlow
 {
@@ -25,22 +24,7 @@ namespace EstateFlow
                 return;
             }
 
-            while (true)
-            {
-                using (var login = new LoginForm())
-                {
-                    if (login.ShowDialog() != DialogResult.OK)
-                        break;
-                }
-
-                using (var main = new MainForm())
-                {
-                    main.ShowDialog();
-                    if (!main.LogoutRequested)
-                        break;
-                }
-                Session.Logout();
-            }
+            Application.Run(new LoginForm());
         }
     }
 }

@@ -1,9 +1,16 @@
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 
 namespace EstateFlow.Forms
 {
     public class BaseForm : Form
     {
+        private static FormWindowState sharedWindowState = FormWindowState.Normal;
+        private static Point? sharedLocation;
+
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
         public BaseForm()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
@@ -17,8 +24,84 @@ namespace EstateFlow.Forms
             MinimizeBox = true;
             BackColor = Color.White;
             Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+        }
 
-            Resize += (s, e) => Invalidate(); // при полноэкранном режиме что бы не поплыл рисунок бг
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            try
+            {
+                // отключаем стандартную анимацию появления/закрытия окна Windows для плавного перехода
+                int disableTransitions = 1;
+                DwmSetWindowAttribute(Handle, 3, ref disableTransitions, sizeof(int));
+            }
+            catch { }
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            if (sharedLocation.HasValue && sharedWindowState == FormWindowState.Normal)
+            {
+                StartPosition = FormStartPosition.Manual;
+                Location = sharedLocation.Value;
+            }
+            if (WindowState != sharedWindowState)
+            {
+                WindowState = sharedWindowState;
+            }
+            base.OnLoad(e);
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            if (WindowState == FormWindowState.Normal)
+                sharedLocation = Location;
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            Invalidate(); // при полноэкранном режиме что бы не поплыл рисунок бг
+
+            if (IsHandleCreated && Visible && WindowState != FormWindowState.Minimized)
+            {
+                sharedWindowState = WindowState;
+                if (WindowState == FormWindowState.Normal)
+                    sharedLocation = Location;
+                SyncOwners();
+            }
+        }
+
+        protected override void OnMove(EventArgs e)
+        {
+            base.OnMove(e);
+            if (IsHandleCreated && Visible && WindowState == FormWindowState.Normal)
+            {
+                sharedLocation = Location;
+                SyncOwners();
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            SyncOwners();
+            if (Owner is BaseForm ownerForm)
+                ownerForm.Refresh();
+            base.OnFormClosing(e);
+        }
+
+        private void SyncOwners()
+        {
+            Form current = Owner;
+            while (current is BaseForm ownerBase)
+            {
+                if (ownerBase.WindowState != sharedWindowState)
+                    ownerBase.WindowState = sharedWindowState;
+                if (sharedWindowState == FormWindowState.Normal && sharedLocation.HasValue)
+                    ownerBase.Location = sharedLocation.Value;
+                current = ownerBase.Owner;
+            }
         }
 
         // рисовка заднего фона

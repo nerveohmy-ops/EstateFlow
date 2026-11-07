@@ -68,8 +68,16 @@ namespace EstateFlow.Forms
             }
 
             Session.CurrentUser = user;
-            DialogResult = DialogResult.OK;
-            Close();
+            cuiTextBox2.Content = "";
+
+            using var main = new MainForm();
+            main.ShowDialog(this);
+            Session.Logout();
+
+            if (!main.LogoutRequested)
+            {
+                Close();
+            }
         }
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -82,21 +90,17 @@ namespace EstateFlow.Forms
         private void OpenRegistration()
         {
             using var regform = new RegisterForm();
-            Hide();
             if (regform.ShowDialog(this) == DialogResult.OK)
             {
                 cuiTextBox1.Content = regform.RegisteredLogin;
                 cuiTextBox2.Content = "";
             }
-            Show();
         }
 
         private void lnkForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             using var form = new ForgotPasswordForm(cuiTextBox1.Content.Trim());
-            Hide();
             form.ShowDialog(this);
-            Show();
         }
 
         private void lnkHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

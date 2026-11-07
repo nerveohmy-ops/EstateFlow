@@ -65,61 +65,47 @@ namespace EstateFlow.Forms
         private void btnProperties_Click(object sender, EventArgs e)
         {
             using var f = new PropertiesForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
             LoadDashboard();
         }
 
         private void btnDeals_Click(object sender, EventArgs e)
         {
             using var f = new DealsForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
             LoadDashboard();
         }
 
         private void btnShowings_Click(object sender, EventArgs e)
         {
             using var f = new ShowingsForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
             LoadDashboard();
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
             using var f = new UsersForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
             LoadDashboard();
         }
 
         private void btnTypes_Click(object sender, EventArgs e)
         {
             using var f = new PropertyTypesForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
         }
 
         private void btnReports_Click(object sender, EventArgs e)
         {
             using var f = new ReportsForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
             using var f = new ProfileForm();
-            Hide();
             f.ShowDialog(this);
-            Show();
             lblUserGreeting.Text = $"{Session.CurrentUser.FullName} ({Session.CurrentUser.RoleName})";
         }
 
