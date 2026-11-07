@@ -35,10 +35,10 @@ namespace EstateFlow.Forms
             lblHeader.Anchor = AnchorStyles.None;
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
-            lblHeader.Font = new Font("Microsoft Sans Serif", 16F);
-            lblHeader.Location = new Point(120, 14);
+            lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.Location = new Point(102, 12);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(243, 26);
+            lblHeader.Size = new Size(243, 30);
             lblHeader.TabIndex = 0;
             lblHeader.Text = "Аналитические отчёты";
             // 
@@ -49,7 +49,7 @@ namespace EstateFlow.Forms
             lblReportSummary.BackColor = Color.White;
             lblReportSummary.Font = new Font("Segoe UI", 9.5F);
             lblReportSummary.ForeColor = Color.DimGray;
-            lblReportSummary.Location = new Point(380, 20);
+            lblReportSummary.Location = new Point(365, 19);
             lblReportSummary.Name = "lblReportSummary";
             lblReportSummary.Size = new Size(135, 17);
             lblReportSummary.TabIndex = 1;
@@ -60,7 +60,7 @@ namespace EstateFlow.Forms
             cmbReportType.Anchor = AnchorStyles.None;
             cmbReportType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbReportType.Font = new Font("Segoe UI", 9.5F);
-            cmbReportType.Location = new Point(120, 56);
+            cmbReportType.Location = new Point(102, 56);
             cmbReportType.Name = "cmbReportType";
             cmbReportType.Size = new Size(250, 25);
             cmbReportType.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace EstateFlow.Forms
             lblPeriod.AutoSize = true;
             lblPeriod.BackColor = Color.White;
             lblPeriod.Font = new Font("Segoe UI", 9.5F);
-            lblPeriod.Location = new Point(385, 59);
+            lblPeriod.Location = new Point(365, 59);
             lblPeriod.Name = "lblPeriod";
             lblPeriod.Size = new Size(57, 17);
             lblPeriod.TabIndex = 3;
@@ -81,7 +81,7 @@ namespace EstateFlow.Forms
             // 
             dtpFrom.Anchor = AnchorStyles.None;
             dtpFrom.Format = DateTimePickerFormat.Short;
-            dtpFrom.Location = new Point(450, 56);
+            dtpFrom.Location = new Point(428, 56);
             dtpFrom.Name = "dtpFrom";
             dtpFrom.Size = new Size(115, 23);
             dtpFrom.TabIndex = 4;
@@ -91,7 +91,7 @@ namespace EstateFlow.Forms
             // 
             dtpTo.Anchor = AnchorStyles.None;
             dtpTo.Format = DateTimePickerFormat.Short;
-            dtpTo.Location = new Point(575, 56);
+            dtpTo.Location = new Point(551, 56);
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new Size(115, 23);
             dtpTo.TabIndex = 5;
@@ -104,12 +104,12 @@ namespace EstateFlow.Forms
             btnBuild.Checked = false;
             btnBuild.Content = "Сформировать";
             btnBuild.Cursor = Cursors.Hand;
-            btnBuild.Font = new Font("Segoe UI", 10.5F);
+            btnBuild.Font = new Font("Segoe UI", 10F);
             btnBuild.ForeColor = Color.White;
             btnBuild.HoverBackground = Color.FromArgb(40, 40, 40);
             btnBuild.HoverForeColor = Color.White;
             btnBuild.HoverOutline = Color.Black;
-            btnBuild.Location = new Point(705, 49);
+            btnBuild.Location = new Point(682, 49);
             btnBuild.Name = "btnBuild";
             btnBuild.NormalBackground = Color.Black;
             btnBuild.NormalForeColor = Color.White;
@@ -131,11 +131,11 @@ namespace EstateFlow.Forms
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.Location = new Point(120, 96);
+            grid.Location = new Point(102, 96);
             grid.Name = "grid";
             grid.ReadOnly = true;
             grid.RowHeadersVisible = false;
-            grid.Size = new Size(825, 298);
+            grid.Size = new Size(780, 294);
             grid.TabIndex = 7;
             // 
             // btnExport
@@ -146,12 +146,12 @@ namespace EstateFlow.Forms
             btnExport.Checked = false;
             btnExport.Content = "Экспорт в CSV";
             btnExport.Cursor = Cursors.Hand;
-            btnExport.Font = new Font("Segoe UI", 10.5F);
+            btnExport.Font = new Font("Segoe UI", 10F);
             btnExport.ForeColor = Color.Black;
-            btnExport.HoverBackground = Color.White;
-            btnExport.HoverForeColor = Color.DimGray;
+            btnExport.HoverBackground = Color.FromArgb(242, 242, 242);
+            btnExport.HoverForeColor = Color.Black;
             btnExport.HoverOutline = Color.Black;
-            btnExport.Location = new Point(180, 405);
+            btnExport.Location = new Point(148, 404);
             btnExport.Name = "btnExport";
             btnExport.NormalBackground = Color.White;
             btnExport.NormalForeColor = Color.Black;
@@ -175,12 +175,12 @@ namespace EstateFlow.Forms
             btnBack.Checked = false;
             btnBack.Content = "Назад";
             btnBack.Cursor = Cursors.Hand;
-            btnBack.Font = new Font("Segoe UI", 10.5F);
+            btnBack.Font = new Font("Segoe UI", 10F);
             btnBack.ForeColor = Color.Black;
-            btnBack.HoverBackground = Color.White;
-            btnBack.HoverForeColor = Color.DimGray;
+            btnBack.HoverBackground = Color.FromArgb(242, 242, 242);
+            btnBack.HoverForeColor = Color.Black;
             btnBack.HoverOutline = Color.Black;
-            btnBack.Location = new Point(830, 405);
+            btnBack.Location = new Point(770, 404);
             btnBack.Name = "btnBack";
             btnBack.NormalBackground = Color.White;
             btnBack.NormalForeColor = Color.Black;
@@ -191,7 +191,7 @@ namespace EstateFlow.Forms
             btnBack.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnBack.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnBack.Rounding = new Padding(20);
-            btnBack.Size = new Size(115, 40);
+            btnBack.Size = new Size(112, 40);
             btnBack.TabIndex = 9;
             btnBack.TextAlignment = StringAlignment.Center;
             btnBack.Click += btnBack_Click;

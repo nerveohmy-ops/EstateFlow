@@ -5,6 +5,10 @@ GO
 USE RealEstateDB;
 GO
 
+-- владелец sa нужен для построения ER-диаграмм (Database Diagrams) в SSMS
+ALTER AUTHORIZATION ON DATABASE::RealEstateDB TO sa;
+GO
+
 IF OBJECT_ID(N'dbo.Roles', N'U') IS NULL
 CREATE TABLE dbo.Roles
 (

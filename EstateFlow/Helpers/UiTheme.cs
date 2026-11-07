@@ -148,6 +148,7 @@ namespace EstateFlow.Helpers
             grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             grid.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Black;
+            grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
             grid.ColumnHeadersHeight = 36;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
@@ -155,11 +156,33 @@ namespace EstateFlow.Helpers
             grid.DefaultCellStyle.ForeColor = Color.Black;
             grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(40, 40, 40);
             grid.DefaultCellStyle.SelectionForeColor = Color.White;
-            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(246, 246, 248);
-            grid.RowTemplate.Height = 30;
+            grid.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
+            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(247, 247, 249);
+            grid.RowTemplate.Height = 32;
 
             grid.DataBindingComplete -= Grid_DataBindingComplete;
             grid.DataBindingComplete += Grid_DataBindingComplete;
+            grid.CellFormatting -= Grid_CellFormatting;
+            grid.CellFormatting += Grid_CellFormatting;
+        }
+
+        private static void Grid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var grid = (DataGridView)sender;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            var colName = grid.Columns[e.ColumnIndex].Name;
+            if (colName.Equals("Статус", StringComparison.OrdinalIgnoreCase) && e.Value is string status)
+            {
+                if (status == "Отменена" || status == "Продан")
+                {
+                    e.CellStyle.ForeColor = Color.FromArgb(120, 120, 120);
+                }
+                else if (status == "Завершена" || status == "Подтверждена" || status == "Проведена")
+                {
+                    e.CellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+                }
+            }
         }
 
         private static void Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -168,7 +191,62 @@ namespace EstateFlow.Helpers
             foreach (DataGridViewColumn col in grid.Columns)
             {
                 if (col.Name.Equals("Id", StringComparison.OrdinalIgnoreCase))
+                {
                     col.Visible = false;
+                    continue;
+                }
+
+                string name = col.Name;
+                if (name == "Адрес" || name == "Объект")
+                {
+                    col.FillWeight = 165;
+                    col.MinimumWidth = 135;
+                }
+                else if (name == "Описание" || name == "Комментарий")
+                {
+                    col.FillWeight = 135;
+                    col.MinimumWidth = 100;
+                }
+                else if (name == "ФИО" || name == "Клиент" || name == "Агент")
+                {
+                    col.FillWeight = 125;
+                    col.MinimumWidth = 110;
+                }
+                else if (name == "Email")
+                {
+                    col.FillWeight = 125;
+                    col.MinimumWidth = 110;
+                }
+                else if (name == "Телефон" || name == "Телефон клиента")
+                {
+                    col.FillWeight = 95;
+                    col.MinimumWidth = 100;
+                }
+                else if (name == "Дата и время" || name == "Дата" || name == "Создан")
+                {
+                    col.FillWeight = 90;
+                    col.MinimumWidth = 92;
+                }
+                else if (name == "Статус")
+                {
+                    col.FillWeight = 92;
+                    col.MinimumWidth = 92;
+                }
+                else if (name == "Цена, ₽" || name == "Сумма, ₽")
+                {
+                    col.FillWeight = 88;
+                    col.MinimumWidth = 85;
+                }
+                else if (name == "Площадь, м²" || name == "Объектов" || name == "Сделок" || name == "Всего сделок" || name == "Завершено" || name == "Отменено")
+                {
+                    col.FillWeight = 62;
+                    col.MinimumWidth = 58;
+                }
+                else if (name == "Тип" || name == "Тип недвижимости" || name == "Роль" || name == "Логин")
+                {
+                    col.FillWeight = 82;
+                    col.MinimumWidth = 72;
+                }
 
                 if (col.ValueType == typeof(decimal))
                 {

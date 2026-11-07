@@ -1,3 +1,4 @@
+using EstateFlow.Data;
 using EstateFlow.Helpers;
 using EstateFlow.Models;
 using EstateFlow.Services;
@@ -35,6 +36,18 @@ namespace EstateFlow.Forms
         private void btnResetPassword_Click(object sender, EventArgs e) => ResetPasswordSelected();
         private void btnDelete_Click(object sender, EventArgs e) => DeleteSelected();
         private void btnBack_Click(object sender, EventArgs e) => Close();
+
+        private void btnResetDb_Click(object sender, EventArgs e)
+        {
+            if (UiTheme.Confirm("Восстановить исходные демонстрационные данные БД (по 20 записей в каждой таблице)?\nВсе добавленные вручную записи будут заменены тестовым набором."))
+            {
+                if (UiTheme.Try(() => DbInitializer.ResetDatabase()))
+                {
+                    UiTheme.Info("Демонстрационные данные успешно восстановлены.");
+                    LoadData();
+                }
+            }
+        }
 
         private void LoadData()
         {

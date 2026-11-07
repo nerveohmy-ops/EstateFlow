@@ -1,3 +1,4 @@
+using EstateFlow.Data;
 using EstateFlow.Helpers;
 using EstateFlow.Services;
 
@@ -8,6 +9,14 @@ namespace EstateFlow.Forms
         public LoginForm()
         {
             InitializeComponent();
+
+            string remembered = AppConfig.GetRememberedLogin();
+            if (!string.IsNullOrWhiteSpace(remembered))
+            {
+                cuiTextBox1.Content = remembered;
+                chkRemember.Checked = true;
+            }
+
             KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.F1)
@@ -67,6 +76,7 @@ namespace EstateFlow.Forms
                 return;
             }
 
+            AppConfig.SaveRememberedLogin(chkRemember.Checked ? login : "");
             Session.CurrentUser = user;
             cuiTextBox2.Content = "";
 

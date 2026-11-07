@@ -23,6 +23,7 @@ namespace EstateFlow.Forms
             btnAutorization = new HartUI.Controls.cuiButton();
             btnRegister = new HartUI.Controls.cuiButton();
             chkShowPassword = new HartUI.Controls.cuiCheckbox();
+            chkRemember = new HartUI.Controls.cuiCheckbox();
             errorProvider1 = new ErrorProvider(components);
             toolTip1 = new ToolTip(components);
             label1 = new Label();
@@ -119,8 +120,8 @@ namespace EstateFlow.Forms
             chkShowPassword.CheckedSymbolColor = Color.White;
             chkShowPassword.Content = "Показать пароль";
             chkShowPassword.Cursor = Cursors.Hand;
-            chkShowPassword.Font = new Font("Segoe UI", 10F);
-            chkShowPassword.Location = new Point(357, 224);
+            chkShowPassword.Font = new Font("Segoe UI", 9.5F);
+            chkShowPassword.Location = new Point(357, 222);
             chkShowPassword.MinimumSize = new Size(16, 16);
             chkShowPassword.Name = "chkShowPassword";
             chkShowPassword.OutlineThickness = 1F;
@@ -133,6 +134,29 @@ namespace EstateFlow.Forms
             chkShowPassword.UncheckedSymbolColor = Color.Empty;
             chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
             // 
+            // chkRemember
+            // 
+            chkRemember.Anchor = AnchorStyles.None;
+            chkRemember.BackColor = Color.White;
+            chkRemember.Checked = false;
+            chkRemember.CheckedForeground = Color.Black;
+            chkRemember.CheckedOutlineColor = Color.Black;
+            chkRemember.CheckedSymbolColor = Color.White;
+            chkRemember.Content = "Запомнить меня";
+            chkRemember.Cursor = Cursors.Hand;
+            chkRemember.Font = new Font("Segoe UI", 9.5F);
+            chkRemember.Location = new Point(357, 246);
+            chkRemember.MinimumSize = new Size(16, 16);
+            chkRemember.Name = "chkRemember";
+            chkRemember.OutlineThickness = 1F;
+            chkRemember.Rounding = 4;
+            chkRemember.ShowSymbols = true;
+            chkRemember.Size = new Size(135, 18);
+            chkRemember.TabIndex = 4;
+            chkRemember.UncheckedForeground = Color.Empty;
+            chkRemember.UncheckedOutlineColor = Color.Gray;
+            chkRemember.UncheckedSymbolColor = Color.Empty;
+            // 
             // lnkForgot
             // 
             lnkForgot.Anchor = AnchorStyles.None;
@@ -141,10 +165,10 @@ namespace EstateFlow.Forms
             lnkForgot.Font = new Font("Segoe UI", 9.5F);
             lnkForgot.LinkColor = Color.Black;
             lnkForgot.ActiveLinkColor = Color.DimGray;
-            lnkForgot.Location = new Point(518, 224);
+            lnkForgot.Location = new Point(518, 222);
             lnkForgot.Name = "lnkForgot";
             lnkForgot.Size = new Size(101, 17);
-            lnkForgot.TabIndex = 4;
+            lnkForgot.TabIndex = 5;
             lnkForgot.TabStop = true;
             lnkForgot.Text = "Забыли пароль?";
             lnkForgot.LinkClicked += lnkForgot_LinkClicked;
@@ -164,13 +188,13 @@ namespace EstateFlow.Forms
             btnAutorization.DialogResult = DialogResult.None;
             btnAutorization.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnAutorization.ForeColor = Color.Black;
-            btnAutorization.HoverBackground = Color.White;
-            btnAutorization.HoverForeColor = Color.DimGray;
+            btnAutorization.HoverBackground = Color.FromArgb(242, 242, 242);
+            btnAutorization.HoverForeColor = Color.Black;
             btnAutorization.HoverImageTint = Color.DimGray;
             btnAutorization.HoverOutline = Color.Black;
             btnAutorization.Image = null;
             btnAutorization.ImageExpand = new Point(0, 0);
-            btnAutorization.Location = new Point(353, 252);
+            btnAutorization.Location = new Point(353, 274);
             btnAutorization.Name = "btnAutorization";
             btnAutorization.NormalBackground = Color.White;
             btnAutorization.NormalForeColor = Color.Black;
@@ -184,7 +208,7 @@ namespace EstateFlow.Forms
             btnAutorization.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnAutorization.Rounding = new Padding(20);
             btnAutorization.Size = new Size(125, 45);
-            btnAutorization.TabIndex = 5;
+            btnAutorization.TabIndex = 6;
             btnAutorization.TextAlignment = StringAlignment.Center;
             btnAutorization.TextPadding = 12;
             btnAutorization.TextSpacing = 2;
@@ -205,18 +229,18 @@ namespace EstateFlow.Forms
             btnRegister.DialogResult = DialogResult.None;
             btnRegister.Font = new Font("Segoe UI", 12F);
             btnRegister.ForeColor = Color.White;
-            btnRegister.HoverBackground = Color.White;
-            btnRegister.HoverForeColor = Color.DimGray;
+            btnRegister.HoverBackground = Color.FromArgb(40, 40, 40);
+            btnRegister.HoverForeColor = Color.White;
             btnRegister.HoverImageTint = Color.DimGray;
-            btnRegister.HoverOutline = Color.FromArgb(32, 128, 128, 128);
+            btnRegister.HoverOutline = Color.Black;
             btnRegister.Image = null;
             btnRegister.ImageExpand = new Point(0, 0);
-            btnRegister.Location = new Point(494, 252);
+            btnRegister.Location = new Point(494, 274);
             btnRegister.Name = "btnRegister";
             btnRegister.NormalBackground = Color.Black;
             btnRegister.NormalForeColor = Color.White;
             btnRegister.NormalImageTint = Color.Black;
-            btnRegister.NormalOutline = Color.FromArgb(64, 128, 128, 128);
+            btnRegister.NormalOutline = Color.Black;
             btnRegister.OutlineThickness = 1F;
             btnRegister.Padding = new Padding(12);
             btnRegister.PressedBackground = Color.WhiteSmoke;
@@ -225,7 +249,7 @@ namespace EstateFlow.Forms
             btnRegister.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRegister.Rounding = new Padding(20);
             btnRegister.Size = new Size(125, 45);
-            btnRegister.TabIndex = 6;
+            btnRegister.TabIndex = 7;
             btnRegister.TextAlignment = StringAlignment.Center;
             btnRegister.TextPadding = 12;
             btnRegister.TextSpacing = 2;
@@ -238,11 +262,11 @@ namespace EstateFlow.Forms
             cuiLabel2.Content = "";
             cuiLabel2.Font = new Font("Segoe UI", 9.5F);
             cuiLabel2.ForeColor = Color.DarkRed;
-            cuiLabel2.Location = new Point(353, 305);
+            cuiLabel2.Location = new Point(353, 325);
             cuiLabel2.Margin = new Padding(4, 3, 4, 3);
             cuiLabel2.Name = "cuiLabel2";
-            cuiLabel2.Size = new Size(266, 40);
-            cuiLabel2.TabIndex = 7;
+            cuiLabel2.Size = new Size(266, 32);
+            cuiLabel2.TabIndex = 8;
             cuiLabel2.TabStop = false;
             // 
             // lnkHelp
@@ -252,10 +276,10 @@ namespace EstateFlow.Forms
             lnkHelp.BackColor = Color.White;
             lnkHelp.Font = new Font("Segoe UI", 9F);
             lnkHelp.LinkColor = Color.Gray;
-            lnkHelp.Location = new Point(380, 355);
+            lnkHelp.Location = new Point(380, 365);
             lnkHelp.Name = "lnkHelp";
             lnkHelp.Size = new Size(100, 15);
-            lnkHelp.TabIndex = 8;
+            lnkHelp.TabIndex = 9;
             lnkHelp.TabStop = true;
             lnkHelp.Text = "Руководство (F1)";
             lnkHelp.LinkClicked += lnkHelp_LinkClicked;
@@ -267,10 +291,10 @@ namespace EstateFlow.Forms
             lnkAbout.BackColor = Color.White;
             lnkAbout.Font = new Font("Segoe UI", 9F);
             lnkAbout.LinkColor = Color.Gray;
-            lnkAbout.Location = new Point(505, 355);
+            lnkAbout.Location = new Point(505, 365);
             lnkAbout.Name = "lnkAbout";
             lnkAbout.Size = new Size(85, 15);
-            lnkAbout.TabIndex = 9;
+            lnkAbout.TabIndex = 10;
             lnkAbout.TabStop = true;
             lnkAbout.Text = "О программе";
             lnkAbout.LinkClicked += lnkAbout_LinkClicked;
@@ -286,6 +310,7 @@ namespace EstateFlow.Forms
             Controls.Add(lnkAbout);
             Controls.Add(lnkHelp);
             Controls.Add(lnkForgot);
+            Controls.Add(chkRemember);
             Controls.Add(chkShowPassword);
             Controls.Add(cuiLabel2);
             Controls.Add(label1);
@@ -310,6 +335,7 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiButton btnAutorization;
         private HartUI.Controls.cuiButton btnRegister;
         private HartUI.Controls.cuiCheckbox chkShowPassword;
+        private HartUI.Controls.cuiCheckbox chkRemember;
         private ErrorProvider errorProvider1;
         private ToolTip toolTip1;
         private Label label1;

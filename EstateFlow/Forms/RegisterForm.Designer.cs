@@ -361,8 +361,8 @@ namespace EstateFlow.Forms
             btnRegister.DialogResult = DialogResult.None;
             btnRegister.Font = new Font("Segoe UI", 12F);
             btnRegister.ForeColor = Color.Black;
-            btnRegister.HoverBackground = Color.White;
-            btnRegister.HoverForeColor = Color.DimGray;
+            btnRegister.HoverBackground = Color.FromArgb(242, 242, 242);
+            btnRegister.HoverForeColor = Color.Black;
             btnRegister.HoverImageTint = Color.DimGray;
             btnRegister.HoverOutline = Color.Black;
             btnRegister.Image = null;
@@ -402,10 +402,10 @@ namespace EstateFlow.Forms
             btnBack.DialogResult = DialogResult.None;
             btnBack.Font = new Font("Segoe UI", 12F);
             btnBack.ForeColor = Color.White;
-            btnBack.HoverBackground = Color.Transparent;
-            btnBack.HoverForeColor = Color.DimGray;
+            btnBack.HoverBackground = Color.FromArgb(40, 40, 40);
+            btnBack.HoverForeColor = Color.White;
             btnBack.HoverImageTint = Color.DimGray;
-            btnBack.HoverOutline = Color.FromArgb(32, 128, 128, 128);
+            btnBack.HoverOutline = Color.Black;
             btnBack.Image = null;
             btnBack.ImageExpand = new Point(0, 0);
             btnBack.Location = new Point(496, 381);
@@ -413,7 +413,7 @@ namespace EstateFlow.Forms
             btnBack.NormalBackground = Color.Black;
             btnBack.NormalForeColor = Color.White;
             btnBack.NormalImageTint = Color.Black;
-            btnBack.NormalOutline = Color.FromArgb(64, 128, 128, 128);
+            btnBack.NormalOutline = Color.Black;
             btnBack.OutlineThickness = 1F;
             btnBack.Padding = new Padding(12);
             btnBack.PressedBackground = Color.WhiteSmoke;

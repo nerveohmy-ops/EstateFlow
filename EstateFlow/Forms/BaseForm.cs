@@ -116,19 +116,25 @@ namespace EstateFlow.Forms
             Point[] corner =
             {
                 new Point(0, ClientSize.Height),
-                new Point(0, ClientSize.Height - 165),
-                new Point(165, ClientSize.Height)
+                new Point(0, ClientSize.Height - 140),
+                new Point(140, ClientSize.Height)
             };
             using (var blackbrush = new SolidBrush(Color.Black))
             {
                 g.FillPolygon(blackbrush, corner);
             }
 
+            using (var thinPen = new Pen(Color.FromArgb(190, 190, 190), 1))
+            {
+                g.DrawLine(thinPen, 0, ClientSize.Height - 152, 152, ClientSize.Height);
+                g.DrawLine(thinPen, ClientSize.Width - 142, 0, ClientSize.Width, 142);
+            }
+
             using (var pen = new Pen(Color.Black, 2))
             {
                 g.DrawLine(pen,
-                    ClientSize.Width - 165, 0,
-                    ClientSize.Width, 165);
+                    ClientSize.Width - 130, 0,
+                    ClientSize.Width, 130);
             }
         }
 

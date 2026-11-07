@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 
 namespace EstateFlow.Data
@@ -24,6 +25,36 @@ namespace EstateFlow.Data
 
         private static AppConfig _current;
         public static AppConfig Current => _current ??= Load();
+
+        private static string RememberFilePath => Path.Combine(AppContext.BaseDirectory, "remember.txt");
+
+        public static string GetRememberedLogin()
+        {
+            try
+            {
+                if (File.Exists(RememberFilePath))
+                    return File.ReadAllText(RememberFilePath, Encoding.UTF8).Trim();
+            }
+            catch { }
+            return "";
+        }
+
+        public static void SaveRememberedLogin(string login)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(login))
+                {
+                    if (File.Exists(RememberFilePath))
+                        File.Delete(RememberFilePath);
+                }
+                else
+                {
+                    File.WriteAllText(RememberFilePath, login.Trim(), Encoding.UTF8);
+                }
+            }
+            catch { }
+        }
 
         private static AppConfig Load()
         {

@@ -13,6 +13,20 @@ namespace EstateFlow.Data
             HashPlainPasswords();
         }
 
+        public static void ResetDatabase()
+        {
+            Database.Execute(@"
+                DELETE FROM dbo.Showings;
+                DELETE FROM dbo.Deals;
+                DELETE FROM dbo.Properties;
+                DELETE FROM dbo.PropertyTypes;
+                DELETE FROM dbo.Users;
+                DELETE FROM dbo.Roles;
+                DBCC CHECKIDENT ('dbo.Showings', RESEED, 0);
+                DBCC CHECKIDENT ('dbo.Deals', RESEED, 0);");
+            Initialize();
+        }
+
         private static void RunScript()
         {
             string scriptPath = Path.Combine(AppContext.BaseDirectory, "Database", "RealEstateDB.sql");
