@@ -433,17 +433,6 @@ namespace EstateFlow.Helpers
             form.Invalidate(true);
         }
 
-                    if (c.HasChildren && c is not cuiTextBox && c is not DataGridView)
-                    {
-                        Recurse(c);
-                    }
-                }
-            }
-
-            Recurse(form);
-            form.Invalidate(true);
-        }
-
         private static void Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             var grid = (DataGridView)sender;
