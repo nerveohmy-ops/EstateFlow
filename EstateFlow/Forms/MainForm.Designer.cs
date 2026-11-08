@@ -17,7 +17,6 @@ namespace EstateFlow.Forms
 
         private void InitializeComponent()
         {
-            lblBrand = new Label();
             picLogo = new PictureBox();
             lblUserGreeting = new Label();
             lblStats = new Label();

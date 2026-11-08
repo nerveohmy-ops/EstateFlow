@@ -26,7 +26,6 @@ namespace EstateFlow.Forms
             chkRemember = new HartUI.Controls.cuiCheckbox();
             errorProvider1 = new ErrorProvider(components);
             toolTip1 = new ToolTip(components);
-            label1 = new Label();
             picLogo = new PictureBox();
             cuiLabel2 = new HartUI.Controls.cuiLabel();
             lnkForgot = new LinkLabel();
