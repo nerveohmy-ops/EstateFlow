@@ -40,6 +40,8 @@ namespace EstateFlow.Helpers
 
         public static Image CurrentLogo => IsDark ? LogoDark : LogoLight;
 
+        public const string AppName = "EstateFlow";
+
         static UiTheme()
         {
             try
