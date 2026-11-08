@@ -39,24 +39,12 @@ namespace EstateFlow.Forms
             // 
             picLogo.Anchor = AnchorStyles.None;
             picLogo.BackColor = Color.White;
-            picLogo.Location = new Point(370, 68);
+            picLogo.Location = new Point(377, 32);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(42, 42);
+            picLogo.Size = new Size(220, 85);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 11;
             picLogo.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.BackColor = Color.White;
-            label1.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(418, 74);
-            label1.Name = "label1";
-            label1.Size = new Size(150, 31);
-            label1.TabIndex = 0;
-            label1.Text = "EstateFlow";
             // 
             // cuiTextBox1
             // 
@@ -326,7 +314,6 @@ namespace EstateFlow.Forms
             Controls.Add(chkShowPassword);
             Controls.Add(cuiLabel2);
             Controls.Add(picLogo);
-            Controls.Add(label1);
             Controls.Add(btnRegister);
             Controls.Add(btnAutorization);
             Controls.Add(cuiTextBox2);
@@ -352,7 +339,6 @@ namespace EstateFlow.Forms
         private ErrorProvider errorProvider1;
         private ToolTip toolTip1;
         private PictureBox picLogo;
-        private Label label1;
         private HartUI.Controls.cuiLabel cuiLabel2;
         private LinkLabel lnkForgot;
         private LinkLabel lnkHelp;

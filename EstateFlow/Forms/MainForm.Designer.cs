@@ -38,24 +38,12 @@ namespace EstateFlow.Forms
             // 
             picLogo.Anchor = AnchorStyles.None;
             picLogo.BackColor = Color.White;
-            picLogo.Location = new Point(372, 18);
+            picLogo.Location = new Point(377, 8);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(42, 42);
+            picLogo.Size = new Size(220, 65);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 14;
             picLogo.TabStop = false;
-            // 
-            // lblBrand
-            // 
-            lblBrand.Anchor = AnchorStyles.None;
-            lblBrand.AutoSize = true;
-            lblBrand.BackColor = Color.White;
-            lblBrand.Font = new Font("Microsoft Sans Serif", 20.25F);
-            lblBrand.Location = new Point(420, 24);
-            lblBrand.Name = "lblBrand";
-            lblBrand.Size = new Size(150, 31);
-            lblBrand.TabIndex = 0;
-            lblBrand.Text = "EstateFlow";
             // 
             // lblUserGreeting
             // 
@@ -63,7 +51,7 @@ namespace EstateFlow.Forms
             lblUserGreeting.BackColor = Color.White;
             lblUserGreeting.Font = new Font("Segoe UI", 10.5F);
             lblUserGreeting.ForeColor = Color.Black;
-            lblUserGreeting.Location = new Point(240, 62);
+            lblUserGreeting.Location = new Point(240, 76);
             lblUserGreeting.Name = "lblUserGreeting";
             lblUserGreeting.Size = new Size(504, 22);
             lblUserGreeting.TabIndex = 1;
@@ -420,7 +408,6 @@ namespace EstateFlow.Forms
             Controls.Add(lblStats);
             Controls.Add(lblUserGreeting);
             Controls.Add(picLogo);
-            Controls.Add(lblBrand);
             DoubleBuffered = true;
             KeyPreview = true;
             Name = "MainForm";
@@ -432,7 +419,6 @@ namespace EstateFlow.Forms
 
         #endregion
 
-        private Label lblBrand;
         private PictureBox picLogo;
         private Label lblUserGreeting;
         private Label lblStats;
