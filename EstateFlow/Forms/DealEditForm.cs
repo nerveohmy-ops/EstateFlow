@@ -6,6 +6,8 @@ namespace EstateFlow.Forms
 {
     public partial class DealEditForm : BaseForm
     {
+        protected override bool ShowThemeToggle => false;
+
         private int dealId;
         private int initialPropertyId;
 

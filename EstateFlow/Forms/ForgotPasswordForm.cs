@@ -5,6 +5,8 @@ namespace EstateFlow.Forms
 {
     public partial class ForgotPasswordForm : BaseForm
     {
+        protected override bool ShowThemeToggle => false;
+
         public ForgotPasswordForm(string initialIdentity = "")
         {
             InitializeComponent();

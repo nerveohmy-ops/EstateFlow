@@ -319,23 +319,29 @@ namespace EstateFlow.Helpers
                     {
                         if (btn.Name == "btnThemeToggle") continue;
                         btn.BackColor = Background;
-                        // проверяем темная кнопка или светлая
-                        bool isActionDark = btn.NormalBackground == Color.Black || btn.NormalBackground == Color.FromArgb(240, 240, 245) || btn.NormalForeColor == Color.White;
-                        if (isActionDark)
+
+                        // если это кнопка "Назад" / "Отмена" / "Сбросить" / обычное вторичное действие
+                        string text = (btn.Content ?? "").ToLowerInvariant();
+                        bool isSecondary = text.Contains("назад") || text.Contains("отмена") || text.Contains("сбросить") || text.Contains("удалить") || text.Contains("изменить");
+                        bool isPrimaryAction = !isSecondary && (btn.NormalBackground == Color.Black || btn.NormalBackground == Color.FromArgb(240, 240, 245) || btn.NormalForeColor == Color.White || text.Contains("войти") || text.Contains("регистрация") || text.Contains("сохранить") || text.Contains("добавить") || text.Contains("новая сделка"));
+
+                        if (isPrimaryAction)
                         {
                             btn.NormalBackground = IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
                             btn.NormalForeColor = IsDark ? Color.Black : Color.White;
                             btn.NormalOutline = IsDark ? Color.White : Color.Black;
                             btn.HoverBackground = IsDark ? Color.White : Color.FromArgb(40, 40, 40);
                             btn.HoverForeColor = IsDark ? Color.Black : Color.White;
+                            btn.HoverOutline = IsDark ? Color.White : Color.Black;
                         }
                         else
                         {
                             btn.NormalBackground = IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
                             btn.NormalForeColor = IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
                             btn.NormalOutline = IsDark ? Color.FromArgb(85, 88, 98) : Color.Black;
-                            btn.HoverBackground = IsDark ? Color.FromArgb(45, 47, 54) : Color.FromArgb(242, 242, 242);
+                            btn.HoverBackground = IsDark ? Color.FromArgb(48, 50, 58) : Color.FromArgb(242, 242, 242);
                             btn.HoverForeColor = IsDark ? Color.White : Color.Black;
+                            btn.HoverOutline = IsDark ? Color.FromArgb(160, 160, 160) : Color.Black;
                         }
                         btn.Invalidate();
                     }
@@ -358,21 +364,46 @@ namespace EstateFlow.Helpers
                     {
                         cmb.BackColor = IsDark ? Color.FromArgb(38, 40, 45) : Color.White;
                         cmb.ForeColor = TextMain;
+                        cmb.FlatStyle = FlatStyle.Flat;
                     }
                     else if (c is DateTimePicker dtp)
                     {
                         dtp.CalendarMonthBackground = IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
+                        dtp.CalendarTitleBackColor = IsDark ? Color.FromArgb(45, 47, 54) : Color.Black;
+                        dtp.CalendarTitleForeColor = Color.White;
                         dtp.CalendarForeColor = TextMain;
                     }
                     else if (c is LinkLabel lnk)
                     {
                         lnk.BackColor = Background;
                         lnk.LinkColor = IsDark ? Color.FromArgb(170, 190, 255) : Color.Black;
+                        lnk.ActiveLinkColor = IsDark ? Color.White : Color.FromArgb(60, 60, 60);
+                    }
+                    else if (c is ListBox lst)
+                    {
+                        lst.BackColor = CardBg;
+                        lst.ForeColor = TextMain;
+                        lst.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                    else if (c is RichTextBox rtb)
+                    {
+                        rtb.BackColor = CardBg;
+                        rtb.ForeColor = TextMain;
+                        rtb.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                    else if (c is TextBox txt)
+                    {
+                        txt.BackColor = CardBg;
+                        txt.ForeColor = TextMain;
                     }
                     else if (c is Label lbl)
                     {
                         lbl.BackColor = Background;
-                        if (lbl.ForeColor == Color.Black || lbl.ForeColor == Color.FromArgb(240, 240, 245))
+                        if (lbl.ForeColor == Color.DarkRed || lbl.ForeColor == Color.Red)
+                        {
+                            // оставляем цвет ошибки
+                        }
+                        else if (lbl.ForeColor == Color.Black || lbl.ForeColor == Color.FromArgb(240, 240, 245))
                             lbl.ForeColor = TextMain;
                         else if (lbl.ForeColor == Color.DimGray || lbl.ForeColor == Color.Gray || lbl.ForeColor == Color.FromArgb(70, 70, 70))
                             lbl.ForeColor = TextMuted;

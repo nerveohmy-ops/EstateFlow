@@ -14,6 +14,11 @@ namespace EstateFlow.Forms
 
         private cuiButton btnThemeToggle;
 
+        /// <summary>
+        /// Показывать ли кнопку переключения темы на этой форме (по умолчанию true для главных и списочных форм, false для диалоговых окон ввода данных)
+        /// </summary>
+        protected virtual bool ShowThemeToggle => true;
+
         public BaseForm()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
@@ -26,15 +31,15 @@ namespace EstateFlow.Forms
             MinimizeBox = true;
             BackColor = Helpers.UiTheme.Background;
             Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-
-            InitializeThemeToggle();
         }
 
         private void InitializeThemeToggle()
         {
+            if (!ShowThemeToggle) return;
+
             btnThemeToggle = new cuiButton
             {
-                Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 CheckButton = false,
                 Checked = false,
                 Content = Helpers.UiTheme.IsDark ? "☀ Светлая" : "🌙 Тёмная",
@@ -44,7 +49,7 @@ namespace EstateFlow.Forms
                 HoverBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(45, 47, 54) : Color.FromArgb(240, 240, 240),
                 HoverForeColor = Helpers.UiTheme.TextMain,
                 HoverOutline = Helpers.UiTheme.TextMain,
-                Location = new Point(ClientSize.Width - 120, 10),
+                Location = new Point(14, 12),
                 Name = "btnThemeToggle",
                 NormalBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(32, 33, 37) : Color.White,
                 NormalForeColor = Helpers.UiTheme.TextMain,
@@ -83,6 +88,7 @@ namespace EstateFlow.Forms
 
         protected override void OnLoad(EventArgs e)
         {
+            InitializeThemeToggle();
             Helpers.UiTheme.ThemeChanged += OnThemeChanged;
             Helpers.UiTheme.ApplyTheme(this);
             UpdateThemeButtonState();

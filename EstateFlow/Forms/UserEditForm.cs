@@ -6,6 +6,8 @@ namespace EstateFlow.Forms
 {
     public partial class UserEditForm : BaseForm
     {
+        protected override bool ShowThemeToggle => false;
+
         private int userId;
 
         public UserEditForm(int id = 0)
