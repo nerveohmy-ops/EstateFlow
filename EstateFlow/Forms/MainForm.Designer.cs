@@ -18,6 +18,7 @@ namespace EstateFlow.Forms
         private void InitializeComponent()
         {
             lblBrand = new Label();
+            picLogo = new PictureBox();
             lblUserGreeting = new Label();
             lblStats = new Label();
             btnProperties = new HartUI.Controls.cuiButton();
@@ -33,13 +34,24 @@ namespace EstateFlow.Forms
             btnExit = new HartUI.Controls.cuiButton();
             SuspendLayout();
             // 
+            // picLogo
+            // 
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.White;
+            picLogo.Location = new Point(372, 18);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(42, 42);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 14;
+            picLogo.TabStop = false;
+            // 
             // lblBrand
             // 
             lblBrand.Anchor = AnchorStyles.None;
             lblBrand.AutoSize = true;
             lblBrand.BackColor = Color.White;
             lblBrand.Font = new Font("Microsoft Sans Serif", 20.25F);
-            lblBrand.Location = new Point(414, 24);
+            lblBrand.Location = new Point(420, 24);
             lblBrand.Name = "lblBrand";
             lblBrand.Size = new Size(150, 31);
             lblBrand.TabIndex = 0;
@@ -407,6 +419,7 @@ namespace EstateFlow.Forms
             Controls.Add(btnProperties);
             Controls.Add(lblStats);
             Controls.Add(lblUserGreeting);
+            Controls.Add(picLogo);
             Controls.Add(lblBrand);
             DoubleBuffered = true;
             KeyPreview = true;
@@ -420,6 +433,7 @@ namespace EstateFlow.Forms
         #endregion
 
         private Label lblBrand;
+        private PictureBox picLogo;
         private Label lblUserGreeting;
         private Label lblStats;
         private HartUI.Controls.cuiButton btnProperties;

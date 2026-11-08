@@ -35,7 +35,26 @@ namespace EstateFlow.Helpers
             SetDarkTheme(!IsDark);
         }
 
-        public const string AppName = "EstateFlow";
+        public static Image LogoLight { get; private set; }
+        public static Image LogoDark { get; private set; }
+
+        public static Image CurrentLogo => IsDark ? LogoDark : LogoLight;
+
+        static UiTheme()
+        {
+            try
+            {
+                string resDir = Path.Combine(AppContext.BaseDirectory, "Resources");
+                string lightPath = Path.Combine(resDir, "logo_light.png");
+                string darkPath = Path.Combine(resDir, "logo_dark.png");
+
+                if (File.Exists(lightPath))
+                    LogoLight = Image.FromFile(lightPath);
+                if (File.Exists(darkPath))
+                    LogoDark = Image.FromFile(darkPath);
+            }
+            catch { }
+        }
 
         public static cuiTextBox CreateTextBox(string placeholder, int width = 266, bool isPassword = false)
         {
@@ -367,6 +386,12 @@ namespace EstateFlow.Helpers
                             clbl.ForeColor = TextMain;
                         }
                         clbl.Invalidate();
+                    }
+                    else if (c is PictureBox pb && pb.Name == "picLogo")
+                    {
+                        pb.BackColor = Background;
+                        pb.Image = CurrentLogo;
+                        pb.Invalidate();
                     }
                     else if (c is DataGridView g)
                     {

@@ -27,6 +27,7 @@ namespace EstateFlow.Forms
             errorProvider1 = new ErrorProvider(components);
             toolTip1 = new ToolTip(components);
             label1 = new Label();
+            picLogo = new PictureBox();
             cuiLabel2 = new HartUI.Controls.cuiLabel();
             lnkForgot = new LinkLabel();
             lnkHelp = new LinkLabel();
@@ -34,13 +35,24 @@ namespace EstateFlow.Forms
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
+            // picLogo
+            // 
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.White;
+            picLogo.Location = new Point(370, 68);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(42, 42);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 11;
+            picLogo.TabStop = false;
+            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.BackColor = Color.White;
             label1.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(412, 74);
+            label1.Location = new Point(418, 74);
             label1.Name = "label1";
             label1.Size = new Size(150, 31);
             label1.TabIndex = 0;
@@ -313,6 +325,7 @@ namespace EstateFlow.Forms
             Controls.Add(chkRemember);
             Controls.Add(chkShowPassword);
             Controls.Add(cuiLabel2);
+            Controls.Add(picLogo);
             Controls.Add(label1);
             Controls.Add(btnRegister);
             Controls.Add(btnAutorization);
@@ -338,6 +351,7 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiCheckbox chkRemember;
         private ErrorProvider errorProvider1;
         private ToolTip toolTip1;
+        private PictureBox picLogo;
         private Label label1;
         private HartUI.Controls.cuiLabel cuiLabel2;
         private LinkLabel lnkForgot;
