@@ -355,6 +355,19 @@ namespace EstateFlow.Helpers
                         chk.ForeColor = TextMain;
                         chk.Invalidate();
                     }
+                    else if (c is cuiLabel clbl)
+                    {
+                        clbl.BackColor = Background;
+                        if (clbl.ForeColor == Color.DarkRed || clbl.ForeColor == Color.Red)
+                        {
+                            // сохраняем цвет ошибки
+                        }
+                        else
+                        {
+                            clbl.ForeColor = TextMain;
+                        }
+                        clbl.Invalidate();
+                    }
                     else if (c is DataGridView g)
                     {
                         StyleGrid(g);
@@ -408,6 +421,17 @@ namespace EstateFlow.Helpers
                         else if (lbl.ForeColor == Color.DimGray || lbl.ForeColor == Color.Gray || lbl.ForeColor == Color.FromArgb(70, 70, 70))
                             lbl.ForeColor = TextMuted;
                     }
+
+                    if (c.HasChildren && c is not cuiTextBox && c is not DataGridView)
+                    {
+                        Recurse(c);
+                    }
+                }
+            }
+
+            Recurse(form);
+            form.Invalidate(true);
+        }
 
                     if (c.HasChildren && c is not cuiTextBox && c is not DataGridView)
                     {

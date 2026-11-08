@@ -42,7 +42,7 @@ namespace EstateFlow.Forms
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 CheckButton = false,
                 Checked = false,
-                Content = Helpers.UiTheme.IsDark ? "☀ Светлая" : "🌙 Тёмная",
+                Content = Helpers.UiTheme.IsDark ? "Светлая тема" : "Тёмная тема",
                 Cursor = Cursors.Hand,
                 Font = new Font("Segoe UI", 9F, FontStyle.Regular),
                 ForeColor = Helpers.UiTheme.TextMain,
@@ -60,7 +60,7 @@ namespace EstateFlow.Forms
                 PressedForeColor = Helpers.UiTheme.TextMain,
                 PressedOutline = Helpers.UiTheme.Border,
                 Rounding = new Padding(14),
-                Size = new Size(104, 30),
+                Size = new Size(114, 30),
                 TabIndex = 999,
                 TextAlignment = StringAlignment.Center
             };
@@ -116,7 +116,7 @@ namespace EstateFlow.Forms
         private void UpdateThemeButtonState()
         {
             if (btnThemeToggle == null || btnThemeToggle.IsDisposed) return;
-            btnThemeToggle.Content = Helpers.UiTheme.IsDark ? "☀ Светлая" : "🌙 Тёмная";
+            btnThemeToggle.Content = Helpers.UiTheme.IsDark ? "Светлая тема" : "Тёмная тема";
             btnThemeToggle.NormalBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(35, 37, 42) : Color.White;
             btnThemeToggle.NormalForeColor = Helpers.UiTheme.TextMain;
             btnThemeToggle.NormalOutline = Helpers.UiTheme.Border;
