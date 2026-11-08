@@ -4,15 +4,36 @@ namespace EstateFlow.Helpers
 {
     public static class UiTheme
     {
-        public static readonly Color Primary = Color.Black;
-        public static readonly Color Secondary = Color.FromArgb(80, 80, 80);
-        public static readonly Color LightBg = Color.FromArgb(248, 248, 248);
-        public static readonly Color Background = Color.White;
-        public static readonly Color CardBg = Color.White;
-        public static readonly Color Border = Color.FromArgb(215, 215, 215);
-        public static readonly Color DarkBorder = Color.Black;
-        public static readonly Color TextMain = Color.Black;
-        public static readonly Color TextMuted = Color.Gray;
+        public static bool IsDark { get; private set; } = false;
+
+        public static event Action ThemeChanged;
+
+        public static Color Primary => IsDark ? Color.White : Color.Black;
+        public static Color Secondary => IsDark ? Color.FromArgb(160, 160, 160) : Color.FromArgb(80, 80, 80);
+        public static Color Background => IsDark ? Color.FromArgb(24, 25, 28) : Color.White;
+        public static Color CardBg => IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
+        public static Color Border => IsDark ? Color.FromArgb(60, 62, 68) : Color.FromArgb(215, 215, 215);
+        public static Color DarkBorder => IsDark ? Color.White : Color.Black;
+        public static Color TextMain => IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+        public static Color TextMuted => IsDark ? Color.FromArgb(160, 162, 170) : Color.Gray;
+
+        public static Color TextBoxBg => IsDark ? Color.FromArgb(38, 40, 45) : Color.FromArgb(245, 246, 248);
+        public static Color TextBoxFocusBg => IsDark ? Color.FromArgb(48, 50, 56) : Color.White;
+        public static Color TextBoxOutline => IsDark ? Color.FromArgb(85, 88, 98) : Color.FromArgb(95, 95, 95);
+        public static Color TextBoxFocusOutline => IsDark ? Color.FromArgb(220, 220, 225) : Color.Black;
+        public static Color TextBoxPlaceholder => IsDark ? Color.FromArgb(140, 142, 150) : Color.FromArgb(115, 115, 115);
+
+        public static void SetDarkTheme(bool dark)
+        {
+            if (IsDark == dark) return;
+            IsDark = dark;
+            ThemeChanged?.Invoke();
+        }
+
+        public static void ToggleTheme()
+        {
+            SetDarkTheme(!IsDark);
+        }
 
         public const string AppName = "EstateFlow";
 
@@ -50,12 +71,13 @@ namespace EstateFlow.Helpers
                 if (c is cuiTextBox tb)
                 {
                     tb.UnderlinedStyle = false;
-                    tb.BackgroundColor = tb.Enabled ? Color.FromArgb(245, 246, 248) : Color.FromArgb(232, 232, 235);
-                    tb.FocusBackgroundColor = Color.White;
-                    tb.OutlineColor = Color.FromArgb(95, 95, 95);
-                    tb.FocusOutlineColor = Color.Black;
-                    tb.PlaceholderColor = Color.FromArgb(115, 115, 115);
-                    tb.ForeColor = Color.Black;
+                    tb.BackColor = Background;
+                    tb.BackgroundColor = tb.Enabled ? TextBoxBg : (IsDark ? Color.FromArgb(30, 31, 35) : Color.FromArgb(232, 232, 235));
+                    tb.FocusBackgroundColor = TextBoxFocusBg;
+                    tb.OutlineColor = TextBoxOutline;
+                    tb.FocusOutlineColor = TextBoxFocusOutline;
+                    tb.PlaceholderColor = TextBoxPlaceholder;
+                    tb.ForeColor = TextMain;
                     tb.Rounding = new Padding(12);
                     tb.Invalidate();
                 }
@@ -226,25 +248,27 @@ namespace EstateFlow.Helpers
             grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grid.RowHeadersVisible = false;
-            grid.BackgroundColor = Color.White;
+            grid.BackgroundColor = CardBg;
             grid.GridColor = Border;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.EnableHeadersVisualStyles = false;
 
-            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = IsDark ? Color.FromArgb(45, 47, 54) : Color.Black;
             grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             grid.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Black;
+            grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = IsDark ? Color.FromArgb(45, 47, 54) : Color.Black;
             grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
             grid.ColumnHeadersHeight = 36;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             grid.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
-            grid.DefaultCellStyle.ForeColor = Color.Black;
-            grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(40, 40, 40);
+            grid.DefaultCellStyle.BackColor = CardBg;
+            grid.DefaultCellStyle.ForeColor = TextMain;
+            grid.DefaultCellStyle.SelectionBackColor = IsDark ? Color.FromArgb(60, 65, 75) : Color.FromArgb(40, 40, 40);
             grid.DefaultCellStyle.SelectionForeColor = Color.White;
             grid.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
-            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(247, 247, 249);
+            grid.AlternatingRowsDefaultCellStyle.BackColor = IsDark ? Color.FromArgb(28, 29, 33) : Color.FromArgb(247, 247, 249);
+            grid.AlternatingRowsDefaultCellStyle.ForeColor = TextMain;
             grid.RowTemplate.Height = 32;
 
             grid.DataBindingComplete -= Grid_DataBindingComplete;
@@ -270,6 +294,99 @@ namespace EstateFlow.Helpers
                     e.CellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
                 }
             }
+        }
+
+        public static void ApplyTheme(Form form)
+        {
+            form.BackColor = Background;
+
+            void Recurse(Control parent)
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    if (c is cuiTextBox tb)
+                    {
+                        tb.BackColor = Background;
+                        tb.BackgroundColor = tb.Enabled ? TextBoxBg : (IsDark ? Color.FromArgb(30, 31, 35) : Color.FromArgb(232, 232, 235));
+                        tb.FocusBackgroundColor = TextBoxFocusBg;
+                        tb.OutlineColor = TextBoxOutline;
+                        tb.FocusOutlineColor = TextBoxFocusOutline;
+                        tb.PlaceholderColor = TextBoxPlaceholder;
+                        tb.ForeColor = TextMain;
+                        tb.Invalidate();
+                    }
+                    else if (c is cuiButton btn)
+                    {
+                        if (btn.Name == "btnThemeToggle") continue;
+                        btn.BackColor = Background;
+                        // проверяем темная кнопка или светлая
+                        bool isActionDark = btn.NormalBackground == Color.Black || btn.NormalBackground == Color.FromArgb(240, 240, 245) || btn.NormalForeColor == Color.White;
+                        if (isActionDark)
+                        {
+                            btn.NormalBackground = IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+                            btn.NormalForeColor = IsDark ? Color.Black : Color.White;
+                            btn.NormalOutline = IsDark ? Color.White : Color.Black;
+                            btn.HoverBackground = IsDark ? Color.White : Color.FromArgb(40, 40, 40);
+                            btn.HoverForeColor = IsDark ? Color.Black : Color.White;
+                        }
+                        else
+                        {
+                            btn.NormalBackground = IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
+                            btn.NormalForeColor = IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+                            btn.NormalOutline = IsDark ? Color.FromArgb(85, 88, 98) : Color.Black;
+                            btn.HoverBackground = IsDark ? Color.FromArgb(45, 47, 54) : Color.FromArgb(242, 242, 242);
+                            btn.HoverForeColor = IsDark ? Color.White : Color.Black;
+                        }
+                        btn.Invalidate();
+                    }
+                    else if (c is cuiCheckbox chk)
+                    {
+                        chk.BackColor = Background;
+                        chk.CheckedForeground = TextMain;
+                        chk.CheckedOutlineColor = TextMain;
+                        chk.CheckedSymbolColor = IsDark ? Color.Black : Color.White;
+                        chk.UncheckedOutlineColor = TextMuted;
+                        chk.ForeColor = TextMain;
+                        chk.Invalidate();
+                    }
+                    else if (c is DataGridView g)
+                    {
+                        StyleGrid(g);
+                        g.Invalidate();
+                    }
+                    else if (c is ComboBox cmb)
+                    {
+                        cmb.BackColor = IsDark ? Color.FromArgb(38, 40, 45) : Color.White;
+                        cmb.ForeColor = TextMain;
+                    }
+                    else if (c is DateTimePicker dtp)
+                    {
+                        dtp.CalendarMonthBackground = IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
+                        dtp.CalendarForeColor = TextMain;
+                    }
+                    else if (c is LinkLabel lnk)
+                    {
+                        lnk.BackColor = Background;
+                        lnk.LinkColor = IsDark ? Color.FromArgb(170, 190, 255) : Color.Black;
+                    }
+                    else if (c is Label lbl)
+                    {
+                        lbl.BackColor = Background;
+                        if (lbl.ForeColor == Color.Black || lbl.ForeColor == Color.FromArgb(240, 240, 245))
+                            lbl.ForeColor = TextMain;
+                        else if (lbl.ForeColor == Color.DimGray || lbl.ForeColor == Color.Gray || lbl.ForeColor == Color.FromArgb(70, 70, 70))
+                            lbl.ForeColor = TextMuted;
+                    }
+
+                    if (c.HasChildren && c is not cuiTextBox && c is not DataGridView)
+                    {
+                        Recurse(c);
+                    }
+                }
+            }
+
+            Recurse(form);
+            form.Invalidate(true);
         }
 
         private static void Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

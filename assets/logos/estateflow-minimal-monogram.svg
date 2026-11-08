@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="monoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="128" fill="#FFFFFF"/>
+  <rect x="2" y="2" width="508" height="508" rx="126" stroke="#E2E8F0" stroke-width="4"/>
+
+  <!-- Minimalist Geometric Monogram: 'E' + 'F' + Roofline / High-Rise Grid -->
+  <g transform="translate(136, 110)">
+    <!-- Main Vertical Pillar (Architecture / Spine) -->
+    <path d="M 0 36 L 46 0 L 46 220 L 0 220 Z" fill="#0F172A"/>
+    
+    <!-- Top Bar (Roof / E top) -->
+    <path d="M 58 0 L 220 0 L 194 36 L 58 36 Z" fill="#0F172A"/>
+
+    <!-- Middle Bar (Flow dynamic ribbon / F crossbar) -->
+    <path d="M 58 84 L 176 84 L 152 120 L 58 120 Z" fill="url(#accentBlue)"/>
+
+    <!-- Bottom Bar (Base / Foundation / E bottom) -->
+    <path d="M 58 184 L 210 184 L 186 220 L 58 220 Z" fill="#0F172A"/>
+
+    <!-- Dynamic Flow Dots (Seamless transactions) -->
+    <circle cx="218" cy="102" r="10" fill="#2563EB"/>
+  </g>
+
+  <!-- Typography below mark -->
+  <text x="256" y="405" text-anchor="middle" font-family="'Inter', 'Segoe UI', -apple-system, sans-serif" font-size="36" font-weight="900" letter-spacing="4" fill="#0F172A">
+    ESTATE<tspan fill="#2563EB">FLOW</tspan>
+  </text>
+  <text x="256" y="438" text-anchor="middle" font-family="'Inter', 'Segoe UI', -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="6" fill="#64748B">
+    PROPTECH CRM
+  </text>
+</svg>
