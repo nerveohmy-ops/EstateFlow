@@ -14,9 +14,6 @@ namespace EstateFlow.Forms
 
         private cuiButton btnThemeToggle;
 
-        /// <summary>
-        /// Показывать ли кнопку переключения темы на этой форме (по умолчанию true для главных и списочных форм, false для диалоговых окон ввода данных)
-        /// </summary>
         protected virtual bool ShowThemeToggle => true;
 
         public BaseForm()
