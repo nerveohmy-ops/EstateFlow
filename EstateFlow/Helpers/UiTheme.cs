@@ -1,3 +1,4 @@
+using EstateFlow.Controls;
 using HartUI.Controls;
 
 namespace EstateFlow.Helpers
@@ -436,6 +437,18 @@ namespace EstateFlow.Helpers
                         txt.BackColor = CardBg;
                         txt.ForeColor = TextMain;
                     }
+                    else if (c is PropertyCardControl card)
+                    {
+                        card.ApplyTheme();
+                    }
+                    else if (c is FlowLayoutPanel flp)
+                    {
+                        flp.BackColor = IsDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(246, 248, 250);
+                    }
+                    else if (c is Panel pnl && pnl.Name != "pnlActions")
+                    {
+                        pnl.BackColor = Background;
+                    }
                     else if (c is Label lbl)
                     {
                         lbl.BackColor = Background;
@@ -449,7 +462,7 @@ namespace EstateFlow.Helpers
                             lbl.ForeColor = TextMuted;
                     }
 
-                    if (c.HasChildren && c is not cuiTextBox && c is not DataGridView)
+                    if (c.HasChildren && c is not cuiTextBox && c is not DataGridView && c is not PropertyCardControl)
                     {
                         Recurse(c);
                     }

@@ -30,12 +30,41 @@ namespace EstateFlow.Models
     {
         public int Id { get; set; }
         public string Address { get; set; }
+        public string District { get; set; } = "Центр";
         public int TypeId { get; set; }
+        public string TypeName { get; set; }
+        public int Rooms { get; set; } = 1; // 0 = Студия, 1..4+
+        public int? Floor { get; set; }
+        public int? TotalFloors { get; set; }
         public decimal Area { get; set; }
+        public decimal? KitchenArea { get; set; }
+        public decimal? LivingArea { get; set; }
+        public int? YearBuilt { get; set; }
         public decimal Price { get; set; }
         public string Status { get; set; } = PropertyStatus.Free;
         public int? AgentId { get; set; }
+        public string AgentName { get; set; }
         public string Description { get; set; }
+        public string Photo { get; set; }
+
+        public string RoomsDisplay => Rooms == 0 ? "Студия" : (Rooms >= 5 ? $"{Rooms}+ комн." : $"{Rooms}-комн.");
+        public string FloorDisplay => (Floor.HasValue && TotalFloors.HasValue) ? $"{Floor}/{TotalFloors} эт." : (Floor.HasValue ? $"{Floor} эт." : "");
+        public decimal PricePerMeter => Area > 0 ? Math.Round(Price / Area) : 0;
+
+        public string FullTitle
+        {
+            get
+            {
+                string type = string.IsNullOrWhiteSpace(TypeName) ? "Объект" : TypeName;
+                if (type.Equals("Квартира", StringComparison.OrdinalIgnoreCase))
+                    return $"{RoomsDisplay} квартира, {Area:0.##} м²{(string.IsNullOrEmpty(FloorDisplay) ? "" : ", " + FloorDisplay)}";
+                if (type.Equals("Комната", StringComparison.OrdinalIgnoreCase))
+                    return $"Комната {Area:0.##} м²{(string.IsNullOrEmpty(FloorDisplay) ? "" : ", " + FloorDisplay)}";
+                if (type.Equals("Дом", StringComparison.OrdinalIgnoreCase))
+                    return $"Дом / Коттедж {Area:0.##} м²{(Floor.HasValue ? $", {Floor} эт." : "")}";
+                return $"{type} {Area:0.##} м²";
+            }
+        }
     }
 
     public class Deal

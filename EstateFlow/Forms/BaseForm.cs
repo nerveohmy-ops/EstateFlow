@@ -102,7 +102,7 @@ namespace EstateFlow.Forms
             base.OnLoad(e);
         }
 
-        private void OnThemeChanged()
+        protected virtual void OnThemeChanged()
         {
             if (IsDisposed) return;
             Helpers.UiTheme.ApplyTheme(this);
