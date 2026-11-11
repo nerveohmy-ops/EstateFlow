@@ -165,6 +165,8 @@ namespace EstateFlow.Forms
 
             if (isCardsView)
             {
+                pnlCatalog.BringToFront();
+
                 btnViewCards.NormalBackground = isDark ? Color.FromArgb(240, 240, 245) : Color.Black;
                 btnViewCards.NormalForeColor = isDark ? Color.Black : Color.White;
                 btnViewCards.NormalOutline = isDark ? Color.White : Color.Black;
@@ -179,6 +181,8 @@ namespace EstateFlow.Forms
             }
             else
             {
+                grid.BringToFront();
+
                 btnViewTable.NormalBackground = isDark ? Color.FromArgb(240, 240, 245) : Color.Black;
                 btnViewTable.NormalForeColor = isDark ? Color.Black : Color.White;
                 btnViewTable.NormalOutline = isDark ? Color.White : Color.Black;
@@ -248,12 +252,15 @@ namespace EstateFlow.Forms
             pnlCatalog.SuspendLayout();
             pnlCatalog.Controls.Clear();
 
+            int availableWidth = pnlCatalog.ClientSize.Width > 0 ? pnlCatalog.ClientSize.Width : pnlCatalog.Width;
+            if (availableWidth <= 0) availableWidth = 1040;
+
             if (properties.Count == 0)
             {
                 var lblEmpty = new Label
                 {
                     AutoSize = false,
-                    Size = new Size(pnlCatalog.ClientSize.Width - 40, 120),
+                    Size = new Size(availableWidth - 40, 120),
                     Font = new Font("Segoe UI", 12F),
                     ForeColor = UiTheme.TextMuted,
                     TextAlign = ContentAlignment.MiddleCenter,
@@ -264,7 +271,7 @@ namespace EstateFlow.Forms
                 return;
             }
 
-            int cardWidth = Math.Max(700, pnlCatalog.ClientSize.Width - (pnlCatalog.VerticalScroll.Visible ? 25 : 15));
+            int cardWidth = Math.Max(700, availableWidth - (pnlCatalog.VerticalScroll.Visible ? 25 : 15));
 
             foreach (var prop in properties)
             {
@@ -296,7 +303,10 @@ namespace EstateFlow.Forms
 
         private void UpdateCardWidths()
         {
-            int cardWidth = Math.Max(700, pnlCatalog.ClientSize.Width - (pnlCatalog.VerticalScroll.Visible ? 25 : 15));
+            int availableWidth = pnlCatalog.ClientSize.Width > 0 ? pnlCatalog.ClientSize.Width : pnlCatalog.Width;
+            if (availableWidth <= 0) availableWidth = 1040;
+            int cardWidth = Math.Max(700, availableWidth - (pnlCatalog.VerticalScroll.Visible ? 25 : 15));
+
             foreach (Control c in pnlCatalog.Controls)
             {
                 if (c is PropertyCardControl card)
@@ -448,6 +458,9 @@ namespace EstateFlow.Forms
         {
             base.OnLoad(e);
             UpdateViewMode();
+            if (pnlCatalog.Controls.Count == 0)
+                LoadData();
+            UpdateCardWidths();
         }
     }
 }

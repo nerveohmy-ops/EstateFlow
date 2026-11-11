@@ -48,7 +48,7 @@ namespace EstateFlow.Controls
         {
             Height = 175;
             Width = 920;
-            Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Anchor = AnchorStyles.None;
             Cursor = Cursors.Hand;
             Padding = new Padding(8);
 
@@ -56,14 +56,14 @@ namespace EstateFlow.Controls
             picPhoto = new PictureBox
             {
                 Location = new Point(10, 10),
-                Size = new Size(230, 155),
+                Size = new Size(240, 155),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = Color.FromArgb(240, 242, 245),
                 Cursor = Cursors.Hand
             };
             picPhoto.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
 
-            // Бейдж статуса поверх фото
+            // Бейдж статуса внутри фото
             lblStatusBadge = new Label
             {
                 AutoSize = true,
@@ -71,30 +71,34 @@ namespace EstateFlow.Controls
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold),
                 Padding = new Padding(6, 3, 6, 3),
-                Location = new Point(16, 16),
-                Text = "Свободен"
+                Location = new Point(8, 8),
+                Text = "Свободен",
+                Cursor = Cursors.Hand
             };
             lblStatusBadge.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
+            picPhoto.Controls.Add(lblStatusBadge);
 
-            // Бейдж типа недвижимости внизу фото
+            // Бейдж типа недвижимости внутри фото
             lblTypeBadge = new Label
             {
                 AutoSize = true,
-                BackColor = Color.FromArgb(180, 0, 0, 0),
+                BackColor = Color.FromArgb(200, 20, 20, 25),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 8F),
                 Padding = new Padding(5, 2, 5, 2),
-                Location = new Point(16, 136),
-                Text = "Квартира"
+                Location = new Point(8, 126),
+                Text = "Квартира",
+                Cursor = Cursors.Hand
             };
             lblTypeBadge.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
+            picPhoto.Controls.Add(lblTypeBadge);
 
-            // Блок цен
+            // Блок цены
             lblPrice = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI", 16F, FontStyle.Bold),
-                Location = new Point(252, 10),
+                Location = new Point(262, 10),
                 Text = "8 900 000 ₽",
                 Cursor = Cursors.Hand
             };
@@ -105,18 +109,18 @@ namespace EstateFlow.Controls
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F),
                 ForeColor = Color.Gray,
-                Location = new Point(430, 17),
+                Location = new Point(440, 17),
                 Text = "152 397 ₽/м²",
                 Cursor = Cursors.Hand
             };
             lblPricePerMeter.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
 
-            // Заголовок (например: 2-комн. квартира, 58.4 м², 5/9 эт.)
+            // Заголовок объекта
             lblTitle = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI Semibold", 11.5F, FontStyle.Bold),
-                Location = new Point(252, 40),
+                Location = new Point(262, 40),
                 Text = "2-комн. квартира, 58.4 м², 5/9 эт.",
                 Cursor = Cursors.Hand
             };
@@ -128,43 +132,58 @@ namespace EstateFlow.Controls
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F),
                 ForeColor = Color.FromArgb(70, 70, 70),
-                Location = new Point(252, 66),
+                Location = new Point(262, 66),
                 Text = "📍 г. Благовещенск, р-н Центр, ул. Ленина, д. 148, кв. 24",
                 Cursor = Cursors.Hand
             };
             lblAddress.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
 
-            // Характеристики (чипсы/теги)
+            // Спецификации
             lblSpecs = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9F),
                 ForeColor = Color.DimGray,
-                Location = new Point(252, 92),
+                Location = new Point(262, 92),
                 Text = "Кухня 11.2 м²  •  Жилая 34 м²  •  2018 г.  •  Агент: Петров П. П.",
                 Cursor = Cursors.Hand
             };
             lblSpecs.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
 
-            // Описание (кратко)
+            // Краткое описание
             lblDescription = new Label
             {
-                Location = new Point(252, 116),
-                Size = new Size(470, 48),
+                Location = new Point(262, 116),
+                Size = new Size(460, 48),
                 Font = new Font("Segoe UI", 8.5F),
                 ForeColor = Color.Gray,
-                Text = "Светлая 2-комнатная квартира с качественным евроремонтом в самом сердце Благовещенска...",
+                Text = "Светлая квартира с ремонтом...",
                 AutoEllipsis = true,
                 Cursor = Cursors.Hand
             };
             lblDescription.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
 
-            // Панель кнопок справа
+            // Кнопка быстрого удаления в правом верхнем углу (для админов)
+            btnDelete = new Button
+            {
+                Location = new Point(Width - 30, 6),
+                Size = new Size(24, 24),
+                Text = "✕",
+                FlatStyle = FlatStyle.Flat,
+                FlatAppearance = { BorderSize = 0 },
+                ForeColor = Color.Gray,
+                BackColor = Color.Transparent,
+                Cursor = Cursors.Hand,
+                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                Visible = false
+            };
+            btnDelete.Click += (s, e) => DeleteRequested?.Invoke(this, PropertyData);
+
+            // Панель действий справа
             pnlActions = new Panel
             {
-                Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom,
-                Location = new Point(735, 8),
-                Size = new Size(175, 158),
+                Location = new Point(Width - 185, 10),
+                Size = new Size(175, 155),
                 BackColor = Color.Transparent
             };
 
@@ -240,27 +259,10 @@ namespace EstateFlow.Controls
             };
             btnDeal.Click += (s, e) => DealRequested?.Invoke(this, PropertyData);
 
-            btnDelete = new Button
-            {
-                Location = new Point(140, 134),
-                Size = new Size(30, 24),
-                Text = "✕",
-                FlatStyle = FlatStyle.Flat,
-                FlatAppearance = { BorderSize = 0 },
-                ForeColor = Color.DarkGray,
-                BackColor = Color.Transparent,
-                Cursor = Cursors.Hand,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold)
-            };
-            btnDelete.Click += (s, e) => DeleteRequested?.Invoke(this, PropertyData);
-
             pnlActions.Controls.Add(btnPrimary);
             pnlActions.Controls.Add(btnSecondary);
             pnlActions.Controls.Add(btnDeal);
-            pnlActions.Controls.Add(btnDelete);
 
-            Controls.Add(lblStatusBadge);
-            Controls.Add(lblTypeBadge);
             Controls.Add(picPhoto);
             Controls.Add(lblPrice);
             Controls.Add(lblPricePerMeter);
@@ -268,10 +270,11 @@ namespace EstateFlow.Controls
             Controls.Add(lblAddress);
             Controls.Add(lblSpecs);
             Controls.Add(lblDescription);
+            Controls.Add(btnDelete);
             Controls.Add(pnlActions);
 
-            lblStatusBadge.BringToFront();
-            lblTypeBadge.BringToFront();
+            // Поддержка прокрутки колесиком мыши над любым элементом карточки
+            WireMouseWheel(this);
 
             MouseEnter += (s, e) => SetHover(true);
             MouseLeave += (s, e) =>
@@ -291,6 +294,26 @@ namespace EstateFlow.Controls
                             SetHover(false);
                     };
                 }
+            }
+        }
+
+        private void WireMouseWheel(Control parent)
+        {
+            parent.MouseWheel += (s, e) => BubbleMouseWheel(e);
+            foreach (Control child in parent.Controls)
+            {
+                WireMouseWheel(child);
+            }
+        }
+
+        private void BubbleMouseWheel(MouseEventArgs e)
+        {
+            if (Parent is FlowLayoutPanel flp)
+            {
+                // Прокручиваем родительский FlowLayoutPanel
+                int delta = e.Delta;
+                var cur = flp.AutoScrollPosition;
+                flp.AutoScrollPosition = new Point(-cur.X, -cur.Y - delta);
             }
         }
 
@@ -333,9 +356,9 @@ namespace EstateFlow.Controls
 
             // Цена
             lblPrice.Text = $"{p.Price:N0} ₽".Replace('\u00A0', ' ');
-            lblPrice.Location = new Point(252, 10);
+            lblPrice.Location = new Point(262, 10);
 
-            // Цена за метр
+            // Цена за квадратный метр
             decimal ppm = p.PricePerMeter;
             lblPricePerMeter.Text = ppm > 0 ? $"({ppm:N0} ₽/м²)" : "";
             lblPricePerMeter.Location = new Point(lblPrice.Right + 10, 16);
@@ -343,7 +366,7 @@ namespace EstateFlow.Controls
             // Заголовок
             lblTitle.Text = p.FullTitle;
 
-            // Район и Адрес
+            // Район и адрес
             string dist = string.IsNullOrWhiteSpace(p.District) ? "" : $"р-н {p.District}, ";
             lblAddress.Text = $"📍 {dist}{p.Address}";
 
@@ -366,18 +389,20 @@ namespace EstateFlow.Controls
                 ? "Уютный объект недвижимости в г. Благовещенск. Отличное предложение по соотношению цена-качество."
                 : p.Description.Trim();
 
-            // Роли и доступность кнопок
+            // Роли
             var user = Session.CurrentUser;
             bool isClient = user == null || user.IsClient;
             bool isAgent = user != null && user.IsAgent;
             bool isAdmin = user != null && user.IsAdmin;
+
+            btnDelete.Visible = isAdmin;
 
             if (isClient)
             {
                 btnPrimary.Content = "Записаться на просмотр";
                 btnSecondary.Content = "Подробнее";
                 btnDeal.Visible = false;
-                btnDelete.Visible = false;
+
                 btnPrimary.Location = new Point(5, 30);
                 btnSecondary.Location = new Point(5, 78);
             }
@@ -387,7 +412,6 @@ namespace EstateFlow.Controls
                 btnSecondary.Content = "На просмотр";
                 btnDeal.Visible = true;
                 btnDeal.Content = "Сделка";
-                btnDelete.Visible = isAdmin;
 
                 btnPrimary.Location = new Point(5, 10);
                 btnSecondary.Location = new Point(5, 54);
@@ -423,7 +447,6 @@ namespace EstateFlow.Controls
             lblDescription.ForeColor = isDark ? Color.FromArgb(160, 162, 170) : Color.FromArgb(100, 105, 115);
             picPhoto.BackColor = isDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(240, 242, 245);
 
-            // Кнопки
             if (isDark)
             {
                 btnPrimary.NormalBackground = Color.FromArgb(240, 240, 245);
@@ -481,6 +504,9 @@ namespace EstateFlow.Controls
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
+            Color parentBg = Parent?.BackColor ?? (UiTheme.IsDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(246, 248, 250));
+            g.Clear(parentBg);
+
             var rect = new Rectangle(1, 1, Width - 3, Height - 3);
 
             // Фон карточки
@@ -508,8 +534,12 @@ namespace EstateFlow.Controls
             base.OnResize(e);
             if (pnlActions != null)
             {
-                pnlActions.Location = new Point(Width - pnlActions.Width - 10, (Height - pnlActions.Height) / 2);
+                pnlActions.Location = new Point(Width - pnlActions.Width - 15, (Height - pnlActions.Height) / 2);
                 lblDescription.Width = Math.Max(200, pnlActions.Left - lblDescription.Left - 20);
+            }
+            if (btnDelete != null)
+            {
+                btnDelete.Location = new Point(Width - 30, 6);
             }
         }
 

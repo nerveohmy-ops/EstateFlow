@@ -7,7 +7,7 @@ namespace EstateFlow
     internal static class Program
     {
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             ApplicationConfiguration.Initialize();
 
