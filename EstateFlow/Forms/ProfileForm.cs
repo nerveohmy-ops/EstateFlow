@@ -7,6 +7,8 @@ namespace EstateFlow.Forms
 {
     public partial class ProfileForm : BaseForm
     {
+        protected override bool ShowThemeToggle => true;
+
         public ProfileForm()
         {
             InitializeComponent();

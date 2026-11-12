@@ -14,7 +14,7 @@ namespace EstateFlow.Forms
 
         private cuiButton btnThemeToggle;
 
-        protected virtual bool ShowThemeToggle => true;
+        protected virtual bool ShowThemeToggle => false;
 
         public BaseForm()
         {

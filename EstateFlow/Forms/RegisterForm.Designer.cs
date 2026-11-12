@@ -35,22 +35,21 @@ namespace EstateFlow.Forms
             chkShowPassword = new HartUI.Controls.cuiCheckbox();
             errorProvider1 = new ErrorProvider(components);
             toolTip1 = new ToolTip(components);
-            label1 = new Label();
+            picLogo = new PictureBox();
             lblError = new Label();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // picLogo
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.BackColor = Color.White;
-            label1.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(414, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(150, 31);
-            label1.TabIndex = 0;
-            label1.Text = "EstateFlow";
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Location = new Point(392, 8);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(200, 48);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
             // 
             // txtLastName
             // 
@@ -451,7 +450,7 @@ namespace EstateFlow.Forms
             Controls.Add(txtInvite);
             Controls.Add(cmbRole);
             Controls.Add(lblRole);
-            Controls.Add(label1);
+            Controls.Add(picLogo);
             Controls.Add(chkShowPassword);
             Controls.Add(btnBack);
             Controls.Add(btnRegister);
@@ -491,7 +490,7 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiCheckbox chkShowPassword;
         private ErrorProvider errorProvider1;
         private ToolTip toolTip1;
-        private Label label1;
+        private PictureBox picLogo;
         private Label lblError;
     }
 }

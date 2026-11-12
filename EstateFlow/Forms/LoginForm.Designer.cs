@@ -27,7 +27,7 @@ namespace EstateFlow.Forms
             errorProvider1 = new ErrorProvider(components);
             toolTip1 = new ToolTip(components);
             picLogo = new PictureBox();
-            cuiLabel2 = new HartUI.Controls.cuiLabel();
+            lblError = new Label();
             lnkForgot = new LinkLabel();
             lnkHelp = new LinkLabel();
             lnkAbout = new LinkLabel();
@@ -254,19 +254,19 @@ namespace EstateFlow.Forms
             btnRegister.TextSpacing = 2;
             btnRegister.Click += btnRegister_Click;
             // 
-            // cuiLabel2
+            // lblError
             // 
-            cuiLabel2.Anchor = AnchorStyles.None;
-            cuiLabel2.BackColor = Color.White;
-            cuiLabel2.Content = "";
-            cuiLabel2.Font = new Font("Segoe UI", 9.5F);
-            cuiLabel2.ForeColor = Color.DarkRed;
-            cuiLabel2.Location = new Point(353, 325);
-            cuiLabel2.Margin = new Padding(4, 3, 4, 3);
-            cuiLabel2.Name = "cuiLabel2";
-            cuiLabel2.Size = new Size(266, 32);
-            cuiLabel2.TabIndex = 8;
-            cuiLabel2.TabStop = false;
+            lblError.Anchor = AnchorStyles.None;
+            lblError.BackColor = Color.Transparent;
+            lblError.Font = new Font("Segoe UI", 9.5F);
+            lblError.ForeColor = Color.Crimson;
+            lblError.Location = new Point(320, 322);
+            lblError.Margin = new Padding(4, 3, 4, 3);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(344, 34);
+            lblError.TabIndex = 8;
+            lblError.Text = "";
+            lblError.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lnkHelp
             // 
@@ -311,7 +311,7 @@ namespace EstateFlow.Forms
             Controls.Add(lnkForgot);
             Controls.Add(chkRemember);
             Controls.Add(chkShowPassword);
-            Controls.Add(cuiLabel2);
+            Controls.Add(lblError);
             Controls.Add(picLogo);
             Controls.Add(btnRegister);
             Controls.Add(btnAutorization);
@@ -338,7 +338,7 @@ namespace EstateFlow.Forms
         private ErrorProvider errorProvider1;
         private ToolTip toolTip1;
         private PictureBox picLogo;
-        private HartUI.Controls.cuiLabel cuiLabel2;
+        private Label lblError;
         private LinkLabel lnkForgot;
         private LinkLabel lnkHelp;
         private LinkLabel lnkAbout;

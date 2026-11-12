@@ -17,35 +17,35 @@ namespace EstateFlow.Forms
 
         private void InitializeComponent()
         {
-            lblBrand = new Label();
+            picLogo = new PictureBox();
             lblSub = new Label();
             txtDetails = new TextBox();
             btnClose = new HartUI.Controls.cuiButton();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
             // 
-            // lblBrand
+            // picLogo
             // 
-            lblBrand.Anchor = AnchorStyles.None;
-            lblBrand.AutoSize = true;
-            lblBrand.BackColor = Color.White;
-            lblBrand.Font = new Font("Microsoft Sans Serif", 20.25F);
-            lblBrand.Location = new Point(414, 30);
-            lblBrand.Name = "lblBrand";
-            lblBrand.Size = new Size(150, 31);
-            lblBrand.TabIndex = 0;
-            lblBrand.Text = "EstateFlow";
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Location = new Point(382, 16);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(220, 52);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
             // 
             // lblSub
             // 
             lblSub.Anchor = AnchorStyles.None;
-            lblSub.AutoSize = true;
-            lblSub.BackColor = Color.White;
+            lblSub.BackColor = Color.Transparent;
             lblSub.Font = new Font("Segoe UI", 11F);
-            lblSub.Location = new Point(375, 68);
+            lblSub.Location = new Point(350, 70);
             lblSub.Name = "lblSub";
-            lblSub.Size = new Size(215, 20);
+            lblSub.Size = new Size(284, 22);
             lblSub.TabIndex = 1;
             lblSub.Text = "Учёт риэлторских операций";
+            lblSub.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtDetails
             // 
@@ -60,13 +60,13 @@ namespace EstateFlow.Forms
             txtDetails.ReadOnly = true;
             txtDetails.Size = new Size(552, 250);
             txtDetails.TabIndex = 2;
-            txtDetails.Text = "Информационная система агентства недвижимости EstateFlow\r\n\r\n" +
+            txtDetails.Text = "Информационная система агентства недвижимости EstateFlow (г. Благовещенск, Амурская область)\r\n\r\n" +
                 "Назначение программы:\r\n" +
                 "Автоматизация учёта объектов недвижимости, риэлторских сделок купли-продажи, заявок клиентов на просмотр и формирования отчётности.\r\n\r\n" +
                 "Основные модули:\r\n" +
-                "• Авторизация, регистрация и восстановление доступа\r\n" +
+                "• Авторизация, регистрация и восстановление доступа (смена темы оформления)\r\n" +
                 "• Ролевое разграничение прав (Администратор, Агент, Клиент)\r\n" +
-                "• Каталог объектов недвижимости и справочник типов\r\n" +
+                "• Интерактивная витрина каталога объектов недвижимости\r\n" +
                 "• Журнал сделок и расписание просмотров\r\n" +
                 "• Аналитические отчёты и выгрузка данных в CSV\r\n\r\n" +
                 "Платформа: Windows Forms (.NET 10), MS SQL Server LocalDB.";
@@ -106,18 +106,19 @@ namespace EstateFlow.Forms
             Controls.Add(btnClose);
             Controls.Add(txtDetails);
             Controls.Add(lblSub);
-            Controls.Add(lblBrand);
+            Controls.Add(picLogo);
             DoubleBuffered = true;
             Name = "AboutForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "О программе — EstateFlow";
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblBrand;
+        private PictureBox picLogo;
         private Label lblSub;
         private TextBox txtDetails;
         private HartUI.Controls.cuiButton btnClose;

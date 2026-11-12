@@ -39,22 +39,55 @@ namespace EstateFlow.Helpers
         public static Image LogoLight { get; private set; }
         public static Image LogoDark { get; private set; }
 
-        public static Image CurrentLogo => IsDark ? LogoDark : LogoLight;
+        public static Image CurrentLogo => IsDark ? (LogoDark ?? LogoLight) : (LogoLight ?? LogoDark);
 
         public const string AppName = "EstateFlow";
 
         static UiTheme()
         {
+            LoadLogos();
+        }
+
+        private static void LoadLogos()
+        {
             try
             {
-                string resDir = Path.Combine(AppContext.BaseDirectory, "Resources");
-                string lightPath = Path.Combine(resDir, "logo_light.png");
-                string darkPath = Path.Combine(resDir, "logo_dark.png");
+                string[] searchDirs = new[]
+                {
+                    Path.Combine(AppContext.BaseDirectory, "Resources"),
+                    Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Resources"),
+                    Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "assets", "logos"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "Resources"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "assets", "logos"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "EstateFlow", "Resources")
+                };
 
-                if (File.Exists(lightPath))
-                    LogoLight = Image.FromFile(lightPath);
-                if (File.Exists(darkPath))
-                    LogoDark = Image.FromFile(darkPath);
+                foreach (var dir in searchDirs)
+                {
+                    try
+                    {
+                        if (!Directory.Exists(dir)) continue;
+
+                        string light = Path.Combine(dir, "logo_light.png");
+                        string dark = Path.Combine(dir, "logo_dark.png");
+
+                        if (LogoLight == null && File.Exists(light))
+                        {
+                            byte[] bytes = File.ReadAllBytes(light);
+                            using var ms = new MemoryStream(bytes);
+                            LogoLight = new Bitmap(ms);
+                        }
+                        if (LogoDark == null && File.Exists(dark))
+                        {
+                            byte[] bytes = File.ReadAllBytes(dark);
+                            using var ms = new MemoryStream(bytes);
+                            LogoDark = new Bitmap(ms);
+                        }
+
+                        if (LogoLight != null && LogoDark != null) break;
+                    }
+                    catch { }
+                }
             }
             catch { }
         }
@@ -339,7 +372,7 @@ namespace EstateFlow.Helpers
                     }
                     else if (c is cuiButton btn)
                     {
-                        if (btn.Name == "btnThemeToggle") continue;
+                        if (btn.Name == "btnThemeToggle" || btn.Name.StartsWith("btnRoom") || btn.Name == "btnViewCards" || btn.Name == "btnViewTable") continue;
                         btn.BackColor = Background;
 
                         // если это кнопка "Назад" / "Отмена" / "Сбросить" / обычное вторичное действие
@@ -392,8 +425,9 @@ namespace EstateFlow.Helpers
                     }
                     else if (c is PictureBox pb && pb.Name == "picLogo")
                     {
-                        pb.BackColor = Background;
+                        pb.BackColor = Color.Transparent;
                         pb.Image = CurrentLogo;
+                        pb.SizeMode = PictureBoxSizeMode.Zoom;
                         pb.Invalidate();
                     }
                     else if (c is DataGridView g)

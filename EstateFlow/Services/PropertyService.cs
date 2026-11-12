@@ -277,7 +277,7 @@ namespace EstateFlow.Services
         public static List<LookupItem> GetLookup(bool excludeSold = false, int? includePropertyId = null)
         {
             var t = Database.GetTable(
-                @"SELECT Id, Address, Price, Status FROM Properties
+                @"SELECT Id, Address, ISNULL(District, N'Центр') AS District, Price, Status FROM Properties
                   WHERE (@excl = 0 OR Status <> @sold OR Id = @inc)
                   ORDER BY Address",
                 Database.P("@excl", excludeSold ? 1 : 0),
@@ -286,7 +286,7 @@ namespace EstateFlow.Services
 
             return t.AsEnumerable()
                 .Select(r => new LookupItem((int)r["Id"],
-                    $"{r["Address"]} — {(decimal)r["Price"]:N0} ₽ ({r["Status"]})"))
+                    $"{r["Address"]} (р-н {r["District"]}) — {(decimal)r["Price"]:N0} ₽ ({r["Status"]})"))
                 .ToList();
         }
 

@@ -18,7 +18,7 @@ namespace EstateFlow.Forms
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            lblBrand = new Label();
+            picLogo = new PictureBox();
             lblSub = new Label();
             txtIdentity = new HartUI.Controls.cuiTextBox();
             txtSecret = new HartUI.Controls.cuiTextBox();
@@ -29,30 +29,29 @@ namespace EstateFlow.Forms
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
-            // lblBrand
+            // picLogo
             // 
-            lblBrand.Anchor = AnchorStyles.None;
-            lblBrand.AutoSize = true;
-            lblBrand.BackColor = Color.White;
-            lblBrand.Font = new Font("Microsoft Sans Serif", 20.25F);
-            lblBrand.Location = new Point(412, 70);
-            lblBrand.Name = "lblBrand";
-            lblBrand.Size = new Size(150, 31);
-            lblBrand.TabIndex = 0;
-            lblBrand.Text = "EstateFlow";
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Location = new Point(382, 35);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(220, 65);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
             // 
             // lblSub
             // 
             lblSub.Anchor = AnchorStyles.None;
-            lblSub.AutoSize = true;
-            lblSub.BackColor = Color.White;
+            lblSub.BackColor = Color.Transparent;
             lblSub.Font = new Font("Segoe UI", 10F);
             lblSub.ForeColor = Color.DimGray;
-            lblSub.Location = new Point(404, 108);
+            lblSub.Location = new Point(350, 106);
             lblSub.Name = "lblSub";
-            lblSub.Size = new Size(168, 19);
+            lblSub.Size = new Size(284, 22);
             lblSub.TabIndex = 1;
             lblSub.Text = "Восстановление пароля";
+            lblSub.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtIdentity
             // 
@@ -188,7 +187,7 @@ namespace EstateFlow.Forms
             Controls.Add(txtSecret);
             Controls.Add(txtIdentity);
             Controls.Add(lblSub);
-            Controls.Add(lblBrand);
+            Controls.Add(picLogo);
             DoubleBuffered = true;
             Name = "ForgotPasswordForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -200,7 +199,7 @@ namespace EstateFlow.Forms
 
         #endregion
 
-        private Label lblBrand;
+        private PictureBox picLogo;
         private Label lblSub;
         private HartUI.Controls.cuiTextBox txtIdentity;
         private HartUI.Controls.cuiTextBox txtSecret;

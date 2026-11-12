@@ -6,6 +6,8 @@ namespace EstateFlow.Forms
 {
     public partial class LoginForm : BaseForm
     {
+        protected override bool ShowThemeToggle => true;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace EstateFlow.Forms
         private void btnAutorization_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
-            cuiLabel2.Content = "";
+            lblError.Text = "";
 
             string login = cuiTextBox1.Content.Trim();
             string password = cuiTextBox2.Content;
@@ -56,13 +58,13 @@ namespace EstateFlow.Forms
             if (string.IsNullOrWhiteSpace(login))
             {
                 errorProvider1.SetError(cuiTextBox1, "Введите логин");
-                cuiLabel2.Content = "Введите логин, email или телефон";
+                lblError.Text = "Введите логин, email или телефон";
                 return;
             }
             if (string.IsNullOrEmpty(password))
             {
                 errorProvider1.SetError(cuiTextBox2, "Введите пароль");
-                cuiLabel2.Content = "Введите пароль";
+                lblError.Text = "Введите пароль";
                 return;
             }
 
@@ -77,12 +79,12 @@ namespace EstateFlow.Forms
                 if (exists)
                 {
                     errorProvider1.SetError(cuiTextBox2, "Неверный пароль");
-                    cuiLabel2.Content = "Неверный пароль";
+                    lblError.Text = "Неверный пароль";
                 }
                 else
                 {
                     errorProvider1.SetError(cuiTextBox1, "Пользователь не найден");
-                    cuiLabel2.Content = "Пользователь не найден";
+                    lblError.Text = "Пользователь не найден";
                     if (UiTheme.Confirm("Пользователь не найден. Перейти к регистрации?"))
                         OpenRegistration();
                 }
