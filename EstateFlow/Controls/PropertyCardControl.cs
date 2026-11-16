@@ -472,57 +472,27 @@ namespace EstateFlow.Controls
 
             if (isPrimary)
             {
-                if (isDark)
-                {
-                    btn.NormalBackground = Color.FromArgb(240, 240, 245);
-                    btn.NormalForeColor = Color.Black;
-                    btn.NormalOutline = Color.White;
-                    btn.HoverBackground = Color.White;
-                    btn.HoverForeColor = Color.Black;
-                    btn.HoverOutline = Color.White;
-                    btn.PressedBackground = Color.FromArgb(210, 210, 218);
-                    btn.PressedForeColor = Color.Black;
-                    btn.PressedOutline = Color.White;
-                }
-                else
-                {
-                    btn.NormalBackground = Color.Black;
-                    btn.NormalForeColor = Color.White;
-                    btn.NormalOutline = Color.Black;
-                    btn.HoverBackground = Color.FromArgb(40, 40, 40);
-                    btn.HoverForeColor = Color.White;
-                    btn.HoverOutline = Color.Black;
-                    btn.PressedBackground = Color.FromArgb(65, 65, 65);
-                    btn.PressedForeColor = Color.White;
-                    btn.PressedOutline = Color.Black;
-                }
+                btn.NormalBackground = UiTheme.Accent;
+                btn.NormalForeColor = Color.White;
+                btn.NormalOutline = UiTheme.Accent;
+                btn.HoverBackground = UiTheme.AccentHover;
+                btn.HoverForeColor = Color.White;
+                btn.HoverOutline = UiTheme.AccentHover;
+                btn.PressedBackground = UiTheme.AccentPressed;
+                btn.PressedForeColor = Color.White;
+                btn.PressedOutline = UiTheme.AccentPressed;
             }
             else
             {
-                if (isDark)
-                {
-                    btn.NormalBackground = Color.FromArgb(38, 40, 45);
-                    btn.NormalForeColor = Color.FromArgb(240, 240, 245);
-                    btn.NormalOutline = Color.FromArgb(85, 88, 98);
-                    btn.HoverBackground = Color.FromArgb(50, 53, 60);
-                    btn.HoverForeColor = Color.White;
-                    btn.HoverOutline = Color.FromArgb(160, 164, 175);
-                    btn.PressedBackground = Color.FromArgb(62, 65, 74);
-                    btn.PressedForeColor = Color.White;
-                    btn.PressedOutline = Color.White;
-                }
-                else
-                {
-                    btn.NormalBackground = Color.White;
-                    btn.NormalForeColor = Color.Black;
-                    btn.NormalOutline = Color.FromArgb(180, 180, 180);
-                    btn.HoverBackground = Color.FromArgb(242, 242, 242);
-                    btn.HoverForeColor = Color.Black;
-                    btn.HoverOutline = Color.Black;
-                    btn.PressedBackground = Color.FromArgb(228, 228, 228);
-                    btn.PressedForeColor = Color.Black;
-                    btn.PressedOutline = Color.Black;
-                }
+                btn.NormalBackground = UiTheme.CardBg;
+                btn.NormalForeColor = UiTheme.TextMain;
+                btn.NormalOutline = UiTheme.TextBoxOutline;
+                btn.HoverBackground = isDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(241, 245, 249);
+                btn.HoverForeColor = UiTheme.TextMain;
+                btn.HoverOutline = UiTheme.Accent;
+                btn.PressedBackground = isDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
+                btn.PressedForeColor = UiTheme.TextMain;
+                btn.PressedOutline = UiTheme.Accent;
             }
 
             btn.Invalidate();
@@ -567,15 +537,15 @@ namespace EstateFlow.Controls
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            Color parentBg = Parent?.BackColor ?? (UiTheme.IsDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(246, 248, 250));
+            Color parentBg = Parent?.BackColor ?? (UiTheme.IsDark ? Color.FromArgb(11, 17, 32) : Color.FromArgb(241, 245, 249));
             g.Clear(parentBg);
 
             var rect = new Rectangle(1, 1, Width - 3, Height - 3);
 
             // Фон карточки
             Color bg = UiTheme.IsDark
-                ? (isHovered ? Color.FromArgb(36, 38, 43) : Color.FromArgb(30, 31, 35))
-                : (isHovered ? Color.FromArgb(250, 252, 255) : Color.White);
+                ? (isHovered ? Color.FromArgb(38, 52, 74) : UiTheme.CardBg)
+                : (isHovered ? Color.FromArgb(248, 250, 255) : UiTheme.CardBg);
 
             using (var brush = new SolidBrush(bg))
             {
@@ -583,9 +553,7 @@ namespace EstateFlow.Controls
                 g.FillPath(brush, path);
 
                 // Бордер карточки
-                Color border = isHovered
-                    ? (UiTheme.IsDark ? Color.FromArgb(120, 130, 150) : Color.FromArgb(60, 100, 200))
-                    : (UiTheme.IsDark ? Color.FromArgb(55, 58, 66) : Color.FromArgb(220, 224, 232));
+                Color border = isHovered ? UiTheme.Accent : UiTheme.Border;
 
                 using var pen = new Pen(border, isHovered ? 1.5F : 1F);
                 g.DrawPath(pen, path);

@@ -90,6 +90,9 @@ namespace EstateFlow.Forms
                         UiTheme.SelectById(cmbClient, Session.CurrentUser.Id);
                         cmbClient.Enabled = false;
                         cmbStatus.Enabled = false;
+                        lblAgent.Visible = false;
+                        cmbAgent.Visible = false;
+                        cmbAgent.SelectedIndex = 0;
                     }
                     else if (cmbClient.Items.Count > 0)
                     {
@@ -106,6 +109,9 @@ namespace EstateFlow.Forms
 
         private void CmbProperty_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Session.CurrentUser != null && Session.CurrentUser.IsClient)
+                return;
+
             if (showingId == 0 && cmbProperty.SelectedItem is LookupItem item && item.Id > 0)
             {
                 var p = PropertyService.GetById(item.Id);
@@ -136,8 +142,9 @@ namespace EstateFlow.Forms
                 return;
             }
 
+            bool isClient = Session.CurrentUser != null && Session.CurrentUser.IsClient;
             int? agentId = null;
-            if (cmbAgent.SelectedItem is LookupItem aItem && aItem.Id > 0)
+            if (!isClient && cmbAgent.SelectedItem is LookupItem aItem && aItem.Id > 0)
                 agentId = aItem.Id;
 
             if (!TimeSpan.TryParse(cmbTime.SelectedItem?.ToString() ?? "14:00", out var timeOfDay))
@@ -150,7 +157,7 @@ namespace EstateFlow.Forms
                 ClientId = clientId,
                 AgentId = agentId,
                 ShowDate = dtpDate.Value.Date.Add(timeOfDay),
-                Status = cmbStatus.SelectedItem?.ToString() ?? ShowingStatus.New,
+                Status = isClient ? ShowingStatus.New : (cmbStatus.SelectedItem?.ToString() ?? ShowingStatus.New),
                 Comment = (txtComment.Content ?? "").Trim()
             };
 
