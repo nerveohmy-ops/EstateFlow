@@ -47,7 +47,7 @@ namespace EstateFlow.Controls
 
         private void InitializeCardComponents()
         {
-            Height = 175;
+            Height = 182;
             Width = 920;
             Anchor = AnchorStyles.None;
             Cursor = Cursors.Hand;
@@ -57,7 +57,7 @@ namespace EstateFlow.Controls
             picPhoto = new PictureBox
             {
                 Location = new Point(10, 10),
-                Size = new Size(240, 155),
+                Size = new Size(240, 162),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = Color.FromArgb(240, 242, 245),
                 Cursor = Cursors.Hand
@@ -608,7 +608,7 @@ namespace EstateFlow.Controls
         {
             if (pnlActions == null || lblPrice == null) return;
 
-            pnlActions.Location = new Point(Width - pnlActions.Width - 14, 34);
+            pnlActions.Location = new Point(Width - pnlActions.Width - 14, 36);
             if (btnDelete != null)
                 btnDelete.Location = new Point(Width - 34, 8);
 
@@ -617,19 +617,35 @@ namespace EstateFlow.Controls
             int maxPriceRight = (btnDelete != null && btnDelete.Visible ? Math.Min(actionsLeft, btnDelete.Left) : actionsLeft) - 14;
             int textWidth = Math.Max(180, actionsLeft - textLeft - 14);
 
-            lblPrice.Location = new Point(textLeft, 10);
+            const int priceTop = 8;
+            lblPrice.Location = new Point(textLeft, priceTop);
             int priceWidth = Math.Max(lblPrice.Width, lblPrice.PreferredWidth);
+            int priceHeight = Math.Max(lblPrice.Height, lblPrice.PreferredHeight);
+
             int ppmLeft = textLeft + priceWidth + 12;
-            lblPricePerMeter.Location = new Point(ppmLeft, 16);
+            int ppmHeight = Math.Max(lblPricePerMeter.Height, lblPricePerMeter.PreferredHeight);
+            int ppmTop = priceTop + Math.Max(0, (priceHeight - ppmHeight) / 2);
+            lblPricePerMeter.Location = new Point(ppmLeft, ppmTop);
 
             int ppmAvail = Math.Max(0, maxPriceRight - ppmLeft);
-            lblPricePerMeter.MaximumSize = new Size(Math.Max(1, ppmAvail), 22);
+            lblPricePerMeter.MaximumSize = new Size(Math.Max(1, ppmAvail), 24);
             lblPricePerMeter.Visible = !string.IsNullOrEmpty(lblPricePerMeter.Text) && ppmAvail >= 65;
 
-            lblTitle.SetBounds(textLeft, 40, textWidth, 25);
-            lblAddress.SetBounds(textLeft, 66, textWidth, 21);
-            lblSpecs.SetBounds(textLeft, 90, textWidth, 20);
-            lblDescription.SetBounds(textLeft, 114, textWidth, 50);
+            int titleTop = priceTop + priceHeight + 3;
+            int titleHeight = Math.Max(25, lblTitle.GetPreferredSize(new Size(int.MaxValue, 0)).Height);
+            lblTitle.SetBounds(textLeft, titleTop, textWidth, titleHeight);
+
+            int addrTop = titleTop + titleHeight + 2;
+            int addrHeight = Math.Max(21, lblAddress.GetPreferredSize(new Size(int.MaxValue, 0)).Height);
+            lblAddress.SetBounds(textLeft, addrTop, textWidth, addrHeight);
+
+            int specsTop = addrTop + addrHeight + 2;
+            int specsHeight = Math.Max(20, lblSpecs.GetPreferredSize(new Size(int.MaxValue, 0)).Height);
+            lblSpecs.SetBounds(textLeft, specsTop, textWidth, specsHeight);
+
+            int descTop = specsTop + specsHeight + 4;
+            int descHeight = Math.Max(34, Height - descTop - 10);
+            lblDescription.SetBounds(textLeft, descTop, textWidth, descHeight);
         }
 
         protected override void Dispose(bool disposing)
