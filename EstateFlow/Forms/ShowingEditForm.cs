@@ -89,6 +89,8 @@ namespace EstateFlow.Forms
                     {
                         UiTheme.SelectById(cmbClient, Session.CurrentUser.Id);
                         cmbClient.Enabled = false;
+                        lblStatus.Visible = false;
+                        cmbStatus.Visible = false;
                         cmbStatus.Enabled = false;
                         lblAgent.Visible = false;
                         cmbAgent.Visible = false;

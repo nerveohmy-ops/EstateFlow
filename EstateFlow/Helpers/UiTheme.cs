@@ -11,26 +11,22 @@ namespace EstateFlow.Helpers
 
         public static event Action ThemeChanged;
 
-        public static Color Accent => IsDark ? Color.FromArgb(99, 102, 241) : Color.FromArgb(79, 70, 229);
-        public static Color AccentHover => IsDark ? Color.FromArgb(129, 140, 248) : Color.FromArgb(67, 56, 202);
-        public static Color AccentPressed => IsDark ? Color.FromArgb(79, 70, 229) : Color.FromArgb(55, 48, 163);
+        public static Color Primary => IsDark ? Color.White : Color.Black;
+        public static Color Secondary => IsDark ? Color.FromArgb(160, 160, 160) : Color.FromArgb(80, 80, 80);
+        public static Color Background => IsDark ? Color.FromArgb(24, 25, 28) : Color.White;
+        public static Color CardBg => IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
+        public static Color Border => IsDark ? Color.FromArgb(60, 62, 68) : Color.FromArgb(215, 215, 215);
+        public static Color DarkBorder => IsDark ? Color.White : Color.Black;
+        public static Color TextMain => IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+        public static Color TextMuted => IsDark ? Color.FromArgb(160, 162, 170) : Color.Gray;
+        public static Color ErrorText => IsDark ? Color.FromArgb(255, 115, 115) : Color.FromArgb(185, 28, 28);
 
-        public static Color Primary => Accent;
-        public static Color Secondary => IsDark ? Color.FromArgb(148, 163, 184) : Color.FromArgb(71, 85, 105);
-        public static Color Background => IsDark ? Color.FromArgb(15, 23, 42) : Color.FromArgb(248, 250, 252);
-        public static Color CardBg => IsDark ? Color.FromArgb(30, 41, 59) : Color.White;
-        public static Color Border => IsDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(226, 232, 240);
-        public static Color DarkBorder => Accent;
-        public static Color TextMain => IsDark ? Color.FromArgb(248, 250, 252) : Color.FromArgb(15, 23, 42);
-        public static Color TextMuted => IsDark ? Color.FromArgb(148, 163, 184) : Color.FromArgb(100, 116, 139);
-        public static Color ErrorText => IsDark ? Color.FromArgb(248, 113, 113) : Color.FromArgb(220, 38, 38);
-
-        public static Color TextBoxBg => IsDark ? Color.FromArgb(30, 41, 59) : Color.FromArgb(241, 245, 249);
-        public static Color TextBoxFocusBg => IsDark ? Color.FromArgb(15, 23, 42) : Color.White;
-        public static Color TextBoxDisabledBg => IsDark ? Color.FromArgb(23, 32, 51) : Color.FromArgb(226, 232, 240);
-        public static Color TextBoxOutline => IsDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(203, 213, 225);
-        public static Color TextBoxFocusOutline => Accent;
-        public static Color TextBoxPlaceholder => IsDark ? Color.FromArgb(100, 116, 139) : Color.FromArgb(148, 163, 184);
+        public static Color TextBoxBg => IsDark ? Color.FromArgb(38, 40, 45) : Color.FromArgb(245, 246, 248);
+        public static Color TextBoxFocusBg => IsDark ? Color.FromArgb(48, 50, 56) : Color.White;
+        public static Color TextBoxDisabledBg => IsDark ? Color.FromArgb(30, 31, 35) : Color.FromArgb(232, 232, 235);
+        public static Color TextBoxOutline => IsDark ? Color.FromArgb(85, 88, 98) : Color.FromArgb(95, 95, 95);
+        public static Color TextBoxFocusOutline => IsDark ? Color.FromArgb(220, 220, 225) : Color.Black;
+        public static Color TextBoxPlaceholder => IsDark ? Color.FromArgb(140, 142, 150) : Color.FromArgb(115, 115, 115);
 
         private sealed class TextBoxState
         {
@@ -973,10 +969,10 @@ namespace EstateFlow.Helpers
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.EnableHeadersVisualStyles = false;
 
-            grid.ColumnHeadersDefaultCellStyle.BackColor = IsDark ? Color.FromArgb(30, 41, 59) : Color.FromArgb(30, 41, 59);
+            grid.ColumnHeadersDefaultCellStyle.BackColor = IsDark ? Color.FromArgb(45, 47, 54) : Color.Black;
             grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             grid.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = IsDark ? Color.FromArgb(30, 41, 59) : Color.FromArgb(30, 41, 59);
+            grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = IsDark ? Color.FromArgb(45, 47, 54) : Color.Black;
             grid.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
             grid.ColumnHeadersHeight = 36;
@@ -985,10 +981,10 @@ namespace EstateFlow.Helpers
             grid.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
             grid.DefaultCellStyle.BackColor = CardBg;
             grid.DefaultCellStyle.ForeColor = TextMain;
-            grid.DefaultCellStyle.SelectionBackColor = Accent;
+            grid.DefaultCellStyle.SelectionBackColor = IsDark ? Color.FromArgb(60, 65, 75) : Color.FromArgb(40, 40, 40);
             grid.DefaultCellStyle.SelectionForeColor = Color.White;
             grid.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
-            grid.AlternatingRowsDefaultCellStyle.BackColor = IsDark ? Color.FromArgb(23, 32, 51) : Color.FromArgb(248, 250, 252);
+            grid.AlternatingRowsDefaultCellStyle.BackColor = IsDark ? Color.FromArgb(28, 29, 33) : Color.FromArgb(247, 247, 249);
             grid.AlternatingRowsDefaultCellStyle.ForeColor = TextMain;
             grid.RowTemplate.Height = 32;
 
@@ -1059,27 +1055,27 @@ namespace EstateFlow.Helpers
 
                         if (isPrimaryAction)
                         {
-                            btn.NormalBackground = Accent;
-                            btn.NormalForeColor = Color.White;
-                            btn.NormalOutline = Accent;
-                            btn.HoverBackground = AccentHover;
-                            btn.HoverForeColor = Color.White;
-                            btn.HoverOutline = AccentHover;
-                            btn.PressedBackground = AccentPressed;
-                            btn.PressedForeColor = Color.White;
-                            btn.PressedOutline = AccentPressed;
+                            btn.NormalBackground = IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+                            btn.NormalForeColor = IsDark ? Color.Black : Color.White;
+                            btn.NormalOutline = IsDark ? Color.White : Color.Black;
+                            btn.HoverBackground = IsDark ? Color.White : Color.FromArgb(40, 40, 40);
+                            btn.HoverForeColor = IsDark ? Color.Black : Color.White;
+                            btn.HoverOutline = IsDark ? Color.White : Color.Black;
+                            btn.PressedBackground = IsDark ? Color.FromArgb(205, 205, 215) : Color.FromArgb(65, 65, 65);
+                            btn.PressedForeColor = IsDark ? Color.Black : Color.White;
+                            btn.PressedOutline = IsDark ? Color.White : Color.Black;
                         }
                         else
                         {
-                            btn.NormalBackground = CardBg;
-                            btn.NormalForeColor = TextMain;
-                            btn.NormalOutline = TextBoxOutline;
-                            btn.HoverBackground = IsDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(241, 245, 249);
-                            btn.HoverForeColor = TextMain;
-                            btn.HoverOutline = Accent;
-                            btn.PressedBackground = IsDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
-                            btn.PressedForeColor = TextMain;
-                            btn.PressedOutline = Accent;
+                            btn.NormalBackground = IsDark ? Color.FromArgb(32, 33, 37) : Color.White;
+                            btn.NormalForeColor = IsDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+                            btn.NormalOutline = IsDark ? Color.FromArgb(85, 88, 98) : Color.Black;
+                            btn.HoverBackground = IsDark ? Color.FromArgb(48, 50, 58) : Color.FromArgb(242, 242, 242);
+                            btn.HoverForeColor = IsDark ? Color.White : Color.Black;
+                            btn.HoverOutline = IsDark ? Color.FromArgb(160, 160, 160) : Color.Black;
+                            btn.PressedBackground = IsDark ? Color.FromArgb(60, 62, 72) : Color.FromArgb(226, 226, 230);
+                            btn.PressedForeColor = IsDark ? Color.White : Color.Black;
+                            btn.PressedOutline = IsDark ? Color.FromArgb(190, 190, 200) : Color.Black;
                         }
                         btn.ForeColor = btn.NormalForeColor;
                         btn.Invalidate();
@@ -1138,9 +1134,9 @@ namespace EstateFlow.Helpers
                     else if (c is LinkLabel lnk)
                     {
                         lnk.BackColor = EnsureOpaque(parentBg);
-                        lnk.LinkColor = IsDark ? Color.FromArgb(147, 197, 253) : Accent;
+                        lnk.LinkColor = IsDark ? Color.FromArgb(165, 195, 255) : Color.Black;
                         lnk.VisitedLinkColor = lnk.LinkColor;
-                        lnk.ActiveLinkColor = IsDark ? Color.White : AccentHover;
+                        lnk.ActiveLinkColor = IsDark ? Color.White : Color.FromArgb(60, 60, 60);
                     }
                     else if (c is ListBox lst)
                     {
@@ -1175,7 +1171,7 @@ namespace EstateFlow.Helpers
                     {
                         bool isCatalogSurface = flp.Name.Contains("Catalog", StringComparison.OrdinalIgnoreCase) || flp.AutoScroll;
                         flp.BackColor = isCatalogSurface
-                            ? (IsDark ? Color.FromArgb(11, 17, 32) : Color.FromArgb(241, 245, 249))
+                            ? (IsDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(246, 248, 250))
                             : EnsureOpaque(parentBg);
                     }
                     else if (c is Panel pnl && pnl.Name != "pnlActions")

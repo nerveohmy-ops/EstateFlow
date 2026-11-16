@@ -64,20 +64,33 @@ namespace EstateFlow.Forms
                 ? Color.FromArgb(255, 118, 118)
                 : Color.FromArgb(185, 28, 28);
 
-            Color linkColor = UiTheme.IsDark ? Color.FromArgb(147, 197, 253) : UiTheme.Accent;
+            Color linkColor = UiTheme.IsDark ? Color.FromArgb(170, 190, 255) : Color.Black;
             foreach (var lnk in new[] { lnkForgot, lnkHelp, lnkAbout })
             {
                 lnk.LinkColor = linkColor;
                 lnk.VisitedLinkColor = linkColor;
             }
 
-            btnAutorization.PressedBackground = UiTheme.IsDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
-            btnAutorization.PressedForeColor = UiTheme.TextMain;
-            btnAutorization.PressedOutline = UiTheme.Accent;
+            if (UiTheme.IsDark)
+            {
+                btnAutorization.PressedBackground = Color.FromArgb(62, 65, 74);
+                btnAutorization.PressedForeColor = Color.White;
+                btnAutorization.PressedOutline = Color.FromArgb(180, 180, 185);
 
-            btnRegister.PressedBackground = UiTheme.AccentPressed;
-            btnRegister.PressedForeColor = Color.White;
-            btnRegister.PressedOutline = UiTheme.AccentPressed;
+                btnRegister.PressedBackground = Color.FromArgb(205, 208, 216);
+                btnRegister.PressedForeColor = Color.Black;
+                btnRegister.PressedOutline = Color.White;
+            }
+            else
+            {
+                btnAutorization.PressedBackground = Color.FromArgb(230, 232, 236);
+                btnAutorization.PressedForeColor = Color.Black;
+                btnAutorization.PressedOutline = Color.Black;
+
+                btnRegister.PressedBackground = Color.FromArgb(65, 65, 65);
+                btnRegister.PressedForeColor = Color.White;
+                btnRegister.PressedOutline = Color.Black;
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

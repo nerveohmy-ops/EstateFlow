@@ -58,13 +58,26 @@ namespace EstateFlow.Forms
                 ? Color.FromArgb(255, 118, 118)
                 : Color.FromArgb(185, 28, 28);
 
-            btnRegister.PressedBackground = UiTheme.AccentPressed;
-            btnRegister.PressedForeColor = Color.White;
-            btnRegister.PressedOutline = UiTheme.AccentPressed;
+            if (UiTheme.IsDark)
+            {
+                btnRegister.PressedBackground = Color.FromArgb(205, 208, 216);
+                btnRegister.PressedForeColor = Color.Black;
+                btnRegister.PressedOutline = Color.White;
 
-            btnBack.PressedBackground = UiTheme.IsDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
-            btnBack.PressedForeColor = UiTheme.TextMain;
-            btnBack.PressedOutline = UiTheme.Accent;
+                btnBack.PressedBackground = Color.FromArgb(62, 65, 74);
+                btnBack.PressedForeColor = Color.White;
+                btnBack.PressedOutline = Color.FromArgb(180, 180, 185);
+            }
+            else
+            {
+                btnRegister.PressedBackground = Color.FromArgb(65, 65, 65);
+                btnRegister.PressedForeColor = Color.White;
+                btnRegister.PressedOutline = Color.Black;
+
+                btnBack.PressedBackground = Color.FromArgb(230, 232, 236);
+                btnBack.PressedForeColor = Color.Black;
+                btnBack.PressedOutline = Color.Black;
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

@@ -61,19 +61,38 @@ namespace EstateFlow.Forms
             lblResult.BackColor = UiTheme.CardBg;
             lblResult.ForeColor = UiTheme.TextMain;
 
-            btnReset.NormalBackground = UiTheme.Accent;
-            btnReset.NormalForeColor = Color.White;
-            btnReset.NormalOutline = UiTheme.Accent;
-            btnReset.HoverBackground = UiTheme.AccentHover;
-            btnReset.HoverForeColor = Color.White;
-            btnReset.HoverOutline = UiTheme.AccentHover;
-            btnReset.PressedBackground = UiTheme.AccentPressed;
-            btnReset.PressedForeColor = Color.White;
-            btnReset.PressedOutline = UiTheme.AccentPressed;
+            if (UiTheme.IsDark)
+            {
+                btnReset.NormalBackground = Color.FromArgb(240, 240, 245);
+                btnReset.NormalForeColor = Color.Black;
+                btnReset.NormalOutline = Color.White;
+                btnReset.HoverBackground = Color.White;
+                btnReset.HoverForeColor = Color.Black;
+                btnReset.HoverOutline = Color.White;
+                btnReset.PressedBackground = Color.FromArgb(205, 208, 216);
+                btnReset.PressedForeColor = Color.Black;
+                btnReset.PressedOutline = Color.White;
 
-            btnBack.PressedBackground = UiTheme.IsDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
-            btnBack.PressedForeColor = UiTheme.TextMain;
-            btnBack.PressedOutline = UiTheme.Accent;
+                btnBack.PressedBackground = Color.FromArgb(62, 65, 74);
+                btnBack.PressedForeColor = Color.White;
+                btnBack.PressedOutline = Color.FromArgb(180, 180, 185);
+            }
+            else
+            {
+                btnReset.NormalBackground = Color.Black;
+                btnReset.NormalForeColor = Color.White;
+                btnReset.NormalOutline = Color.Black;
+                btnReset.HoverBackground = Color.FromArgb(40, 40, 40);
+                btnReset.HoverForeColor = Color.White;
+                btnReset.HoverOutline = Color.Black;
+                btnReset.PressedBackground = Color.FromArgb(65, 65, 65);
+                btnReset.PressedForeColor = Color.White;
+                btnReset.PressedOutline = Color.Black;
+
+                btnBack.PressedBackground = Color.FromArgb(230, 232, 236);
+                btnBack.PressedForeColor = Color.Black;
+                btnBack.PressedOutline = Color.Black;
+            }
             btnReset.Invalidate();
             btnBack.Invalidate();
         }

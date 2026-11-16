@@ -113,28 +113,28 @@ namespace EstateFlow.Forms
 
                 if (active)
                 {
-                    btn.NormalBackground = UiTheme.Accent;
-                    btn.NormalForeColor = Color.White;
-                    btn.NormalOutline = UiTheme.Accent;
-                    btn.HoverBackground = UiTheme.AccentHover;
-                    btn.HoverForeColor = Color.White;
-                    btn.HoverOutline = UiTheme.AccentHover;
-                    btn.PressedBackground = UiTheme.AccentPressed;
-                    btn.PressedForeColor = Color.White;
-                    btn.PressedOutline = UiTheme.AccentPressed;
+                    btn.NormalBackground = isDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+                    btn.NormalForeColor = isDark ? Color.Black : Color.White;
+                    btn.NormalOutline = isDark ? Color.White : Color.Black;
+                    btn.HoverBackground = isDark ? Color.White : Color.FromArgb(40, 40, 40);
+                    btn.HoverForeColor = isDark ? Color.Black : Color.White;
+                    btn.HoverOutline = isDark ? Color.White : Color.Black;
+                    btn.PressedBackground = isDark ? Color.FromArgb(215, 215, 222) : Color.FromArgb(65, 65, 65);
+                    btn.PressedForeColor = isDark ? Color.Black : Color.White;
+                    btn.PressedOutline = btn.NormalOutline;
                     btn.Font = new Font(btn.Font.FontFamily, btn.Font.Size, FontStyle.Bold);
                 }
                 else
                 {
-                    btn.NormalBackground = UiTheme.CardBg;
-                    btn.NormalForeColor = UiTheme.TextMain;
-                    btn.NormalOutline = UiTheme.TextBoxOutline;
-                    btn.HoverBackground = isDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(241, 245, 249);
-                    btn.HoverForeColor = UiTheme.TextMain;
-                    btn.HoverOutline = UiTheme.Accent;
-                    btn.PressedBackground = isDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
-                    btn.PressedForeColor = UiTheme.TextMain;
-                    btn.PressedOutline = UiTheme.Accent;
+                    btn.NormalBackground = isDark ? Color.FromArgb(32, 33, 37) : Color.White;
+                    btn.NormalForeColor = isDark ? Color.FromArgb(220, 220, 225) : Color.Black;
+                    btn.NormalOutline = isDark ? Color.FromArgb(70, 72, 80) : Color.FromArgb(180, 180, 180);
+                    btn.HoverBackground = isDark ? Color.FromArgb(45, 47, 54) : Color.FromArgb(242, 242, 242);
+                    btn.HoverForeColor = isDark ? Color.White : Color.Black;
+                    btn.HoverOutline = isDark ? Color.FromArgb(140, 144, 156) : Color.Black;
+                    btn.PressedBackground = isDark ? Color.FromArgb(55, 58, 66) : Color.FromArgb(228, 228, 228);
+                    btn.PressedForeColor = isDark ? Color.White : Color.Black;
+                    btn.PressedOutline = btn.HoverOutline;
                     btn.Font = new Font(btn.Font.FontFamily, btn.Font.Size, FontStyle.Regular);
                 }
                 btn.Invalidate();
@@ -236,28 +236,28 @@ namespace EstateFlow.Forms
             btn.BackColor = UiTheme.Background;
             if (active)
             {
-                btn.NormalBackground = UiTheme.Accent;
-                btn.NormalForeColor = Color.White;
-                btn.NormalOutline = UiTheme.Accent;
-                btn.HoverBackground = UiTheme.AccentHover;
-                btn.HoverForeColor = Color.White;
-                btn.HoverOutline = UiTheme.AccentHover;
-                btn.PressedBackground = UiTheme.AccentPressed;
-                btn.PressedForeColor = Color.White;
-                btn.PressedOutline = UiTheme.AccentPressed;
+                btn.NormalBackground = isDark ? Color.FromArgb(240, 240, 245) : Color.Black;
+                btn.NormalForeColor = isDark ? Color.Black : Color.White;
+                btn.NormalOutline = isDark ? Color.White : Color.Black;
+                btn.HoverBackground = isDark ? Color.White : Color.FromArgb(40, 40, 40);
+                btn.HoverForeColor = isDark ? Color.Black : Color.White;
+                btn.HoverOutline = btn.NormalOutline;
+                btn.PressedBackground = isDark ? Color.FromArgb(215, 215, 222) : Color.FromArgb(65, 65, 65);
+                btn.PressedForeColor = btn.NormalForeColor;
+                btn.PressedOutline = btn.NormalOutline;
                 btn.Font = new Font(btn.Font.FontFamily, btn.Font.Size, FontStyle.Bold);
             }
             else
             {
-                btn.NormalBackground = UiTheme.CardBg;
-                btn.NormalForeColor = UiTheme.TextMain;
-                btn.NormalOutline = UiTheme.TextBoxOutline;
-                btn.HoverBackground = isDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(241, 245, 249);
-                btn.HoverForeColor = UiTheme.TextMain;
-                btn.HoverOutline = UiTheme.Accent;
-                btn.PressedBackground = isDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240);
-                btn.PressedForeColor = UiTheme.TextMain;
-                btn.PressedOutline = UiTheme.Accent;
+                btn.NormalBackground = isDark ? Color.FromArgb(32, 33, 37) : Color.White;
+                btn.NormalForeColor = isDark ? Color.FromArgb(220, 220, 225) : Color.Black;
+                btn.NormalOutline = isDark ? Color.FromArgb(70, 72, 80) : Color.FromArgb(170, 170, 170);
+                btn.HoverBackground = isDark ? Color.FromArgb(45, 47, 54) : Color.FromArgb(242, 242, 242);
+                btn.HoverForeColor = isDark ? Color.White : Color.Black;
+                btn.HoverOutline = isDark ? Color.FromArgb(140, 144, 156) : Color.Black;
+                btn.PressedBackground = isDark ? Color.FromArgb(55, 58, 66) : Color.FromArgb(228, 228, 228);
+                btn.PressedForeColor = isDark ? Color.White : Color.Black;
+                btn.PressedOutline = btn.HoverOutline;
                 btn.Font = new Font(btn.Font.FontFamily, btn.Font.Size, FontStyle.Regular);
             }
             btn.Invalidate();
@@ -685,21 +685,24 @@ namespace EstateFlow.Forms
             }
 
             // Темизация кнопок под текущую тему без перетирания цветов текста описания/цены
-            foreach (Control c in dlg.Controls)
+            if (isDark)
             {
-                if (c is cuiButton btn)
+                foreach (Control c in dlg.Controls)
                 {
-                    bool isPrimary = btn.NormalBackground == Color.Black;
-                    btn.BackColor = UiTheme.Background;
-                    btn.NormalBackground = isPrimary ? UiTheme.Accent : UiTheme.CardBg;
-                    btn.NormalForeColor = isPrimary ? Color.White : UiTheme.TextMain;
-                    btn.NormalOutline = isPrimary ? UiTheme.Accent : UiTheme.TextBoxOutline;
-                    btn.HoverBackground = isPrimary ? UiTheme.AccentHover : (isDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(241, 245, 249));
-                    btn.HoverForeColor = isPrimary ? Color.White : UiTheme.TextMain;
-                    btn.HoverOutline = isPrimary ? UiTheme.AccentHover : UiTheme.Accent;
-                    btn.PressedBackground = isPrimary ? UiTheme.AccentPressed : (isDark ? Color.FromArgb(71, 85, 105) : Color.FromArgb(226, 232, 240));
-                    btn.PressedForeColor = btn.HoverForeColor;
-                    btn.PressedOutline = btn.HoverOutline;
+                    if (c is cuiButton btn)
+                    {
+                        bool isPrimary = btn.NormalBackground == Color.Black;
+                        btn.BackColor = UiTheme.Background;
+                        btn.NormalBackground = isPrimary ? Color.FromArgb(240, 240, 245) : Color.FromArgb(38, 40, 45);
+                        btn.NormalForeColor = isPrimary ? Color.Black : Color.FromArgb(240, 240, 245);
+                        btn.NormalOutline = isPrimary ? Color.White : Color.FromArgb(85, 88, 98);
+                        btn.HoverBackground = isPrimary ? Color.White : Color.FromArgb(52, 54, 62);
+                        btn.HoverForeColor = isPrimary ? Color.Black : Color.White;
+                        btn.HoverOutline = Color.White;
+                        btn.PressedBackground = isPrimary ? Color.FromArgb(215, 215, 222) : Color.FromArgb(65, 68, 78);
+                        btn.PressedForeColor = btn.HoverForeColor;
+                        btn.PressedOutline = Color.White;
+                    }
                 }
             }
 

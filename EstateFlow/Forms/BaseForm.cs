@@ -232,9 +232,9 @@ namespace EstateFlow.Forms
             Color bgColor = Helpers.UiTheme.Background;
             g.Clear(bgColor);
 
-            Color cornerFill = Helpers.UiTheme.Accent;
-            Color thinLineColor = Helpers.UiTheme.IsDark ? Color.FromArgb(51, 65, 85) : Color.FromArgb(203, 213, 225);
-            Color thickLineColor = Helpers.UiTheme.Accent;
+            Color cornerFill = Helpers.UiTheme.IsDark ? Color.FromArgb(16, 17, 20) : Color.Black;
+            Color thinLineColor = Helpers.UiTheme.IsDark ? Color.FromArgb(55, 58, 65) : Color.FromArgb(190, 190, 190);
+            Color thickLineColor = Helpers.UiTheme.IsDark ? Color.FromArgb(75, 78, 88) : Color.Black;
 
             Point[] corner =
             {
