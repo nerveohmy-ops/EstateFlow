@@ -6,6 +6,8 @@ namespace EstateFlow.Forms
 {
     public partial class ReportsForm : BaseForm
     {
+        private bool isInitializing = true;
+
         public ReportsForm()
         {
             InitializeComponent();
@@ -28,11 +30,12 @@ namespace EstateFlow.Forms
             {
                 bool usesDates = cmbReportType.SelectedItem?.ToString() != ReportService.ByType;
                 dtpFrom.Enabled = dtpTo.Enabled = usesDates;
-                BuildReport();
+                if (!isInitializing) BuildReport();
             };
-            dtpFrom.ValueChanged += (s, e) => BuildReport();
-            dtpTo.ValueChanged += (s, e) => BuildReport();
+            dtpFrom.ValueChanged += (s, e) => { if (!isInitializing) BuildReport(); };
+            dtpTo.ValueChanged += (s, e) => { if (!isInitializing) BuildReport(); };
 
+            isInitializing = false;
             BuildReport();
         }
 

@@ -40,6 +40,7 @@ namespace EstateFlow.Forms
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(102, 12);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(236, 30);
@@ -70,7 +71,7 @@ namespace EstateFlow.Forms
             txtSearch.FocusOutlineColor = Color.Black;
             txtSearch.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.ForeColor = Color.Black;
-            txtSearch.Location = new Point(102, 46);
+            txtSearch.Location = new Point(102, 50);
             txtSearch.Name = "txtSearch";
             txtSearch.NormalImageTint = Color.White;
             txtSearch.OutlineColor = Color.FromArgb(95, 95, 95);
@@ -79,7 +80,7 @@ namespace EstateFlow.Forms
             txtSearch.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSearch.PlaceholderText = "Поиск (объект, клиент, агент)";
             txtSearch.Rounding = new Padding(12);
-            txtSearch.Size = new Size(220, 42);
+            txtSearch.Size = new Size(214, 42);
             txtSearch.TabIndex = 2;
             txtSearch.UnderlinedStyle = false;
             // 
@@ -89,7 +90,7 @@ namespace EstateFlow.Forms
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Все статусы", "В процессе", "Завершена", "Отменена" });
-            cmbStatus.Location = new Point(330, 56);
+            cmbStatus.Location = new Point(324, 60);
             cmbStatus.Name = "cmbStatus";
             cmbStatus.Size = new Size(122, 25);
             cmbStatus.TabIndex = 3;
@@ -105,12 +106,12 @@ namespace EstateFlow.Forms
             chkUseDate.Content = "Период:";
             chkUseDate.Cursor = Cursors.Hand;
             chkUseDate.Font = new Font("Segoe UI", 9.5F);
-            chkUseDate.Location = new Point(460, 59);
+            chkUseDate.Location = new Point(454, 63);
             chkUseDate.Name = "chkUseDate";
             chkUseDate.OutlineThickness = 1F;
             chkUseDate.Rounding = 4;
             chkUseDate.ShowSymbols = true;
-            chkUseDate.Size = new Size(80, 20);
+            chkUseDate.Size = new Size(90, 20);
             chkUseDate.TabIndex = 4;
             chkUseDate.UncheckedForeground = Color.Empty;
             chkUseDate.UncheckedOutlineColor = Color.Gray;
@@ -121,9 +122,9 @@ namespace EstateFlow.Forms
             dtpFrom.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             dtpFrom.Enabled = false;
             dtpFrom.Format = DateTimePickerFormat.Short;
-            dtpFrom.Location = new Point(544, 56);
+            dtpFrom.Location = new Point(550, 60);
             dtpFrom.Name = "dtpFrom";
-            dtpFrom.Size = new Size(112, 23);
+            dtpFrom.Size = new Size(106, 23);
             dtpFrom.TabIndex = 5;
             dtpFrom.Value = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             // 
@@ -132,9 +133,9 @@ namespace EstateFlow.Forms
             dtpTo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             dtpTo.Enabled = false;
             dtpTo.Format = DateTimePickerFormat.Short;
-            dtpTo.Location = new Point(662, 56);
+            dtpTo.Location = new Point(664, 60);
             dtpTo.Name = "dtpTo";
-            dtpTo.Size = new Size(112, 23);
+            dtpTo.Size = new Size(106, 23);
             dtpTo.TabIndex = 6;
             // 
             // btnReset
@@ -150,18 +151,18 @@ namespace EstateFlow.Forms
             btnReset.HoverBackground = Color.FromArgb(242, 242, 242);
             btnReset.HoverForeColor = Color.Black;
             btnReset.HoverOutline = Color.Black;
-            btnReset.Location = new Point(782, 49);
+            btnReset.Location = new Point(778, 53);
             btnReset.Name = "btnReset";
             btnReset.NormalBackground = Color.White;
             btnReset.NormalForeColor = Color.Black;
             btnReset.NormalOutline = Color.Black;
             btnReset.OutlineThickness = 1F;
-            btnReset.Padding = new Padding(12);
+            btnReset.Padding = new Padding(8);
             btnReset.PressedBackground = Color.WhiteSmoke;
             btnReset.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnReset.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnReset.Rounding = new Padding(20);
-            btnReset.Size = new Size(100, 38);
+            btnReset.Size = new Size(104, 38);
             btnReset.TabIndex = 7;
             btnReset.TextAlignment = StringAlignment.Center;
             btnReset.Click += btnReset_Click;
@@ -172,11 +173,11 @@ namespace EstateFlow.Forms
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.Location = new Point(102, 96);
+            grid.Location = new Point(102, 100);
             grid.Name = "grid";
             grid.ReadOnly = true;
             grid.RowHeadersVisible = false;
-            grid.Size = new Size(780, 294);
+            grid.Size = new Size(780, 290);
             grid.TabIndex = 8;
             grid.DoubleClick += grid_DoubleClick;
             // 

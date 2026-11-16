@@ -40,10 +40,11 @@ namespace EstateFlow.Forms
             lblTitle.Anchor = AnchorStyles.None;
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.White;
-            lblTitle.Font = new Font("Microsoft Sans Serif", 18F);
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.Black;
             lblTitle.Location = new Point(216, 25);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(255, 29);
+            lblTitle.Size = new Size(255, 30);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Оформление сделки";
             // 
@@ -53,7 +54,8 @@ namespace EstateFlow.Forms
             lblProperty.AutoSize = true;
             lblProperty.BackColor = Color.White;
             lblProperty.Font = new Font("Segoe UI", 9F);
-            lblProperty.Location = new Point(220, 72);
+            lblProperty.ForeColor = Color.Black;
+            lblProperty.Location = new Point(216, 72);
             lblProperty.Name = "lblProperty";
             lblProperty.Size = new Size(137, 15);
             lblProperty.TabIndex = 1;
@@ -64,9 +66,9 @@ namespace EstateFlow.Forms
             cmbProperty.Anchor = AnchorStyles.None;
             cmbProperty.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProperty.Font = new Font("Segoe UI", 9.5F);
-            cmbProperty.Location = new Point(220, 94);
+            cmbProperty.Location = new Point(216, 94);
             cmbProperty.Name = "cmbProperty";
-            cmbProperty.Size = new Size(546, 25);
+            cmbProperty.Size = new Size(552, 25);
             cmbProperty.TabIndex = 2;
             cmbProperty.SelectedIndexChanged += CmbProperty_SelectedIndexChanged;
             // 
@@ -76,7 +78,8 @@ namespace EstateFlow.Forms
             lblClient.AutoSize = true;
             lblClient.BackColor = Color.White;
             lblClient.Font = new Font("Segoe UI", 9F);
-            lblClient.Location = new Point(220, 132);
+            lblClient.ForeColor = Color.Black;
+            lblClient.Location = new Point(216, 132);
             lblClient.Name = "lblClient";
             lblClient.Size = new Size(125, 15);
             lblClient.TabIndex = 3;
@@ -87,9 +90,9 @@ namespace EstateFlow.Forms
             cmbClient.Anchor = AnchorStyles.None;
             cmbClient.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClient.Font = new Font("Segoe UI", 9.5F);
-            cmbClient.Location = new Point(220, 154);
+            cmbClient.Location = new Point(216, 154);
             cmbClient.Name = "cmbClient";
-            cmbClient.Size = new Size(262, 25);
+            cmbClient.Size = new Size(266, 25);
             cmbClient.TabIndex = 4;
             // 
             // lblAgent
@@ -98,7 +101,8 @@ namespace EstateFlow.Forms
             lblAgent.AutoSize = true;
             lblAgent.BackColor = Color.White;
             lblAgent.Font = new Font("Segoe UI", 9F);
-            lblAgent.Location = new Point(504, 132);
+            lblAgent.ForeColor = Color.Black;
+            lblAgent.Location = new Point(502, 132);
             lblAgent.Name = "lblAgent";
             lblAgent.Size = new Size(130, 15);
             lblAgent.TabIndex = 5;
@@ -109,9 +113,9 @@ namespace EstateFlow.Forms
             cmbAgent.Anchor = AnchorStyles.None;
             cmbAgent.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAgent.Font = new Font("Segoe UI", 9.5F);
-            cmbAgent.Location = new Point(504, 154);
+            cmbAgent.Location = new Point(502, 154);
             cmbAgent.Name = "cmbAgent";
-            cmbAgent.Size = new Size(262, 25);
+            cmbAgent.Size = new Size(266, 25);
             cmbAgent.TabIndex = 6;
             // 
             // lblDate
@@ -120,7 +124,8 @@ namespace EstateFlow.Forms
             lblDate.AutoSize = true;
             lblDate.BackColor = Color.White;
             lblDate.Font = new Font("Segoe UI", 9F);
-            lblDate.Location = new Point(220, 195);
+            lblDate.ForeColor = Color.Black;
+            lblDate.Location = new Point(216, 188);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(109, 15);
             lblDate.TabIndex = 7;
@@ -131,9 +136,9 @@ namespace EstateFlow.Forms
             dtpDate.Anchor = AnchorStyles.None;
             dtpDate.Font = new Font("Segoe UI", 9.5F);
             dtpDate.Format = DateTimePickerFormat.Short;
-            dtpDate.Location = new Point(220, 217);
+            dtpDate.Location = new Point(216, 214);
             dtpDate.Name = "dtpDate";
-            dtpDate.Size = new Size(262, 24);
+            dtpDate.Size = new Size(266, 24);
             dtpDate.TabIndex = 8;
             // 
             // lblAmount
@@ -142,10 +147,11 @@ namespace EstateFlow.Forms
             lblAmount.AutoSize = true;
             lblAmount.BackColor = Color.White;
             lblAmount.Font = new Font("Segoe UI", 9F);
-            lblAmount.Location = new Point(504, 190);
+            lblAmount.ForeColor = Color.Black;
+            lblAmount.Location = new Point(502, 188);
             lblAmount.Name = "lblAmount";
             lblAmount.Size = new Size(115, 15);
-            lblAmount.TabIndex = 8;
+            lblAmount.TabIndex = 9;
             lblAmount.Text = "Сумма сделки (₽):";
             // 
             // txtAmount
@@ -159,7 +165,7 @@ namespace EstateFlow.Forms
             txtAmount.FocusOutlineColor = Color.Black;
             txtAmount.Font = new Font("Segoe UI", 9.5F);
             txtAmount.ForeColor = Color.Black;
-            txtAmount.Location = new Point(502, 209);
+            txtAmount.Location = new Point(502, 212);
             txtAmount.Name = "txtAmount";
             txtAmount.NormalImageTint = Color.White;
             txtAmount.OutlineColor = Color.FromArgb(95, 95, 95);
@@ -169,7 +175,7 @@ namespace EstateFlow.Forms
             txtAmount.PlaceholderText = "Сумма сделки (₽)";
             txtAmount.Rounding = new Padding(12);
             txtAmount.Size = new Size(266, 42);
-            txtAmount.TabIndex = 9;
+            txtAmount.TabIndex = 10;
             txtAmount.UnderlinedStyle = false;
             // 
             // lblAmountHint
@@ -178,11 +184,11 @@ namespace EstateFlow.Forms
             lblAmountHint.AutoSize = true;
             lblAmountHint.BackColor = Color.White;
             lblAmountHint.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
-            lblAmountHint.ForeColor = Color.FromArgb(50, 50, 50);
-            lblAmountHint.Location = new Point(504, 253);
+            lblAmountHint.ForeColor = Color.DimGray;
+            lblAmountHint.Location = new Point(504, 256);
             lblAmountHint.Name = "lblAmountHint";
             lblAmountHint.Size = new Size(210, 15);
-            lblAmountHint.TabIndex = 10;
+            lblAmountHint.TabIndex = 11;
             lblAmountHint.Text = "Например: 7 800 000 (= 7,8 млн ₽)";
             // 
             // lblStatus
@@ -191,10 +197,11 @@ namespace EstateFlow.Forms
             lblStatus.AutoSize = true;
             lblStatus.BackColor = Color.White;
             lblStatus.Font = new Font("Segoe UI", 9F);
-            lblStatus.Location = new Point(220, 265);
+            lblStatus.ForeColor = Color.Black;
+            lblStatus.Location = new Point(216, 276);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(88, 15);
-            lblStatus.TabIndex = 10;
+            lblStatus.TabIndex = 12;
             lblStatus.Text = "Статус сделки:";
             // 
             // cmbStatus
@@ -203,10 +210,10 @@ namespace EstateFlow.Forms
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "В процессе", "Завершена", "Отменена" });
-            cmbStatus.Location = new Point(220, 287);
+            cmbStatus.Location = new Point(216, 299);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(546, 25);
-            cmbStatus.TabIndex = 11;
+            cmbStatus.Size = new Size(552, 25);
+            cmbStatus.TabIndex = 13;
             // 
             // btnSave
             // 
@@ -233,7 +240,7 @@ namespace EstateFlow.Forms
             btnSave.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnSave.Rounding = new Padding(20);
             btnSave.Size = new Size(266, 45);
-            btnSave.TabIndex = 12;
+            btnSave.TabIndex = 14;
             btnSave.TextAlignment = StringAlignment.Center;
             btnSave.Click += BtnSave_Click;
             // 
@@ -262,7 +269,7 @@ namespace EstateFlow.Forms
             btnCancel.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnCancel.Rounding = new Padding(20);
             btnCancel.Size = new Size(266, 45);
-            btnCancel.TabIndex = 13;
+            btnCancel.TabIndex = 15;
             btnCancel.TextAlignment = StringAlignment.Center;
             btnCancel.Click += btnCancel_Click;
             // 

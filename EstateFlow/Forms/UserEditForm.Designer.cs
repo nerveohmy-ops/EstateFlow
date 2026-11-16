@@ -38,10 +38,11 @@ namespace EstateFlow.Forms
             lblTitle.Anchor = AnchorStyles.None;
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.White;
-            lblTitle.Font = new Font("Microsoft Sans Serif", 18F);
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.Black;
             lblTitle.Location = new Point(216, 18);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(254, 29);
+            lblTitle.Size = new Size(254, 30);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Новый пользователь";
             // 
@@ -171,7 +172,8 @@ namespace EstateFlow.Forms
             lblRole.AutoSize = true;
             lblRole.BackColor = Color.White;
             lblRole.Font = new Font("Segoe UI", 9F);
-            lblRole.Location = new Point(592, 120);
+            lblRole.ForeColor = Color.Black;
+            lblRole.Location = new Point(592, 118);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(38, 15);
             lblRole.TabIndex = 6;
@@ -182,7 +184,7 @@ namespace EstateFlow.Forms
             cmbRole.Anchor = AnchorStyles.None;
             cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRole.Font = new Font("Segoe UI", 9.5F);
-            cmbRole.Location = new Point(592, 140);
+            cmbRole.Location = new Point(592, 141);
             cmbRole.Name = "cmbRole";
             cmbRole.Size = new Size(176, 25);
             cmbRole.TabIndex = 7;

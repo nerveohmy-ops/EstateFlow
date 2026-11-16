@@ -52,6 +52,7 @@ namespace EstateFlow.Forms
             // 
             lblHeader.AutoSize = true;
             lblHeader.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(16, 10);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(233, 28);
@@ -83,29 +84,29 @@ namespace EstateFlow.Forms
             btnViewCards.DialogResult = DialogResult.None;
             btnViewCards.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnViewCards.ForeColor = Color.White;
-            btnViewCards.HoverBackground = Color.White;
-            btnViewCards.HoverForeColor = Color.DimGray;
-            btnViewCards.HoverImageTint = Color.DimGray;
-            btnViewCards.HoverOutline = Color.FromArgb(32, 128, 128, 128);
+            btnViewCards.HoverBackground = Color.FromArgb(40, 40, 40);
+            btnViewCards.HoverForeColor = Color.White;
+            btnViewCards.HoverImageTint = Color.White;
+            btnViewCards.HoverOutline = Color.Black;
             btnViewCards.Image = null;
             btnViewCards.ImageExpand = new Point(0, 0);
-            btnViewCards.Location = new Point(870, 8);
+            btnViewCards.Location = new Point(846, 8);
             btnViewCards.Name = "btnViewCards";
             btnViewCards.NormalBackground = Color.Black;
             btnViewCards.NormalForeColor = Color.White;
             btnViewCards.NormalImageTint = Color.Black;
             btnViewCards.NormalOutline = Color.Black;
             btnViewCards.OutlineThickness = 1F;
-            btnViewCards.Padding = new Padding(6);
-            btnViewCards.PressedBackground = Color.WhiteSmoke;
-            btnViewCards.PressedForeColor = Color.FromArgb(32, 32, 32);
-            btnViewCards.PressedImageTint = Color.FromArgb(32, 32, 32);
-            btnViewCards.PressedOutline = Color.FromArgb(64, 128, 128, 128);
+            btnViewCards.Padding = new Padding(4);
+            btnViewCards.PressedBackground = Color.FromArgb(60, 60, 60);
+            btnViewCards.PressedForeColor = Color.White;
+            btnViewCards.PressedImageTint = Color.White;
+            btnViewCards.PressedOutline = Color.Black;
             btnViewCards.Rounding = new Padding(14);
-            btnViewCards.Size = new Size(100, 32);
+            btnViewCards.Size = new Size(112, 32);
             btnViewCards.TabIndex = 2;
             btnViewCards.TextAlignment = StringAlignment.Center;
-            btnViewCards.TextPadding = 6;
+            btnViewCards.TextPadding = 4;
             btnViewCards.TextSpacing = 2;
             btnViewCards.Click += btnViewCards_Click;
             // 
@@ -123,29 +124,29 @@ namespace EstateFlow.Forms
             btnViewTable.DialogResult = DialogResult.None;
             btnViewTable.Font = new Font("Segoe UI", 9F);
             btnViewTable.ForeColor = Color.Black;
-            btnViewTable.HoverBackground = Color.White;
-            btnViewTable.HoverForeColor = Color.DimGray;
-            btnViewTable.HoverImageTint = Color.DimGray;
-            btnViewTable.HoverOutline = Color.FromArgb(32, 128, 128, 128);
+            btnViewTable.HoverBackground = Color.FromArgb(242, 242, 242);
+            btnViewTable.HoverForeColor = Color.Black;
+            btnViewTable.HoverImageTint = Color.Black;
+            btnViewTable.HoverOutline = Color.Black;
             btnViewTable.Image = null;
             btnViewTable.ImageExpand = new Point(0, 0);
-            btnViewTable.Location = new Point(978, 8);
+            btnViewTable.Location = new Point(966, 8);
             btnViewTable.Name = "btnViewTable";
             btnViewTable.NormalBackground = Color.White;
             btnViewTable.NormalForeColor = Color.Black;
             btnViewTable.NormalImageTint = Color.Black;
             btnViewTable.NormalOutline = Color.FromArgb(160, 160, 160);
             btnViewTable.OutlineThickness = 1F;
-            btnViewTable.Padding = new Padding(6);
+            btnViewTable.Padding = new Padding(4);
             btnViewTable.PressedBackground = Color.WhiteSmoke;
             btnViewTable.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnViewTable.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnViewTable.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnViewTable.Rounding = new Padding(14);
-            btnViewTable.Size = new Size(100, 32);
+            btnViewTable.Size = new Size(112, 32);
             btnViewTable.TabIndex = 3;
             btnViewTable.TextAlignment = StringAlignment.Center;
-            btnViewTable.TextPadding = 6;
+            btnViewTable.TextPadding = 4;
             btnViewTable.TextSpacing = 2;
             btnViewTable.Click += btnViewTable_Click;
             // 
@@ -155,9 +156,9 @@ namespace EstateFlow.Forms
             txtSearch.Content = "";
             txtSearch.FocusBackgroundColor = Color.White;
             txtSearch.FocusImageTint = Color.White;
-            txtSearch.FocusOutlineColor = Color.FromArgb(61, 24, 226);
+            txtSearch.FocusOutlineColor = Color.Black;
             txtSearch.Font = new Font("Segoe UI", 9.5F);
-            txtSearch.ForeColor = Color.Gray;
+            txtSearch.ForeColor = Color.Black;
             txtSearch.Image = null;
             txtSearch.ImageExpand = new Point(0, 0);
             txtSearch.ImageOffset = new Point(0, 0);
@@ -167,16 +168,16 @@ namespace EstateFlow.Forms
             txtSearch.Multiline = false;
             txtSearch.Name = "txtSearch";
             txtSearch.NormalImageTint = Color.White;
-            txtSearch.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtSearch.Padding = new Padding(17, 11, 17, 0);
+            txtSearch.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtSearch.Padding = new Padding(12, 10, 12, 0);
             txtSearch.PasswordChar = false;
-            txtSearch.PlaceholderColor = Color.LightGray;
+            txtSearch.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSearch.PlaceholderText = "Поиск по адресу, району, ЖК...";
             txtSearch.Rounding = new Padding(12);
             txtSearch.Size = new Size(240, 38);
             txtSearch.TabIndex = 4;
             txtSearch.TextOffset = new Size(0, 0);
-            txtSearch.UnderlinedStyle = true;
+            txtSearch.UnderlinedStyle = false;
             // 
             // pnlRooms
             // 
@@ -186,9 +187,9 @@ namespace EstateFlow.Forms
             pnlRooms.Controls.Add(btnRoom2);
             pnlRooms.Controls.Add(btnRoom3);
             pnlRooms.Controls.Add(btnRoom4);
-            pnlRooms.Location = new Point(270, 48);
+            pnlRooms.Location = new Point(266, 48);
             pnlRooms.Name = "pnlRooms";
-            pnlRooms.Size = new Size(260, 36);
+            pnlRooms.Size = new Size(252, 36);
             pnlRooms.TabIndex = 5;
             pnlRooms.WrapContents = false;
             // 
@@ -219,16 +220,16 @@ namespace EstateFlow.Forms
             btnRoomAll.NormalImageTint = Color.Black;
             btnRoomAll.NormalOutline = Color.Black;
             btnRoomAll.OutlineThickness = 1F;
-            btnRoomAll.Padding = new Padding(12);
+            btnRoomAll.Padding = new Padding(2);
             btnRoomAll.PressedBackground = Color.WhiteSmoke;
             btnRoomAll.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRoomAll.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoomAll.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoomAll.Rounding = new Padding(12);
-            btnRoomAll.Size = new Size(38, 34);
+            btnRoomAll.Size = new Size(46, 34);
             btnRoomAll.TabIndex = 0;
             btnRoomAll.TextAlignment = StringAlignment.Center;
-            btnRoomAll.TextPadding = 12;
+            btnRoomAll.TextPadding = 2;
             btnRoomAll.TextSpacing = 2;
             // 
             // btnRoom0
@@ -250,7 +251,7 @@ namespace EstateFlow.Forms
             btnRoom0.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom0.Image = null;
             btnRoom0.ImageExpand = new Point(0, 0);
-            btnRoom0.Location = new Point(41, 0);
+            btnRoom0.Location = new Point(49, 0);
             btnRoom0.Margin = new Padding(1, 0, 1, 0);
             btnRoom0.Name = "btnRoom0";
             btnRoom0.NormalBackground = Color.White;
@@ -258,16 +259,16 @@ namespace EstateFlow.Forms
             btnRoom0.NormalImageTint = Color.Black;
             btnRoom0.NormalOutline = Color.FromArgb(170, 170, 170);
             btnRoom0.OutlineThickness = 1F;
-            btnRoom0.Padding = new Padding(12);
+            btnRoom0.Padding = new Padding(2);
             btnRoom0.PressedBackground = Color.WhiteSmoke;
             btnRoom0.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRoom0.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom0.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom0.Rounding = new Padding(12);
-            btnRoom0.Size = new Size(38, 34);
+            btnRoom0.Size = new Size(40, 34);
             btnRoom0.TabIndex = 1;
             btnRoom0.TextAlignment = StringAlignment.Center;
-            btnRoom0.TextPadding = 12;
+            btnRoom0.TextPadding = 2;
             btnRoom0.TextSpacing = 2;
             // 
             // btnRoom1
@@ -289,7 +290,7 @@ namespace EstateFlow.Forms
             btnRoom1.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom1.Image = null;
             btnRoom1.ImageExpand = new Point(0, 0);
-            btnRoom1.Location = new Point(81, 0);
+            btnRoom1.Location = new Point(91, 0);
             btnRoom1.Margin = new Padding(1, 0, 1, 0);
             btnRoom1.Name = "btnRoom1";
             btnRoom1.NormalBackground = Color.White;
@@ -297,16 +298,16 @@ namespace EstateFlow.Forms
             btnRoom1.NormalImageTint = Color.Black;
             btnRoom1.NormalOutline = Color.FromArgb(170, 170, 170);
             btnRoom1.OutlineThickness = 1F;
-            btnRoom1.Padding = new Padding(12);
+            btnRoom1.Padding = new Padding(2);
             btnRoom1.PressedBackground = Color.WhiteSmoke;
             btnRoom1.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRoom1.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom1.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom1.Rounding = new Padding(12);
-            btnRoom1.Size = new Size(34, 34);
+            btnRoom1.Size = new Size(36, 34);
             btnRoom1.TabIndex = 2;
             btnRoom1.TextAlignment = StringAlignment.Center;
-            btnRoom1.TextPadding = 12;
+            btnRoom1.TextPadding = 2;
             btnRoom1.TextSpacing = 2;
             // 
             // btnRoom2
@@ -328,7 +329,7 @@ namespace EstateFlow.Forms
             btnRoom2.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom2.Image = null;
             btnRoom2.ImageExpand = new Point(0, 0);
-            btnRoom2.Location = new Point(117, 0);
+            btnRoom2.Location = new Point(129, 0);
             btnRoom2.Margin = new Padding(1, 0, 1, 0);
             btnRoom2.Name = "btnRoom2";
             btnRoom2.NormalBackground = Color.White;
@@ -336,16 +337,16 @@ namespace EstateFlow.Forms
             btnRoom2.NormalImageTint = Color.Black;
             btnRoom2.NormalOutline = Color.FromArgb(170, 170, 170);
             btnRoom2.OutlineThickness = 1F;
-            btnRoom2.Padding = new Padding(12);
+            btnRoom2.Padding = new Padding(2);
             btnRoom2.PressedBackground = Color.WhiteSmoke;
             btnRoom2.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRoom2.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom2.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom2.Rounding = new Padding(12);
-            btnRoom2.Size = new Size(34, 34);
+            btnRoom2.Size = new Size(36, 34);
             btnRoom2.TabIndex = 3;
             btnRoom2.TextAlignment = StringAlignment.Center;
-            btnRoom2.TextPadding = 12;
+            btnRoom2.TextPadding = 2;
             btnRoom2.TextSpacing = 2;
             // 
             // btnRoom3
@@ -367,7 +368,7 @@ namespace EstateFlow.Forms
             btnRoom3.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom3.Image = null;
             btnRoom3.ImageExpand = new Point(0, 0);
-            btnRoom3.Location = new Point(153, 0);
+            btnRoom3.Location = new Point(167, 0);
             btnRoom3.Margin = new Padding(1, 0, 1, 0);
             btnRoom3.Name = "btnRoom3";
             btnRoom3.NormalBackground = Color.White;
@@ -375,16 +376,16 @@ namespace EstateFlow.Forms
             btnRoom3.NormalImageTint = Color.Black;
             btnRoom3.NormalOutline = Color.FromArgb(170, 170, 170);
             btnRoom3.OutlineThickness = 1F;
-            btnRoom3.Padding = new Padding(12);
+            btnRoom3.Padding = new Padding(2);
             btnRoom3.PressedBackground = Color.WhiteSmoke;
             btnRoom3.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRoom3.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom3.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom3.Rounding = new Padding(12);
-            btnRoom3.Size = new Size(34, 34);
+            btnRoom3.Size = new Size(36, 34);
             btnRoom3.TabIndex = 4;
             btnRoom3.TextAlignment = StringAlignment.Center;
-            btnRoom3.TextPadding = 12;
+            btnRoom3.TextPadding = 2;
             btnRoom3.TextSpacing = 2;
             // 
             // btnRoom4
@@ -406,7 +407,7 @@ namespace EstateFlow.Forms
             btnRoom4.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom4.Image = null;
             btnRoom4.ImageExpand = new Point(0, 0);
-            btnRoom4.Location = new Point(189, 0);
+            btnRoom4.Location = new Point(205, 0);
             btnRoom4.Margin = new Padding(1, 0, 1, 0);
             btnRoom4.Name = "btnRoom4";
             btnRoom4.NormalBackground = Color.White;
@@ -414,34 +415,34 @@ namespace EstateFlow.Forms
             btnRoom4.NormalImageTint = Color.Black;
             btnRoom4.NormalOutline = Color.FromArgb(170, 170, 170);
             btnRoom4.OutlineThickness = 1F;
-            btnRoom4.Padding = new Padding(12);
+            btnRoom4.Padding = new Padding(2);
             btnRoom4.PressedBackground = Color.WhiteSmoke;
             btnRoom4.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRoom4.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom4.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom4.Rounding = new Padding(12);
-            btnRoom4.Size = new Size(34, 34);
+            btnRoom4.Size = new Size(44, 34);
             btnRoom4.TabIndex = 5;
             btnRoom4.TextAlignment = StringAlignment.Center;
-            btnRoom4.TextPadding = 12;
+            btnRoom4.TextPadding = 2;
             btnRoom4.TextSpacing = 2;
             // 
             // cmbDistrict
             // 
             cmbDistrict.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDistrict.Font = new Font("Segoe UI", 9.5F);
-            cmbDistrict.Location = new Point(538, 53);
+            cmbDistrict.Location = new Point(526, 53);
             cmbDistrict.Name = "cmbDistrict";
-            cmbDistrict.Size = new Size(140, 25);
+            cmbDistrict.Size = new Size(145, 25);
             cmbDistrict.TabIndex = 6;
             // 
             // cmbType
             // 
             cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbType.Font = new Font("Segoe UI", 9.5F);
-            cmbType.Location = new Point(686, 53);
+            cmbType.Location = new Point(679, 53);
             cmbType.Name = "cmbType";
-            cmbType.Size = new Size(130, 25);
+            cmbType.Size = new Size(135, 25);
             cmbType.TabIndex = 7;
             // 
             // btnAdd
@@ -464,7 +465,7 @@ namespace EstateFlow.Forms
             btnAdd.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnAdd.Image = null;
             btnAdd.ImageExpand = new Point(0, 0);
-            btnAdd.Location = new Point(948, 48);
+            btnAdd.Location = new Point(942, 48);
             btnAdd.Name = "btnAdd";
             btnAdd.NormalBackground = Color.Black;
             btnAdd.NormalForeColor = Color.White;
@@ -477,7 +478,7 @@ namespace EstateFlow.Forms
             btnAdd.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnAdd.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnAdd.Rounding = new Padding(14);
-            btnAdd.Size = new Size(130, 36);
+            btnAdd.Size = new Size(136, 36);
             btnAdd.TabIndex = 8;
             btnAdd.TextAlignment = StringAlignment.Center;
             btnAdd.TextPadding = 6;
@@ -490,9 +491,9 @@ namespace EstateFlow.Forms
             txtMinPrice.Content = "";
             txtMinPrice.FocusBackgroundColor = Color.White;
             txtMinPrice.FocusImageTint = Color.White;
-            txtMinPrice.FocusOutlineColor = Color.FromArgb(61, 24, 226);
+            txtMinPrice.FocusOutlineColor = Color.Black;
             txtMinPrice.Font = new Font("Segoe UI", 9F);
-            txtMinPrice.ForeColor = Color.Gray;
+            txtMinPrice.ForeColor = Color.Black;
             txtMinPrice.Image = null;
             txtMinPrice.ImageExpand = new Point(0, 0);
             txtMinPrice.ImageOffset = new Point(0, 0);
@@ -502,16 +503,16 @@ namespace EstateFlow.Forms
             txtMinPrice.Multiline = false;
             txtMinPrice.Name = "txtMinPrice";
             txtMinPrice.NormalImageTint = Color.White;
-            txtMinPrice.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtMinPrice.Padding = new Padding(16, 10, 16, 0);
+            txtMinPrice.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtMinPrice.Padding = new Padding(12, 9, 12, 0);
             txtMinPrice.PasswordChar = false;
-            txtMinPrice.PlaceholderColor = Color.LightGray;
+            txtMinPrice.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtMinPrice.PlaceholderText = "Цена от (₽)";
-            txtMinPrice.Rounding = new Padding(10);
-            txtMinPrice.Size = new Size(130, 36);
+            txtMinPrice.Rounding = new Padding(12);
+            txtMinPrice.Size = new Size(145, 36);
             txtMinPrice.TabIndex = 9;
             txtMinPrice.TextOffset = new Size(0, 0);
-            txtMinPrice.UnderlinedStyle = true;
+            txtMinPrice.UnderlinedStyle = false;
             // 
             // txtMaxPrice
             // 
@@ -519,37 +520,37 @@ namespace EstateFlow.Forms
             txtMaxPrice.Content = "";
             txtMaxPrice.FocusBackgroundColor = Color.White;
             txtMaxPrice.FocusImageTint = Color.White;
-            txtMaxPrice.FocusOutlineColor = Color.FromArgb(61, 24, 226);
+            txtMaxPrice.FocusOutlineColor = Color.Black;
             txtMaxPrice.Font = new Font("Segoe UI", 9F);
-            txtMaxPrice.ForeColor = Color.Gray;
+            txtMaxPrice.ForeColor = Color.Black;
             txtMaxPrice.Image = null;
             txtMaxPrice.ImageExpand = new Point(0, 0);
             txtMaxPrice.ImageOffset = new Point(0, 0);
             txtMaxPrice.ImageTextSpacing = 8;
-            txtMaxPrice.Location = new Point(152, 90);
+            txtMaxPrice.Location = new Point(169, 90);
             txtMaxPrice.Margin = new Padding(4);
             txtMaxPrice.Multiline = false;
             txtMaxPrice.Name = "txtMaxPrice";
             txtMaxPrice.NormalImageTint = Color.White;
-            txtMaxPrice.OutlineColor = Color.FromArgb(128, 128, 128, 128);
-            txtMaxPrice.Padding = new Padding(16, 10, 16, 0);
+            txtMaxPrice.OutlineColor = Color.FromArgb(95, 95, 95);
+            txtMaxPrice.Padding = new Padding(12, 9, 12, 0);
             txtMaxPrice.PasswordChar = false;
-            txtMaxPrice.PlaceholderColor = Color.LightGray;
+            txtMaxPrice.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtMaxPrice.PlaceholderText = "Цена до (₽)";
-            txtMaxPrice.Rounding = new Padding(10);
-            txtMaxPrice.Size = new Size(130, 36);
+            txtMaxPrice.Rounding = new Padding(12);
+            txtMaxPrice.Size = new Size(145, 36);
             txtMaxPrice.TabIndex = 10;
             txtMaxPrice.TextOffset = new Size(0, 0);
-            txtMaxPrice.UnderlinedStyle = true;
+            txtMaxPrice.UnderlinedStyle = false;
             // 
             // cmbStatus
             // 
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Все статусы", "Свободен", "Забронирован", "Продан" });
-            cmbStatus.Location = new Point(288, 96);
+            cmbStatus.Location = new Point(324, 96);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(130, 25);
+            cmbStatus.Size = new Size(135, 25);
             cmbStatus.TabIndex = 11;
             // 
             // cmbSort
@@ -557,9 +558,9 @@ namespace EstateFlow.Forms
             cmbSort.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSort.Font = new Font("Segoe UI", 9.5F);
             cmbSort.Items.AddRange(new object[] { "Сначала новые", "Сначала дешевле", "Сначала дороже", "По площади" });
-            cmbSort.Location = new Point(426, 96);
+            cmbSort.Location = new Point(467, 96);
             cmbSort.Name = "cmbSort";
-            cmbSort.Size = new Size(155, 25);
+            cmbSort.Size = new Size(160, 25);
             cmbSort.TabIndex = 12;
             // 
             // btnReset
@@ -581,23 +582,23 @@ namespace EstateFlow.Forms
             btnReset.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnReset.Image = null;
             btnReset.ImageExpand = new Point(0, 0);
-            btnReset.Location = new Point(590, 92);
+            btnReset.Location = new Point(637, 90);
             btnReset.Name = "btnReset";
             btnReset.NormalBackground = Color.White;
             btnReset.NormalForeColor = Color.Black;
             btnReset.NormalImageTint = Color.Black;
             btnReset.NormalOutline = Color.FromArgb(170, 170, 170);
             btnReset.OutlineThickness = 1F;
-            btnReset.Padding = new Padding(6);
+            btnReset.Padding = new Padding(4);
             btnReset.PressedBackground = Color.WhiteSmoke;
             btnReset.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnReset.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnReset.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnReset.Rounding = new Padding(14);
-            btnReset.Size = new Size(95, 34);
+            btnReset.Size = new Size(108, 36);
             btnReset.TabIndex = 13;
             btnReset.TextAlignment = StringAlignment.Center;
-            btnReset.TextPadding = 6;
+            btnReset.TextPadding = 4;
             btnReset.TextSpacing = 2;
             btnReset.Click += btnReset_Click;
             // 
@@ -630,7 +631,7 @@ namespace EstateFlow.Forms
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.CheckButton = false;
             btnBack.Checked = false;
             btnBack.CheckedBackground = Color.FromArgb(61, 24, 226);
@@ -648,7 +649,7 @@ namespace EstateFlow.Forms
             btnBack.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnBack.Image = null;
             btnBack.ImageExpand = new Point(0, 0);
-            btnBack.Location = new Point(16, 622);
+            btnBack.Location = new Point(968, 622);
             btnBack.Name = "btnBack";
             btnBack.NormalBackground = Color.White;
             btnBack.NormalForeColor = Color.Black;
@@ -661,8 +662,8 @@ namespace EstateFlow.Forms
             btnBack.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnBack.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnBack.Rounding = new Padding(18);
-            btnBack.Size = new Size(105, 38);
-            btnBack.TabIndex = 16;
+            btnBack.Size = new Size(110, 38);
+            btnBack.TabIndex = 20;
             btnBack.TextAlignment = StringAlignment.Center;
             btnBack.TextPadding = 8;
             btnBack.TextSpacing = 2;
@@ -688,7 +689,7 @@ namespace EstateFlow.Forms
             btnShowing.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnShowing.Image = null;
             btnShowing.ImageExpand = new Point(0, 0);
-            btnShowing.Location = new Point(130, 622);
+            btnShowing.Location = new Point(148, 622);
             btnShowing.Name = "btnShowing";
             btnShowing.NormalBackground = Color.White;
             btnShowing.NormalForeColor = Color.Black;
@@ -701,8 +702,8 @@ namespace EstateFlow.Forms
             btnShowing.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnShowing.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnShowing.Rounding = new Padding(18);
-            btnShowing.Size = new Size(130, 38);
-            btnShowing.TabIndex = 17;
+            btnShowing.Size = new Size(135, 38);
+            btnShowing.TabIndex = 16;
             btnShowing.TextAlignment = StringAlignment.Center;
             btnShowing.TextPadding = 8;
             btnShowing.TextSpacing = 2;
@@ -728,7 +729,7 @@ namespace EstateFlow.Forms
             btnDeal.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnDeal.Image = null;
             btnDeal.ImageExpand = new Point(0, 0);
-            btnDeal.Location = new Point(270, 622);
+            btnDeal.Location = new Point(293, 622);
             btnDeal.Name = "btnDeal";
             btnDeal.NormalBackground = Color.White;
             btnDeal.NormalForeColor = Color.Black;
@@ -741,8 +742,8 @@ namespace EstateFlow.Forms
             btnDeal.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnDeal.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnDeal.Rounding = new Padding(18);
-            btnDeal.Size = new Size(115, 38);
-            btnDeal.TabIndex = 18;
+            btnDeal.Size = new Size(120, 38);
+            btnDeal.TabIndex = 17;
             btnDeal.TextAlignment = StringAlignment.Center;
             btnDeal.TextPadding = 8;
             btnDeal.TextSpacing = 2;
@@ -768,7 +769,7 @@ namespace EstateFlow.Forms
             btnEdit.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnEdit.Image = null;
             btnEdit.ImageExpand = new Point(0, 0);
-            btnEdit.Location = new Point(395, 622);
+            btnEdit.Location = new Point(423, 622);
             btnEdit.Name = "btnEdit";
             btnEdit.NormalBackground = Color.White;
             btnEdit.NormalForeColor = Color.Black;
@@ -781,8 +782,8 @@ namespace EstateFlow.Forms
             btnEdit.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnEdit.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnEdit.Rounding = new Padding(18);
-            btnEdit.Size = new Size(115, 38);
-            btnEdit.TabIndex = 19;
+            btnEdit.Size = new Size(120, 38);
+            btnEdit.TabIndex = 18;
             btnEdit.TextAlignment = StringAlignment.Center;
             btnEdit.TextPadding = 8;
             btnEdit.TextSpacing = 2;
@@ -808,7 +809,7 @@ namespace EstateFlow.Forms
             btnDelete.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnDelete.Image = null;
             btnDelete.ImageExpand = new Point(0, 0);
-            btnDelete.Location = new Point(520, 622);
+            btnDelete.Location = new Point(553, 622);
             btnDelete.Name = "btnDelete";
             btnDelete.NormalBackground = Color.White;
             btnDelete.NormalForeColor = Color.Black;
@@ -821,8 +822,8 @@ namespace EstateFlow.Forms
             btnDelete.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnDelete.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnDelete.Rounding = new Padding(18);
-            btnDelete.Size = new Size(105, 38);
-            btnDelete.TabIndex = 20;
+            btnDelete.Size = new Size(110, 38);
+            btnDelete.TabIndex = 19;
             btnDelete.TextAlignment = StringAlignment.Center;
             btnDelete.TextPadding = 8;
             btnDelete.TextSpacing = 2;

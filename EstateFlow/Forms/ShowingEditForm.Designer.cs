@@ -40,10 +40,11 @@ namespace EstateFlow.Forms
             lblTitle.Anchor = AnchorStyles.None;
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.White;
-            lblTitle.Font = new Font("Microsoft Sans Serif", 18F);
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.Black;
             lblTitle.Location = new Point(216, 25);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(346, 29);
+            lblTitle.Size = new Size(346, 30);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Запись на просмотр объекта";
             // 
@@ -53,7 +54,8 @@ namespace EstateFlow.Forms
             lblProperty.AutoSize = true;
             lblProperty.BackColor = Color.White;
             lblProperty.Font = new Font("Segoe UI", 9F);
-            lblProperty.Location = new Point(220, 72);
+            lblProperty.ForeColor = Color.Black;
+            lblProperty.Location = new Point(216, 72);
             lblProperty.Name = "lblProperty";
             lblProperty.Size = new Size(137, 15);
             lblProperty.TabIndex = 1;
@@ -64,9 +66,9 @@ namespace EstateFlow.Forms
             cmbProperty.Anchor = AnchorStyles.None;
             cmbProperty.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProperty.Font = new Font("Segoe UI", 9.5F);
-            cmbProperty.Location = new Point(220, 94);
+            cmbProperty.Location = new Point(216, 94);
             cmbProperty.Name = "cmbProperty";
-            cmbProperty.Size = new Size(546, 25);
+            cmbProperty.Size = new Size(552, 25);
             cmbProperty.TabIndex = 2;
             cmbProperty.SelectedIndexChanged += CmbProperty_SelectedIndexChanged;
             // 
@@ -76,7 +78,8 @@ namespace EstateFlow.Forms
             lblClient.AutoSize = true;
             lblClient.BackColor = Color.White;
             lblClient.Font = new Font("Segoe UI", 9F);
-            lblClient.Location = new Point(220, 132);
+            lblClient.ForeColor = Color.Black;
+            lblClient.Location = new Point(216, 132);
             lblClient.Name = "lblClient";
             lblClient.Size = new Size(49, 15);
             lblClient.TabIndex = 3;
@@ -87,9 +90,9 @@ namespace EstateFlow.Forms
             cmbClient.Anchor = AnchorStyles.None;
             cmbClient.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClient.Font = new Font("Segoe UI", 9.5F);
-            cmbClient.Location = new Point(220, 154);
+            cmbClient.Location = new Point(216, 154);
             cmbClient.Name = "cmbClient";
-            cmbClient.Size = new Size(262, 25);
+            cmbClient.Size = new Size(266, 25);
             cmbClient.TabIndex = 4;
             // 
             // lblAgent
@@ -98,7 +101,8 @@ namespace EstateFlow.Forms
             lblAgent.AutoSize = true;
             lblAgent.BackColor = Color.White;
             lblAgent.Font = new Font("Segoe UI", 9F);
-            lblAgent.Location = new Point(504, 132);
+            lblAgent.ForeColor = Color.Black;
+            lblAgent.Location = new Point(502, 132);
             lblAgent.Name = "lblAgent";
             lblAgent.Size = new Size(146, 15);
             lblAgent.TabIndex = 5;
@@ -109,9 +113,9 @@ namespace EstateFlow.Forms
             cmbAgent.Anchor = AnchorStyles.None;
             cmbAgent.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAgent.Font = new Font("Segoe UI", 9.5F);
-            cmbAgent.Location = new Point(504, 154);
+            cmbAgent.Location = new Point(502, 154);
             cmbAgent.Name = "cmbAgent";
-            cmbAgent.Size = new Size(262, 25);
+            cmbAgent.Size = new Size(266, 25);
             cmbAgent.TabIndex = 6;
             // 
             // lblDate
@@ -120,7 +124,8 @@ namespace EstateFlow.Forms
             lblDate.AutoSize = true;
             lblDate.BackColor = Color.White;
             lblDate.Font = new Font("Segoe UI", 9F);
-            lblDate.Location = new Point(220, 192);
+            lblDate.ForeColor = Color.Black;
+            lblDate.Location = new Point(216, 192);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(78, 15);
             lblDate.TabIndex = 7;
@@ -131,7 +136,7 @@ namespace EstateFlow.Forms
             dtpDate.Anchor = AnchorStyles.None;
             dtpDate.Font = new Font("Segoe UI", 9.5F);
             dtpDate.Format = DateTimePickerFormat.Short;
-            dtpDate.Location = new Point(220, 214);
+            dtpDate.Location = new Point(216, 214);
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(146, 24);
             dtpDate.TabIndex = 8;
@@ -142,7 +147,8 @@ namespace EstateFlow.Forms
             lblTime.AutoSize = true;
             lblTime.BackColor = Color.White;
             lblTime.Font = new Font("Segoe UI", 9F);
-            lblTime.Location = new Point(376, 192);
+            lblTime.ForeColor = Color.Black;
+            lblTime.Location = new Point(372, 192);
             lblTime.Name = "lblTime";
             lblTime.Size = new Size(86, 15);
             lblTime.TabIndex = 9;
@@ -160,9 +166,9 @@ namespace EstateFlow.Forms
                 "15:00", "15:30", "16:00", "16:30", "17:00", "17:30",
                 "18:00", "18:30", "19:00", "19:30", "20:00"
             });
-            cmbTime.Location = new Point(376, 214);
+            cmbTime.Location = new Point(372, 214);
             cmbTime.Name = "cmbTime";
-            cmbTime.Size = new Size(106, 25);
+            cmbTime.Size = new Size(110, 25);
             cmbTime.TabIndex = 10;
             // 
             // lblStatus
@@ -171,7 +177,8 @@ namespace EstateFlow.Forms
             lblStatus.AutoSize = true;
             lblStatus.BackColor = Color.White;
             lblStatus.Font = new Font("Segoe UI", 9F);
-            lblStatus.Location = new Point(504, 192);
+            lblStatus.ForeColor = Color.Black;
+            lblStatus.Location = new Point(502, 192);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(88, 15);
             lblStatus.TabIndex = 11;
@@ -183,9 +190,9 @@ namespace EstateFlow.Forms
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.Font = new Font("Segoe UI", 9.5F);
             cmbStatus.Items.AddRange(new object[] { "Новая", "Подтверждена", "Проведена", "Отменена" });
-            cmbStatus.Location = new Point(504, 214);
+            cmbStatus.Location = new Point(502, 214);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(262, 25);
+            cmbStatus.Size = new Size(266, 25);
             cmbStatus.TabIndex = 12;
             // 
             // txtComment
@@ -200,6 +207,7 @@ namespace EstateFlow.Forms
             txtComment.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtComment.ForeColor = Color.Black;
             txtComment.Location = new Point(216, 260);
+            txtComment.Multiline = true;
             txtComment.Name = "txtComment";
             txtComment.NormalImageTint = Color.White;
             txtComment.OutlineColor = Color.FromArgb(95, 95, 95);
@@ -208,7 +216,7 @@ namespace EstateFlow.Forms
             txtComment.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtComment.PlaceholderText = "Комментарий к заявке (пожелания, удобное время и т.д.)";
             txtComment.Rounding = new Padding(12);
-            txtComment.Size = new Size(552, 45);
+            txtComment.Size = new Size(552, 64);
             txtComment.TabIndex = 13;
             txtComment.UnderlinedStyle = false;
             // 

@@ -6,13 +6,15 @@ namespace EstateFlow.Forms
 {
     public partial class ShowingsForm : BaseForm
     {
+        private bool isInitializing = true;
+
         public ShowingsForm()
         {
             InitializeComponent();
             UiTheme.StyleGrid(grid);
 
             cmbStatus.SelectedIndex = 0;
-            cmbStatus.SelectedIndexChanged += (s, e) => LoadData();
+            cmbStatus.SelectedIndexChanged += (s, e) => { if (!isInitializing) LoadData(); };
 
             if (Session.CurrentUser != null)
             {
@@ -21,7 +23,7 @@ namespace EstateFlow.Forms
                     btnConfirm.Visible = false;
                     btnDone.Visible = false;
                     btnDelete.Visible = false;
-                    btnCancel.Location = new Point(320, 405);
+                    btnCancel.Location = new Point(278, 404);
                 }
                 else if (Session.CurrentUser.IsAgent)
                 {
@@ -29,6 +31,7 @@ namespace EstateFlow.Forms
                 }
             }
 
+            isInitializing = false;
             LoadData();
         }
 

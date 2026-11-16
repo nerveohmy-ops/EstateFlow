@@ -30,6 +30,7 @@ namespace EstateFlow.Controls
         private cuiButton btnSecondary;
         private cuiButton btnDeal;
         private Button btnDelete;
+        private readonly ToolTip toolTip = new();
 
         private bool isHovered = false;
 
@@ -82,11 +83,11 @@ namespace EstateFlow.Controls
             lblTypeBadge = new Label
             {
                 AutoSize = true,
-                BackColor = Color.FromArgb(200, 20, 20, 25),
+                BackColor = Color.FromArgb(30, 32, 38),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 8F),
                 Padding = new Padding(5, 2, 5, 2),
-                Location = new Point(8, 126),
+                Location = new Point(8, 128),
                 Text = "Квартира",
                 Cursor = Cursors.Hand
             };
@@ -97,20 +98,24 @@ namespace EstateFlow.Controls
             lblPrice = new Label
             {
                 AutoSize = true,
+                BackColor = Color.Transparent,
                 Font = new Font("Segoe UI", 16F, FontStyle.Bold),
                 Location = new Point(262, 10),
                 Text = "8 900 000 ₽",
                 Cursor = Cursors.Hand
             };
             lblPrice.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
+            lblPrice.SizeChanged += (s, e) => UpdateContentLayout();
 
             lblPricePerMeter = new Label
             {
                 AutoSize = true,
+                BackColor = Color.Transparent,
                 Font = new Font("Segoe UI", 9.5F),
                 ForeColor = Color.Gray,
-                Location = new Point(440, 17),
+                Location = new Point(440, 16),
                 Text = "152 397 ₽/м²",
+                AutoEllipsis = true,
                 Cursor = Cursors.Hand
             };
             lblPricePerMeter.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
@@ -118,10 +123,13 @@ namespace EstateFlow.Controls
             // Заголовок объекта
             lblTitle = new Label
             {
-                AutoSize = true,
+                AutoSize = false,
+                BackColor = Color.Transparent,
                 Font = new Font("Segoe UI Semibold", 11.5F, FontStyle.Bold),
                 Location = new Point(262, 40),
+                Size = new Size(440, 25),
                 Text = "2-комн. квартира, 58.4 м², 5/9 эт.",
+                AutoEllipsis = true,
                 Cursor = Cursors.Hand
             };
             lblTitle.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
@@ -129,11 +137,14 @@ namespace EstateFlow.Controls
             // Адрес
             lblAddress = new Label
             {
-                AutoSize = true,
+                AutoSize = false,
+                BackColor = Color.Transparent,
                 Font = new Font("Segoe UI", 9.5F),
                 ForeColor = Color.FromArgb(70, 70, 70),
                 Location = new Point(262, 66),
+                Size = new Size(440, 21),
                 Text = "📍 г. Благовещенск, р-н Центр, ул. Ленина, д. 148, кв. 24",
+                AutoEllipsis = true,
                 Cursor = Cursors.Hand
             };
             lblAddress.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
@@ -141,11 +152,14 @@ namespace EstateFlow.Controls
             // Спецификации
             lblSpecs = new Label
             {
-                AutoSize = true,
+                AutoSize = false,
+                BackColor = Color.Transparent,
                 Font = new Font("Segoe UI", 9F),
                 ForeColor = Color.DimGray,
-                Location = new Point(262, 92),
+                Location = new Point(262, 90),
+                Size = new Size(440, 20),
                 Text = "Кухня 11.2 м²  •  Жилая 34 м²  •  2018 г.  •  Агент: Петров П. П.",
+                AutoEllipsis = true,
                 Cursor = Cursors.Hand
             };
             lblSpecs.Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
@@ -153,8 +167,10 @@ namespace EstateFlow.Controls
             // Краткое описание
             lblDescription = new Label
             {
-                Location = new Point(262, 116),
-                Size = new Size(460, 48),
+                AutoSize = false,
+                BackColor = Color.Transparent,
+                Location = new Point(262, 114),
+                Size = new Size(440, 50),
                 Font = new Font("Segoe UI", 8.5F),
                 ForeColor = Color.Gray,
                 Text = "Светлая квартира с ремонтом...",
@@ -166,7 +182,7 @@ namespace EstateFlow.Controls
             // Кнопка быстрого удаления в правом верхнем углу (для админов)
             btnDelete = new Button
             {
-                Location = new Point(Width - 30, 6),
+                Location = new Point(Width - 34, 8),
                 Size = new Size(24, 24),
                 Text = "✕",
                 FlatStyle = FlatStyle.Flat,
@@ -174,33 +190,39 @@ namespace EstateFlow.Controls
                 ForeColor = Color.Gray,
                 BackColor = Color.Transparent,
                 Cursor = Cursors.Hand,
-                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                TabStop = false,
                 Visible = false
             };
             btnDelete.Click += (s, e) => DeleteRequested?.Invoke(this, PropertyData);
+            toolTip.SetToolTip(btnDelete, "Удалить объект");
 
             // Панель действий справа
             pnlActions = new Panel
             {
-                Location = new Point(Width - 185, 10),
-                Size = new Size(175, 155),
+                Location = new Point(Width - 210, 34),
+                Size = new Size(196, 130),
                 BackColor = Color.Transparent
             };
 
             btnPrimary = new cuiButton
             {
-                Location = new Point(5, 10),
-                Size = new Size(165, 38),
+                Location = new Point(5, 2),
+                Size = new Size(186, 36),
                 Content = "На просмотр",
                 Cursor = Cursors.Hand,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.White,
+                BackColor = Color.Transparent,
                 NormalBackground = Color.Black,
                 NormalForeColor = Color.White,
                 NormalOutline = Color.Black,
                 HoverBackground = Color.FromArgb(40, 40, 40),
                 HoverForeColor = Color.White,
                 HoverOutline = Color.Black,
+                PressedBackground = Color.FromArgb(60, 60, 60),
+                PressedForeColor = Color.White,
+                PressedOutline = Color.Black,
                 Rounding = new Padding(16),
                 OutlineThickness = 1F,
                 TextAlignment = StringAlignment.Center
@@ -215,18 +237,22 @@ namespace EstateFlow.Controls
 
             btnSecondary = new cuiButton
             {
-                Location = new Point(5, 54),
-                Size = new Size(165, 36),
+                Location = new Point(5, 44),
+                Size = new Size(186, 34),
                 Content = "Подробнее",
                 Cursor = Cursors.Hand,
                 Font = new Font("Segoe UI", 9F),
                 ForeColor = Color.Black,
+                BackColor = Color.Transparent,
                 NormalBackground = Color.White,
                 NormalForeColor = Color.Black,
                 NormalOutline = Color.FromArgb(160, 160, 160),
                 HoverBackground = Color.FromArgb(240, 240, 240),
                 HoverForeColor = Color.Black,
                 HoverOutline = Color.Black,
+                PressedBackground = Color.FromArgb(228, 228, 228),
+                PressedForeColor = Color.Black,
+                PressedOutline = Color.Black,
                 Rounding = new Padding(16),
                 OutlineThickness = 1F,
                 TextAlignment = StringAlignment.Center
@@ -241,18 +267,22 @@ namespace EstateFlow.Controls
 
             btnDeal = new cuiButton
             {
-                Location = new Point(5, 96),
-                Size = new Size(165, 36),
+                Location = new Point(5, 84),
+                Size = new Size(186, 34),
                 Content = "Оформить сделку",
                 Cursor = Cursors.Hand,
                 Font = new Font("Segoe UI", 8.5F),
                 ForeColor = Color.Black,
+                BackColor = Color.Transparent,
                 NormalBackground = Color.White,
                 NormalForeColor = Color.Black,
                 NormalOutline = Color.FromArgb(160, 160, 160),
                 HoverBackground = Color.FromArgb(240, 240, 240),
                 HoverForeColor = Color.Black,
                 HoverOutline = Color.Black,
+                PressedBackground = Color.FromArgb(228, 228, 228),
+                PressedForeColor = Color.Black,
+                PressedOutline = Color.Black,
                 Rounding = new Padding(16),
                 OutlineThickness = 1F,
                 TextAlignment = StringAlignment.Center
@@ -270,39 +300,27 @@ namespace EstateFlow.Controls
             Controls.Add(lblAddress);
             Controls.Add(lblSpecs);
             Controls.Add(lblDescription);
-            Controls.Add(btnDelete);
             Controls.Add(pnlActions);
+            Controls.Add(btnDelete);
 
-            // Поддержка прокрутки колесиком мыши над любым элементом карточки
-            WireMouseWheel(this);
+            // Поддержка прокрутки колесиком мыши и hover над любым элементом карточки
+            Click += (s, e) => CardClicked?.Invoke(this, PropertyData);
+            WireMouseEvents(this);
+            UpdateContentLayout();
+        }
 
-            MouseEnter += (s, e) => SetHover(true);
-            MouseLeave += (s, e) =>
+        private void WireMouseEvents(Control parent)
+        {
+            parent.MouseWheel += (s, e) => BubbleMouseWheel(e);
+            parent.MouseEnter += (s, e) => SetHover(true);
+            parent.MouseLeave += (s, e) =>
             {
                 if (!ClientRectangle.Contains(PointToClient(Cursor.Position)))
                     SetHover(false);
             };
-
-            foreach (Control c in Controls)
-            {
-                if (c != pnlActions)
-                {
-                    c.MouseEnter += (s, e) => SetHover(true);
-                    c.MouseLeave += (s, e) =>
-                    {
-                        if (!ClientRectangle.Contains(PointToClient(Cursor.Position)))
-                            SetHover(false);
-                    };
-                }
-            }
-        }
-
-        private void WireMouseWheel(Control parent)
-        {
-            parent.MouseWheel += (s, e) => BubbleMouseWheel(e);
             foreach (Control child in parent.Controls)
             {
-                WireMouseWheel(child);
+                WireMouseEvents(child);
             }
         }
 
@@ -353,15 +371,14 @@ namespace EstateFlow.Controls
 
             // Тип недвижимости
             lblTypeBadge.Text = string.IsNullOrWhiteSpace(p.TypeName) ? "Объект" : p.TypeName;
+            lblTypeBadge.Location = new Point(8, picPhoto.Height - Math.Max(lblTypeBadge.Height, lblTypeBadge.PreferredHeight) - 8);
 
             // Цена
             lblPrice.Text = $"{p.Price:N0} ₽".Replace('\u00A0', ' ');
-            lblPrice.Location = new Point(262, 10);
 
             // Цена за квадратный метр
             decimal ppm = p.PricePerMeter;
             lblPricePerMeter.Text = ppm > 0 ? $"({ppm:N0} ₽/м²)" : "";
-            lblPricePerMeter.Location = new Point(lblPrice.Right + 10, 16);
 
             // Заголовок
             lblTitle.Text = p.FullTitle;
@@ -392,7 +409,6 @@ namespace EstateFlow.Controls
             // Роли
             var user = Session.CurrentUser;
             bool isClient = user == null || user.IsClient;
-            bool isAgent = user != null && user.IsAgent;
             bool isAdmin = user != null && user.IsAdmin;
 
             btnDelete.Visible = isAdmin;
@@ -403,8 +419,8 @@ namespace EstateFlow.Controls
                 btnSecondary.Content = "Подробнее";
                 btnDeal.Visible = false;
 
-                btnPrimary.Location = new Point(5, 30);
-                btnSecondary.Location = new Point(5, 78);
+                btnPrimary.Location = new Point(5, 16);
+                btnSecondary.Location = new Point(5, 62);
             }
             else
             {
@@ -413,15 +429,15 @@ namespace EstateFlow.Controls
                 btnDeal.Visible = true;
                 btnDeal.Content = "Сделка";
 
-                btnPrimary.Location = new Point(5, 10);
-                btnSecondary.Location = new Point(5, 54);
-                btnDeal.Location = new Point(5, 96);
+                btnPrimary.Location = new Point(5, 2);
+                btnSecondary.Location = new Point(5, 44);
+                btnDeal.Location = new Point(5, 84);
             }
 
             if (p.Status == PropertyStatus.Sold)
             {
                 btnPrimary.Enabled = !isClient;
-                btnSecondary.Enabled = false;
+                btnSecondary.Enabled = isClient;
                 btnDeal.Enabled = false;
             }
             else
@@ -431,7 +447,85 @@ namespace EstateFlow.Controls
                 btnDeal.Enabled = true;
             }
 
+            UpdateContentLayout();
             ApplyTheme();
+        }
+
+        private static void StyleCardButton(cuiButton btn, bool isPrimary, bool isDark)
+        {
+            btn.BackColor = Color.Transparent;
+
+            if (!btn.Enabled)
+            {
+                btn.NormalBackground = isDark ? Color.FromArgb(40, 42, 48) : Color.FromArgb(242, 243, 246);
+                btn.NormalForeColor = isDark ? Color.FromArgb(115, 118, 128) : Color.FromArgb(160, 164, 172);
+                btn.NormalOutline = isDark ? Color.FromArgb(62, 65, 74) : Color.FromArgb(215, 218, 224);
+                btn.HoverBackground = btn.NormalBackground;
+                btn.HoverForeColor = btn.NormalForeColor;
+                btn.HoverOutline = btn.NormalOutline;
+                btn.PressedBackground = btn.NormalBackground;
+                btn.PressedForeColor = btn.NormalForeColor;
+                btn.PressedOutline = btn.NormalOutline;
+                btn.Invalidate();
+                return;
+            }
+
+            if (isPrimary)
+            {
+                if (isDark)
+                {
+                    btn.NormalBackground = Color.FromArgb(240, 240, 245);
+                    btn.NormalForeColor = Color.Black;
+                    btn.NormalOutline = Color.White;
+                    btn.HoverBackground = Color.White;
+                    btn.HoverForeColor = Color.Black;
+                    btn.HoverOutline = Color.White;
+                    btn.PressedBackground = Color.FromArgb(210, 210, 218);
+                    btn.PressedForeColor = Color.Black;
+                    btn.PressedOutline = Color.White;
+                }
+                else
+                {
+                    btn.NormalBackground = Color.Black;
+                    btn.NormalForeColor = Color.White;
+                    btn.NormalOutline = Color.Black;
+                    btn.HoverBackground = Color.FromArgb(40, 40, 40);
+                    btn.HoverForeColor = Color.White;
+                    btn.HoverOutline = Color.Black;
+                    btn.PressedBackground = Color.FromArgb(65, 65, 65);
+                    btn.PressedForeColor = Color.White;
+                    btn.PressedOutline = Color.Black;
+                }
+            }
+            else
+            {
+                if (isDark)
+                {
+                    btn.NormalBackground = Color.FromArgb(38, 40, 45);
+                    btn.NormalForeColor = Color.FromArgb(240, 240, 245);
+                    btn.NormalOutline = Color.FromArgb(85, 88, 98);
+                    btn.HoverBackground = Color.FromArgb(50, 53, 60);
+                    btn.HoverForeColor = Color.White;
+                    btn.HoverOutline = Color.FromArgb(160, 164, 175);
+                    btn.PressedBackground = Color.FromArgb(62, 65, 74);
+                    btn.PressedForeColor = Color.White;
+                    btn.PressedOutline = Color.White;
+                }
+                else
+                {
+                    btn.NormalBackground = Color.White;
+                    btn.NormalForeColor = Color.Black;
+                    btn.NormalOutline = Color.FromArgb(180, 180, 180);
+                    btn.HoverBackground = Color.FromArgb(242, 242, 242);
+                    btn.HoverForeColor = Color.Black;
+                    btn.HoverOutline = Color.Black;
+                    btn.PressedBackground = Color.FromArgb(228, 228, 228);
+                    btn.PressedForeColor = Color.Black;
+                    btn.PressedOutline = Color.Black;
+                }
+            }
+
+            btn.Invalidate();
         }
 
         public void ApplyTheme()
@@ -447,54 +541,23 @@ namespace EstateFlow.Controls
             lblDescription.ForeColor = isDark ? Color.FromArgb(160, 162, 170) : Color.FromArgb(100, 105, 115);
             picPhoto.BackColor = isDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(240, 242, 245);
 
+            StyleCardButton(btnPrimary, true, isDark);
+            StyleCardButton(btnSecondary, false, isDark);
+            StyleCardButton(btnDeal, false, isDark);
+
             if (isDark)
             {
-                btnPrimary.NormalBackground = Color.FromArgb(240, 240, 245);
-                btnPrimary.NormalForeColor = Color.Black;
-                btnPrimary.NormalOutline = Color.White;
-                btnPrimary.HoverBackground = Color.White;
-                btnPrimary.HoverForeColor = Color.Black;
-
-                btnSecondary.NormalBackground = Color.FromArgb(38, 40, 45);
-                btnSecondary.NormalForeColor = Color.FromArgb(240, 240, 245);
-                btnSecondary.NormalOutline = Color.FromArgb(85, 88, 98);
-                btnSecondary.HoverBackground = Color.FromArgb(48, 50, 58);
-                btnSecondary.HoverForeColor = Color.White;
-
-                btnDeal.NormalBackground = Color.FromArgb(38, 40, 45);
-                btnDeal.NormalForeColor = Color.FromArgb(240, 240, 245);
-                btnDeal.NormalOutline = Color.FromArgb(85, 88, 98);
-                btnDeal.HoverBackground = Color.FromArgb(48, 50, 58);
-                btnDeal.HoverForeColor = Color.White;
-
-                btnDelete.ForeColor = Color.FromArgb(180, 100, 100);
+                btnDelete.ForeColor = Color.FromArgb(220, 120, 120);
+                btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 36, 40);
+                btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 42, 46);
             }
             else
             {
-                btnPrimary.NormalBackground = Color.Black;
-                btnPrimary.NormalForeColor = Color.White;
-                btnPrimary.NormalOutline = Color.Black;
-                btnPrimary.HoverBackground = Color.FromArgb(40, 40, 40);
-                btnPrimary.HoverForeColor = Color.White;
-
-                btnSecondary.NormalBackground = Color.White;
-                btnSecondary.NormalForeColor = Color.Black;
-                btnSecondary.NormalOutline = Color.FromArgb(180, 180, 180);
-                btnSecondary.HoverBackground = Color.FromArgb(242, 242, 242);
-                btnSecondary.HoverForeColor = Color.Black;
-
-                btnDeal.NormalBackground = Color.White;
-                btnDeal.NormalForeColor = Color.Black;
-                btnDeal.NormalOutline = Color.FromArgb(180, 180, 180);
-                btnDeal.HoverBackground = Color.FromArgb(242, 242, 242);
-                btnDeal.HoverForeColor = Color.Black;
-
-                btnDelete.ForeColor = Color.FromArgb(160, 60, 60);
+                btnDelete.ForeColor = Color.FromArgb(170, 60, 60);
+                btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(252, 235, 235);
+                btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(245, 215, 215);
             }
 
-            btnPrimary.Invalidate();
-            btnSecondary.Invalidate();
-            btnDeal.Invalidate();
             Invalidate();
         }
 
@@ -532,15 +595,48 @@ namespace EstateFlow.Controls
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-            if (pnlActions != null)
-            {
-                pnlActions.Location = new Point(Width - pnlActions.Width - 15, (Height - pnlActions.Height) / 2);
-                lblDescription.Width = Math.Max(200, pnlActions.Left - lblDescription.Left - 20);
-            }
+            UpdateContentLayout();
+        }
+
+        protected override void OnLayout(LayoutEventArgs e)
+        {
+            base.OnLayout(e);
+            UpdateContentLayout();
+        }
+
+        private void UpdateContentLayout()
+        {
+            if (pnlActions == null || lblPrice == null) return;
+
+            pnlActions.Location = new Point(Width - pnlActions.Width - 14, 34);
             if (btnDelete != null)
-            {
-                btnDelete.Location = new Point(Width - 30, 6);
-            }
+                btnDelete.Location = new Point(Width - 34, 8);
+
+            const int textLeft = 262;
+            int actionsLeft = pnlActions.Left;
+            int maxPriceRight = (btnDelete != null && btnDelete.Visible ? Math.Min(actionsLeft, btnDelete.Left) : actionsLeft) - 14;
+            int textWidth = Math.Max(180, actionsLeft - textLeft - 14);
+
+            lblPrice.Location = new Point(textLeft, 10);
+            int priceWidth = Math.Max(lblPrice.Width, lblPrice.PreferredWidth);
+            int ppmLeft = textLeft + priceWidth + 12;
+            lblPricePerMeter.Location = new Point(ppmLeft, 16);
+
+            int ppmAvail = Math.Max(0, maxPriceRight - ppmLeft);
+            lblPricePerMeter.MaximumSize = new Size(Math.Max(1, ppmAvail), 22);
+            lblPricePerMeter.Visible = !string.IsNullOrEmpty(lblPricePerMeter.Text) && ppmAvail >= 65;
+
+            lblTitle.SetBounds(textLeft, 40, textWidth, 25);
+            lblAddress.SetBounds(textLeft, 66, textWidth, 21);
+            lblSpecs.SetBounds(textLeft, 90, textWidth, 20);
+            lblDescription.SetBounds(textLeft, 114, textWidth, 50);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                toolTip.Dispose();
+            base.Dispose(disposing);
         }
 
         private static GraphicsPath CreateRoundedRectangle(Rectangle rect, int radius)

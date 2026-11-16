@@ -16,6 +16,15 @@ namespace EstateFlow.Forms
             dealId = id;
             initialPropertyId = propId;
             InitializeComponent();
+            KeyPreview = true;
+            KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    DialogResult = DialogResult.Cancel;
+                    Close();
+                }
+            };
             UiTheme.AttachPriceFormatter(txtAmount, lblAmountHint);
             dtpDate.Value = DateTime.Today;
             cmbStatus.SelectedIndex = 0;
@@ -58,7 +67,7 @@ namespace EstateFlow.Forms
                     UiTheme.SelectById(cmbClient, existingDeal.ClientId);
                     UiTheme.SelectById(cmbAgent, existingDeal.AgentId);
                     dtpDate.Value = existingDeal.DealDate;
-                    txtAmount.Content = ((long)existingDeal.Amount).ToString();
+                    txtAmount.Content = ((long)Math.Round(existingDeal.Amount)).ToString();
                     cmbStatus.SelectedItem = existingDeal.Status;
                 }
                 else
@@ -70,7 +79,7 @@ namespace EstateFlow.Forms
 
                     if (Session.CurrentUser != null && Session.CurrentUser.IsAgent)
                         UiTheme.SelectById(cmbAgent, Session.CurrentUser.Id);
-                    else if (cmbAgent.Items.Count > 0)
+                    else if (cmbAgent.SelectedItem == null && cmbAgent.Items.Count > 0)
                         cmbAgent.SelectedIndex = 0;
 
                     if (cmbClient.Items.Count > 0) cmbClient.SelectedIndex = 0;
@@ -85,7 +94,7 @@ namespace EstateFlow.Forms
                 var p = PropertyService.GetById(item.Id);
                 if (p != null)
                 {
-                    txtAmount.Content = ((long)p.Price).ToString();
+                    txtAmount.Content = ((long)Math.Round(p.Price)).ToString();
                     if (p.AgentId.HasValue) UiTheme.SelectById(cmbAgent, p.AgentId.Value);
                 }
             }

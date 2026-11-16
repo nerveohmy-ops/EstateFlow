@@ -37,6 +37,7 @@ namespace EstateFlow.Forms
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(102, 14);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(216, 30);
@@ -62,6 +63,7 @@ namespace EstateFlow.Forms
             lblStatus.AutoSize = true;
             lblStatus.BackColor = Color.White;
             lblStatus.Font = new Font("Segoe UI", 9.5F);
+            lblStatus.ForeColor = Color.Black;
             lblStatus.Location = new Point(102, 59);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(94, 17);

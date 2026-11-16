@@ -33,6 +33,7 @@ namespace EstateFlow.Forms
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(167, 16);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(346, 30);
@@ -90,7 +91,7 @@ namespace EstateFlow.Forms
             btnAdd.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnAdd.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnAdd.Rounding = new Padding(20);
-            btnAdd.Size = new Size(140, 40);
+            btnAdd.Size = new Size(135, 40);
             btnAdd.TabIndex = 3;
             btnAdd.TextAlignment = StringAlignment.Center;
             btnAdd.Click += btnAdd_Click;
@@ -108,18 +109,18 @@ namespace EstateFlow.Forms
             btnRename.HoverBackground = Color.FromArgb(242, 242, 242);
             btnRename.HoverForeColor = Color.Black;
             btnRename.HoverOutline = Color.Black;
-            btnRename.Location = new Point(317, 402);
+            btnRename.Location = new Point(312, 402);
             btnRename.Name = "btnRename";
             btnRename.NormalBackground = Color.White;
             btnRename.NormalForeColor = Color.Black;
             btnRename.NormalOutline = Color.Black;
             btnRename.OutlineThickness = 1F;
-            btnRename.Padding = new Padding(12);
+            btnRename.Padding = new Padding(10);
             btnRename.PressedBackground = Color.WhiteSmoke;
             btnRename.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnRename.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRename.Rounding = new Padding(20);
-            btnRename.Size = new Size(155, 40);
+            btnRename.Size = new Size(165, 40);
             btnRename.TabIndex = 4;
             btnRename.TextAlignment = StringAlignment.Center;
             btnRename.Click += btnRename_Click;
@@ -137,7 +138,7 @@ namespace EstateFlow.Forms
             btnDelete.HoverBackground = Color.FromArgb(242, 242, 242);
             btnDelete.HoverForeColor = Color.Black;
             btnDelete.HoverOutline = Color.Black;
-            btnDelete.Location = new Point(482, 402);
+            btnDelete.Location = new Point(487, 402);
             btnDelete.Name = "btnDelete";
             btnDelete.NormalBackground = Color.White;
             btnDelete.NormalForeColor = Color.Black;
@@ -148,7 +149,7 @@ namespace EstateFlow.Forms
             btnDelete.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnDelete.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnDelete.Rounding = new Padding(20);
-            btnDelete.Size = new Size(130, 40);
+            btnDelete.Size = new Size(125, 40);
             btnDelete.TabIndex = 5;
             btnDelete.TextAlignment = StringAlignment.Center;
             btnDelete.Click += btnDelete_Click;

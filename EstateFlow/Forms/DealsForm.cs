@@ -7,6 +7,8 @@ namespace EstateFlow.Forms
 {
     public partial class DealsForm : BaseForm
     {
+        private bool isInitializing = true;
+
         public DealsForm()
         {
             InitializeComponent();
@@ -16,15 +18,15 @@ namespace EstateFlow.Forms
             dtpFrom.Value = new DateTime(2025, 1, 1);
             dtpTo.Value = DateTime.Today;
 
-            txtSearch.ContentChanged += (s, e) => LoadData();
-            cmbStatus.SelectedIndexChanged += (s, e) => LoadData();
+            txtSearch.ContentChanged += (s, e) => { if (!isInitializing) LoadData(); };
+            cmbStatus.SelectedIndexChanged += (s, e) => { if (!isInitializing) LoadData(); };
             chkUseDate.CheckedChanged += (s, e) =>
             {
                 dtpFrom.Enabled = dtpTo.Enabled = chkUseDate.Checked;
-                LoadData();
+                if (!isInitializing) LoadData();
             };
-            dtpFrom.ValueChanged += (s, e) => LoadData();
-            dtpTo.ValueChanged += (s, e) => LoadData();
+            dtpFrom.ValueChanged += (s, e) => { if (!isInitializing) LoadData(); };
+            dtpTo.ValueChanged += (s, e) => { if (!isInitializing) LoadData(); };
 
             if (Session.CurrentUser != null)
             {
@@ -33,22 +35,27 @@ namespace EstateFlow.Forms
                     btnAdd.Visible = false;
                     btnEdit.Visible = false;
                     btnDelete.Visible = false;
-                    btnExport.Location = new Point(180, 405);
+                    btnExport.Location = new Point(148, 404);
                 }
                 else if (Session.CurrentUser.IsAgent)
                 {
                     btnDelete.Visible = false;
+                    btnExport.Location = new Point(429, 404);
                 }
             }
 
+            isInitializing = false;
             LoadData();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            isInitializing = true;
             txtSearch.Content = "";
             cmbStatus.SelectedIndex = 0;
             chkUseDate.Checked = false;
+            dtpFrom.Enabled = dtpTo.Enabled = false;
+            isInitializing = false;
             LoadData();
         }
 

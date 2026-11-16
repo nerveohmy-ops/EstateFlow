@@ -30,7 +30,7 @@ namespace EstateFlow.Forms
 
         private void AddType()
         {
-            string name = Prompt("Введите наименование нового типа недвижимости:", "Добавление типа");
+            string name = Prompt(this, "Введите наименование нового типа недвижимости:", "Добавление типа");
             if (string.IsNullOrWhiteSpace(name)) return;
 
             if (PropertyService.TypeExists(name))
@@ -56,7 +56,7 @@ namespace EstateFlow.Forms
             }
 
             string currentName = grid.CurrentRow.Cells["Тип недвижимости"].Value?.ToString() ?? "";
-            string newName = Prompt("Введите новое наименование:", "Переименование типа", currentName);
+            string newName = Prompt(this, "Введите новое наименование:", "Переименование типа", currentName);
             if (string.IsNullOrWhiteSpace(newName) || newName == currentName) return;
 
             if (PropertyService.TypeExists(newName, id.Value))
@@ -91,7 +91,7 @@ namespace EstateFlow.Forms
             }
         }
 
-        private static string Prompt(string text, string caption, string def = "")
+        private static string Prompt(IWin32Window owner, string text, string caption, string def = "")
         {
             using var f = new Form
             {
@@ -101,10 +101,18 @@ namespace EstateFlow.Forms
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 MaximizeBox = false,
                 MinimizeBox = false,
-                BackColor = Color.White
+                BackColor = UiTheme.Background,
+                KeyPreview = true
             };
 
-            var lbl = new Label { Text = text, Location = new Point(15, 15), Size = new Size(390, 20), Font = new Font("Segoe UI", 9.5F) };
+            var lbl = new Label
+            {
+                Text = text,
+                Location = new Point(15, 14),
+                Size = new Size(390, 22),
+                Font = new Font("Segoe UI", 9.5F),
+                ForeColor = Color.Black
+            };
             var tb = UiTheme.CreateTextBox("Наименование", 390);
             tb.Content = def;
             tb.Location = new Point(15, 42);
@@ -117,8 +125,25 @@ namespace EstateFlow.Forms
             btnCancel.Location = new Point(295, 102);
             btnCancel.Click += (s, e) => { f.DialogResult = DialogResult.Cancel; f.Close(); };
 
+            f.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    f.DialogResult = DialogResult.Cancel;
+                    f.Close();
+                }
+                else if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    f.DialogResult = DialogResult.OK;
+                    f.Close();
+                }
+            };
+
             f.Controls.AddRange(new Control[] { lbl, tb, btnOk, btnCancel });
-            return f.ShowDialog() == DialogResult.OK ? (tb.Content ?? "").Trim() : null;
+            UiTheme.ApplyTheme(f);
+            lbl.ForeColor = UiTheme.TextMain;
+            return f.ShowDialog(owner) == DialogResult.OK ? (tb.Content ?? "").Trim() : null;
         }
     }
 }

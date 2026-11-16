@@ -7,15 +7,18 @@ namespace EstateFlow.Forms
 {
     public partial class UsersForm : BaseForm
     {
+        private bool isInitializing = true;
+
         public UsersForm()
         {
             InitializeComponent();
             UiTheme.StyleGrid(grid);
 
-            txtSearch.ContentChanged += (s, e) => LoadData();
-            cmbRole.SelectedIndexChanged += (s, e) => LoadData();
+            txtSearch.ContentChanged += (s, e) => { if (!isInitializing) LoadData(); };
+            cmbRole.SelectedIndexChanged += (s, e) => { if (!isInitializing) LoadData(); };
 
             LoadRoles();
+            isInitializing = false;
             LoadData();
         }
 

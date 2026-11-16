@@ -36,6 +36,7 @@ namespace EstateFlow.Forms
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(102, 12);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(243, 30);
@@ -71,6 +72,7 @@ namespace EstateFlow.Forms
             lblPeriod.AutoSize = true;
             lblPeriod.BackColor = Color.White;
             lblPeriod.Font = new Font("Segoe UI", 9.5F);
+            lblPeriod.ForeColor = Color.Black;
             lblPeriod.Location = new Point(365, 59);
             lblPeriod.Name = "lblPeriod";
             lblPeriod.Size = new Size(57, 17);
@@ -98,7 +100,7 @@ namespace EstateFlow.Forms
             // 
             // btnBuild
             // 
-            btnBuild.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            btnBuild.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnBuild.BackColor = Color.White;
             btnBuild.CheckButton = false;
             btnBuild.Checked = false;
@@ -109,18 +111,18 @@ namespace EstateFlow.Forms
             btnBuild.HoverBackground = Color.FromArgb(40, 40, 40);
             btnBuild.HoverForeColor = Color.White;
             btnBuild.HoverOutline = Color.Black;
-            btnBuild.Location = new Point(682, 49);
+            btnBuild.Location = new Point(732, 49);
             btnBuild.Name = "btnBuild";
             btnBuild.NormalBackground = Color.Black;
             btnBuild.NormalForeColor = Color.White;
             btnBuild.NormalOutline = Color.Black;
             btnBuild.OutlineThickness = 1F;
-            btnBuild.Padding = new Padding(12);
+            btnBuild.Padding = new Padding(10);
             btnBuild.PressedBackground = Color.WhiteSmoke;
             btnBuild.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnBuild.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnBuild.Rounding = new Padding(20);
-            btnBuild.Size = new Size(145, 38);
+            btnBuild.Size = new Size(150, 38);
             btnBuild.TabIndex = 6;
             btnBuild.TextAlignment = StringAlignment.Center;
             btnBuild.Click += btnBuild_Click;

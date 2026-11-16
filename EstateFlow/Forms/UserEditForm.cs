@@ -14,6 +14,15 @@ namespace EstateFlow.Forms
         {
             userId = id;
             InitializeComponent();
+            KeyPreview = true;
+            KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    DialogResult = DialogResult.Cancel;
+                    Close();
+                }
+            };
             UiTheme.AttachPhoneMask(txtPhone);
 
             if (id > 0)
@@ -57,11 +66,11 @@ namespace EstateFlow.Forms
                         txtLastName.Content = last;
                         txtFirstName.Content = first;
                         txtMiddleName.Content = middle;
-                        txtLogin.Content = u.Login;
-                        txtEmail.Content = u.Email;
-                        txtPhone.Content = u.Phone;
+                        txtLogin.Content = u.Login ?? "";
+                        txtEmail.Content = u.Email ?? "";
+                        txtPhone.Content = u.Phone ?? "";
                         UiTheme.SelectById(cmbRole, u.RoleId);
-                        txtSecret.Content = u.SecretWord;
+                        txtSecret.Content = u.SecretWord ?? "";
                     }
                 }
                 else
@@ -125,6 +134,17 @@ namespace EstateFlow.Forms
                 UiTheme.Warning("Выберите роль пользователя.");
                 cmbRole.Focus();
                 return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(secret))
+            {
+                string secretErr = Validator.SecretWord(secret);
+                if (secretErr != null)
+                {
+                    UiTheme.Warning(secretErr);
+                    txtSecret.Focus();
+                    return;
+                }
             }
 
             if (userId == 0)

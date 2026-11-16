@@ -38,6 +38,7 @@ namespace EstateFlow.Forms
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(102, 12);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(158, 30);
@@ -68,7 +69,7 @@ namespace EstateFlow.Forms
             txtSearch.FocusOutlineColor = Color.Black;
             txtSearch.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.ForeColor = Color.Black;
-            txtSearch.Location = new Point(102, 46);
+            txtSearch.Location = new Point(102, 50);
             txtSearch.Name = "txtSearch";
             txtSearch.NormalImageTint = Color.White;
             txtSearch.OutlineColor = Color.FromArgb(95, 95, 95);
@@ -87,7 +88,8 @@ namespace EstateFlow.Forms
             lblRole.AutoSize = true;
             lblRole.BackColor = Color.White;
             lblRole.Font = new Font("Segoe UI", 9.5F);
-            lblRole.Location = new Point(428, 59);
+            lblRole.ForeColor = Color.Black;
+            lblRole.Location = new Point(428, 63);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(40, 17);
             lblRole.TabIndex = 3;
@@ -98,7 +100,7 @@ namespace EstateFlow.Forms
             cmbRole.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRole.Font = new Font("Segoe UI", 9.5F);
-            cmbRole.Location = new Point(472, 56);
+            cmbRole.Location = new Point(472, 60);
             cmbRole.Name = "cmbRole";
             cmbRole.Size = new Size(165, 25);
             cmbRole.TabIndex = 4;
@@ -116,18 +118,18 @@ namespace EstateFlow.Forms
             btnResetDb.HoverBackground = Color.FromArgb(242, 242, 242);
             btnResetDb.HoverForeColor = Color.Black;
             btnResetDb.HoverOutline = Color.Black;
-            btnResetDb.Location = new Point(692, 49);
+            btnResetDb.Location = new Point(682, 53);
             btnResetDb.Name = "btnResetDb";
             btnResetDb.NormalBackground = Color.White;
             btnResetDb.NormalForeColor = Color.Black;
             btnResetDb.NormalOutline = Color.Black;
             btnResetDb.OutlineThickness = 1F;
-            btnResetDb.Padding = new Padding(10);
+            btnResetDb.Padding = new Padding(8);
             btnResetDb.PressedBackground = Color.WhiteSmoke;
             btnResetDb.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnResetDb.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnResetDb.Rounding = new Padding(20);
-            btnResetDb.Size = new Size(190, 38);
+            btnResetDb.Size = new Size(200, 38);
             btnResetDb.TabIndex = 5;
             btnResetDb.TextAlignment = StringAlignment.Center;
             btnResetDb.Click += btnResetDb_Click;
@@ -138,11 +140,11 @@ namespace EstateFlow.Forms
             grid.BackgroundColor = Color.White;
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.Location = new Point(102, 96);
+            grid.Location = new Point(102, 100);
             grid.Name = "grid";
             grid.ReadOnly = true;
             grid.RowHeadersVisible = false;
-            grid.Size = new Size(780, 294);
+            grid.Size = new Size(780, 290);
             grid.TabIndex = 6;
             grid.DoubleClick += grid_DoubleClick;
             // 

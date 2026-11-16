@@ -16,6 +16,15 @@ namespace EstateFlow.Forms
             showingId = id;
             initialPropertyId = propId;
             InitializeComponent();
+            KeyPreview = true;
+            KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    DialogResult = DialogResult.Cancel;
+                    Close();
+                }
+            };
             dtpDate.Value = DateTime.Today.AddDays(1);
             cmbTime.SelectedItem = "14:00";
             if (cmbTime.SelectedIndex < 0 && cmbTime.Items.Count > 0)
@@ -54,6 +63,7 @@ namespace EstateFlow.Forms
                 cmbAgent.Items.Clear();
                 cmbAgent.Items.Add(new LookupItem(0, "— Не назначен —"));
                 foreach (var a in UserService.GetLookup(UserRole.Agent)) cmbAgent.Items.Add(a);
+                cmbAgent.SelectedIndex = 0;
 
                 if (existingShowing != null)
                 {
@@ -66,7 +76,7 @@ namespace EstateFlow.Forms
                         cmbTime.Items.Add(timeSlot);
                     cmbTime.SelectedItem = timeSlot;
                     cmbStatus.SelectedItem = existingShowing.Status;
-                    txtComment.Content = existingShowing.Comment;
+                    txtComment.Content = existingShowing.Comment ?? "";
                 }
                 else
                 {

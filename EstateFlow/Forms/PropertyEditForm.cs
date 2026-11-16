@@ -15,7 +15,23 @@ namespace EstateFlow.Forms
         {
             propertyId = id;
             InitializeComponent();
+            KeyPreview = true;
+            KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    DialogResult = DialogResult.Cancel;
+                    Close();
+                }
+            };
+
             UiTheme.AttachPriceFormatter(txtPrice, lblPriceHint);
+            AttachIntegerFilter(txtFloor);
+            AttachIntegerFilter(txtTotalFloors);
+            AttachIntegerFilter(txtYearBuilt);
+            AttachDecimalFilter(txtArea);
+            AttachDecimalFilter(txtLivingArea);
+            AttachDecimalFilter(txtKitchenArea);
 
             InitDropdowns();
 
@@ -25,6 +41,48 @@ namespace EstateFlow.Forms
                 lblTitle.Text = "Редактирование объекта #" + id;
             }
             LoadData();
+        }
+
+        private static void AttachIntegerFilter(HartUI.Controls.cuiTextBox tb)
+        {
+            var inner = tb.Controls.OfType<TextBox>().FirstOrDefault(x => !x.ReadOnly);
+            if (inner == null) return;
+            inner.KeyPress += (s, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    e.Handled = true;
+            };
+        }
+
+        private static void AttachDecimalFilter(HartUI.Controls.cuiTextBox tb)
+        {
+            var inner = tb.Controls.OfType<TextBox>().FirstOrDefault(x => !x.ReadOnly);
+            if (inner == null) return;
+            inner.KeyPress += (s, e) =>
+            {
+                if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+                    return;
+                if ((e.KeyChar == ',' || e.KeyChar == '.') && !inner.Text.Contains(',') && !inner.Text.Contains('.'))
+                    return;
+                e.Handled = true;
+            };
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            UpdatePreviewTheme();
+        }
+
+        protected override void OnThemeChanged()
+        {
+            base.OnThemeChanged();
+            UpdatePreviewTheme();
+        }
+
+        private void UpdatePreviewTheme()
+        {
+            picPhotoPreview.BackColor = UiTheme.IsDark ? Color.FromArgb(20, 21, 24) : Color.FromArgb(240, 242, 245);
         }
 
         private void InitDropdowns()
@@ -161,10 +219,10 @@ namespace EstateFlow.Forms
                         txtKitchenArea.Content = p.KitchenArea?.ToString("0.##") ?? "";
 
                         cmbStatus.SelectedItem = p.Status;
-                        txtPrice.Content = ((long)p.Price).ToString();
+                        txtPrice.Content = ((long)Math.Round(p.Price)).ToString();
                         if (p.AgentId.HasValue) UiTheme.SelectById(cmbAgent, p.AgentId.Value);
 
-                        txtDescription.Content = p.Description;
+                        txtDescription.Content = p.Description ?? "";
 
                         if (!string.IsNullOrWhiteSpace(p.Photo))
                         {
@@ -235,12 +293,30 @@ namespace EstateFlow.Forms
 
             // Этажи
             int? floor = null;
-            if (int.TryParse((txtFloor.Content ?? "").Trim(), out int fl) && fl > 0)
+            string floorRaw = (txtFloor.Content ?? "").Trim();
+            if (!string.IsNullOrEmpty(floorRaw))
+            {
+                if (!int.TryParse(floorRaw, out int fl) || fl < 1 || fl > 200)
+                {
+                    UiTheme.Warning("Этаж должен быть целым числом от 1 до 200.");
+                    txtFloor.Focus();
+                    return;
+                }
                 floor = fl;
+            }
 
             int? totalFloors = null;
-            if (int.TryParse((txtTotalFloors.Content ?? "").Trim(), out int tf) && tf > 0)
+            string totalFloorsRaw = (txtTotalFloors.Content ?? "").Trim();
+            if (!string.IsNullOrEmpty(totalFloorsRaw))
+            {
+                if (!int.TryParse(totalFloorsRaw, out int tf) || tf < 1 || tf > 200)
+                {
+                    UiTheme.Warning("Этажность должна быть целым числом от 1 до 200.");
+                    txtTotalFloors.Focus();
+                    return;
+                }
                 totalFloors = tf;
+            }
 
             if (floor.HasValue && totalFloors.HasValue && floor > totalFloors)
             {
@@ -251,17 +327,45 @@ namespace EstateFlow.Forms
 
             // Дополнительные площади
             decimal? livingArea = null;
-            if (decimal.TryParse((txtLivingArea.Content ?? "").Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal la) && la > 0)
+            if (!string.IsNullOrWhiteSpace(txtLivingArea.Content))
+            {
+                string livingErr = Validator.PositiveDecimal(txtLivingArea.Content, "Жилая площадь", out decimal la);
+                if (livingErr != null)
+                {
+                    UiTheme.Warning(livingErr);
+                    txtLivingArea.Focus();
+                    return;
+                }
                 livingArea = la;
+            }
 
             decimal? kitchenArea = null;
-            if (decimal.TryParse((txtKitchenArea.Content ?? "").Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal ka) && ka > 0)
+            if (!string.IsNullOrWhiteSpace(txtKitchenArea.Content))
+            {
+                string kitchenErr = Validator.PositiveDecimal(txtKitchenArea.Content, "Площадь кухни", out decimal ka);
+                if (kitchenErr != null)
+                {
+                    UiTheme.Warning(kitchenErr);
+                    txtKitchenArea.Focus();
+                    return;
+                }
                 kitchenArea = ka;
+            }
 
             // Год постройки
             int? yearBuilt = null;
-            if (int.TryParse((txtYearBuilt.Content ?? "").Trim(), out int yb) && yb >= 1800 && yb <= DateTime.Now.Year + 5)
+            string yearRaw = (txtYearBuilt.Content ?? "").Trim();
+            if (!string.IsNullOrEmpty(yearRaw))
+            {
+                int maxYear = DateTime.Now.Year + 5;
+                if (!int.TryParse(yearRaw, out int yb) || yb < 1800 || yb > maxYear)
+                {
+                    UiTheme.Warning($"Год постройки должен быть от 1800 до {maxYear}.");
+                    txtYearBuilt.Focus();
+                    return;
+                }
                 yearBuilt = yb;
+            }
 
             int? agentId = null;
             if (cmbAgent.SelectedItem is LookupItem aItem && aItem.Id > 0)
