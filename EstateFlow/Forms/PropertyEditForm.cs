@@ -26,12 +26,12 @@ namespace EstateFlow.Forms
             };
 
             UiTheme.AttachPriceFormatter(txtPrice, lblPriceHint);
-            AttachIntegerFilter(txtFloor);
-            AttachIntegerFilter(txtTotalFloors);
-            AttachIntegerFilter(txtYearBuilt);
-            AttachDecimalFilter(txtArea);
-            AttachDecimalFilter(txtLivingArea);
-            AttachDecimalFilter(txtKitchenArea);
+            UiTheme.AttachIntMask(txtFloor, 3);
+            UiTheme.AttachIntMask(txtTotalFloors, 3);
+            UiTheme.AttachIntMask(txtYearBuilt, 4);
+            UiTheme.AttachDecimalMask(txtArea, 6, 2);
+            UiTheme.AttachDecimalMask(txtLivingArea, 6, 2);
+            UiTheme.AttachDecimalMask(txtKitchenArea, 6, 2);
 
             InitDropdowns();
 
@@ -41,31 +41,6 @@ namespace EstateFlow.Forms
                 lblTitle.Text = "Редактирование объекта #" + id;
             }
             LoadData();
-        }
-
-        private static void AttachIntegerFilter(HartUI.Controls.cuiTextBox tb)
-        {
-            var inner = tb.Controls.OfType<TextBox>().FirstOrDefault(x => !x.ReadOnly);
-            if (inner == null) return;
-            inner.KeyPress += (s, e) =>
-            {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                    e.Handled = true;
-            };
-        }
-
-        private static void AttachDecimalFilter(HartUI.Controls.cuiTextBox tb)
-        {
-            var inner = tb.Controls.OfType<TextBox>().FirstOrDefault(x => !x.ReadOnly);
-            if (inner == null) return;
-            inner.KeyPress += (s, e) =>
-            {
-                if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
-                    return;
-                if ((e.KeyChar == ',' || e.KeyChar == '.') && !inner.Text.Contains(',') && !inner.Text.Contains('.'))
-                    return;
-                e.Handled = true;
-            };
         }
 
         protected override void OnLoad(EventArgs e)
