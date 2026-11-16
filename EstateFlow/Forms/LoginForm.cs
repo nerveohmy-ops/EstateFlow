@@ -1,6 +1,7 @@
 using EstateFlow.Data;
 using EstateFlow.Helpers;
 using EstateFlow.Services;
+using HartUI.Controls;
 
 namespace EstateFlow.Forms
 {
@@ -13,26 +14,123 @@ namespace EstateFlow.Forms
             InitializeComponent();
             LoadRemembered();
 
+            errorProvider1.SetIconPadding(cuiTextBox1, 6);
+            errorProvider1.SetIconPadding(cuiTextBox2, 6);
+
+            cuiTextBox1.ContentChanged += (_, _) => ClearFieldError(cuiTextBox1);
+            cuiTextBox2.ContentChanged += (_, _) => ClearFieldError(cuiTextBox2);
+
             chkRemember.CheckedChanged += (s, e) =>
             {
                 if (!chkRemember.Checked)
                     AppConfig.SaveRememberedCredentials("", "");
                 else if (!string.IsNullOrWhiteSpace(cuiTextBox1.Content))
-                    AppConfig.SaveRememberedCredentials(cuiTextBox1.Content.Trim(), cuiTextBox2.Content);
+                    AppConfig.SaveRememberedCredentials(cuiTextBox1.Content.Trim(), cuiTextBox2.Content ?? "");
             };
+        }
 
-            KeyDown += (s, e) =>
+        private void ClearFieldError(Control ctrl)
+        {
+            if (!string.IsNullOrEmpty(errorProvider1.GetError(ctrl)))
+                errorProvider1.SetError(ctrl, "");
+            if (!string.IsNullOrEmpty(lblError.Text))
+                lblError.Text = "";
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            ApplyLocalTheme();
+        }
+
+        protected override void OnThemeChanged()
+        {
+            base.OnThemeChanged();
+            ApplyLocalTheme();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            if (string.IsNullOrWhiteSpace(cuiTextBox1.Content))
+                cuiTextBox1.Focus();
+            else
+                cuiTextBox2.Focus();
+        }
+
+        private void ApplyLocalTheme()
+        {
+            lblError.ForeColor = UiTheme.IsDark
+                ? Color.FromArgb(255, 118, 118)
+                : Color.FromArgb(185, 28, 28);
+
+            Color linkColor = UiTheme.IsDark ? Color.FromArgb(170, 190, 255) : Color.Black;
+            foreach (var lnk in new[] { lnkForgot, lnkHelp, lnkAbout })
             {
-                if (e.KeyCode == Keys.F1)
+                lnk.LinkColor = linkColor;
+                lnk.VisitedLinkColor = linkColor;
+            }
+
+            if (UiTheme.IsDark)
+            {
+                btnAutorization.PressedBackground = Color.FromArgb(62, 65, 74);
+                btnAutorization.PressedForeColor = Color.White;
+                btnAutorization.PressedOutline = Color.FromArgb(180, 180, 185);
+
+                btnRegister.PressedBackground = Color.FromArgb(205, 208, 216);
+                btnRegister.PressedForeColor = Color.Black;
+                btnRegister.PressedOutline = Color.White;
+            }
+            else
+            {
+                btnAutorization.PressedBackground = Color.FromArgb(230, 232, 236);
+                btnAutorization.PressedForeColor = Color.Black;
+                btnAutorization.PressedOutline = Color.Black;
+
+                btnRegister.PressedBackground = Color.FromArgb(65, 65, 65);
+                btnRegister.PressedForeColor = Color.White;
+                btnRegister.PressedOutline = Color.Black;
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F1)
+            {
+                using var f = new HelpForm();
+                f.ShowDialog(this);
+                return true;
+            }
+
+            if (keyData == Keys.Escape)
+            {
+                if (!string.IsNullOrEmpty(lblError.Text)
+                    || !string.IsNullOrEmpty(errorProvider1.GetError(cuiTextBox1))
+                    || !string.IsNullOrEmpty(errorProvider1.GetError(cuiTextBox2)))
                 {
-                    using var f = new HelpForm();
-                    f.ShowDialog(this);
+                    errorProvider1.Clear();
+                    lblError.Text = "";
+                    return true;
                 }
-                else if (e.KeyCode == Keys.Enter)
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            if (keyData == Keys.Enter)
+            {
+                if (ActiveControl is LinkLabel)
+                    return base.ProcessCmdKey(ref msg, keyData);
+
+                if (ActiveControl is cuiButton btn)
                 {
-                    btnAutorization_Click(this, EventArgs.Empty);
+                    btn.PerformClick();
+                    return true;
                 }
-            };
+
+                btnAutorization_Click(this, EventArgs.Empty);
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void LoadRemembered()
@@ -52,19 +150,21 @@ namespace EstateFlow.Forms
             errorProvider1.Clear();
             lblError.Text = "";
 
-            string login = cuiTextBox1.Content.Trim();
-            string password = cuiTextBox2.Content;
+            string login = (cuiTextBox1.Content ?? "").Trim();
+            string password = cuiTextBox2.Content ?? "";
 
             if (string.IsNullOrWhiteSpace(login))
             {
                 errorProvider1.SetError(cuiTextBox1, "Введите логин");
                 lblError.Text = "Введите логин, email или телефон";
+                cuiTextBox1.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(password))
             {
                 errorProvider1.SetError(cuiTextBox2, "Введите пароль");
                 lblError.Text = "Введите пароль";
+                cuiTextBox2.Focus();
                 return;
             }
 
@@ -80,11 +180,13 @@ namespace EstateFlow.Forms
                 {
                     errorProvider1.SetError(cuiTextBox2, "Неверный пароль");
                     lblError.Text = "Неверный пароль";
+                    cuiTextBox2.Focus();
                 }
                 else
                 {
                     errorProvider1.SetError(cuiTextBox1, "Пользователь не найден");
                     lblError.Text = "Пользователь не найден";
+                    cuiTextBox1.Focus();
                     if (UiTheme.Confirm("Пользователь не найден. Перейти к регистрации?"))
                         OpenRegistration();
                 }
@@ -128,14 +230,17 @@ namespace EstateFlow.Forms
             using var regform = new RegisterForm();
             if (regform.ShowDialog(this) == DialogResult.OK)
             {
+                errorProvider1.Clear();
+                lblError.Text = "";
                 cuiTextBox1.Content = regform.RegisteredLogin;
                 cuiTextBox2.Content = "";
+                cuiTextBox2.Focus();
             }
         }
 
         private void lnkForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using var form = new ForgotPasswordForm(cuiTextBox1.Content.Trim());
+            using var form = new ForgotPasswordForm((cuiTextBox1.Content ?? "").Trim());
             form.ShowDialog(this);
         }
 

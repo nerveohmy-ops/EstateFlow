@@ -24,6 +24,7 @@ namespace EstateFlow.Forms
             txtSecret = new HartUI.Controls.cuiTextBox();
             btnReset = new HartUI.Controls.cuiButton();
             btnBack = new HartUI.Controls.cuiButton();
+            lblError = new Label();
             lblResult = new Label();
             errorProvider1 = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
@@ -33,9 +34,9 @@ namespace EstateFlow.Forms
             // 
             picLogo.Anchor = AnchorStyles.None;
             picLogo.BackColor = Color.Transparent;
-            picLogo.Location = new Point(382, 35);
+            picLogo.Location = new Point(382, 28);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(220, 65);
+            picLogo.Size = new Size(220, 64);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
@@ -46,9 +47,9 @@ namespace EstateFlow.Forms
             lblSub.BackColor = Color.Transparent;
             lblSub.Font = new Font("Segoe UI", 10F);
             lblSub.ForeColor = Color.DimGray;
-            lblSub.Location = new Point(350, 106);
+            lblSub.Location = new Point(350, 98);
             lblSub.Name = "lblSub";
-            lblSub.Size = new Size(284, 22);
+            lblSub.Size = new Size(284, 24);
             lblSub.TabIndex = 1;
             lblSub.Text = "Восстановление пароля";
             lblSub.TextAlign = ContentAlignment.MiddleCenter;
@@ -57,23 +58,23 @@ namespace EstateFlow.Forms
             // 
             txtIdentity.Anchor = AnchorStyles.None;
             txtIdentity.BackColor = Color.White;
+            txtIdentity.FocusBackgroundColor = Color.White;
             txtIdentity.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtIdentity.Content = "";
-            txtIdentity.FocusBackgroundColor = Color.White;
             txtIdentity.FocusImageTint = Color.White;
             txtIdentity.FocusOutlineColor = Color.Black;
             txtIdentity.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtIdentity.ForeColor = Color.Black;
-            txtIdentity.Location = new Point(353, 140);
+            txtIdentity.Location = new Point(352, 134);
             txtIdentity.Name = "txtIdentity";
             txtIdentity.NormalImageTint = Color.White;
             txtIdentity.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtIdentity.Padding = new Padding(16, 14, 16, 0);
+            txtIdentity.Padding = new Padding(14, 13, 14, 0);
             txtIdentity.PasswordChar = false;
             txtIdentity.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtIdentity.PlaceholderText = "Логин, email или телефон..";
             txtIdentity.Rounding = new Padding(12);
-            txtIdentity.Size = new Size(266, 45);
+            txtIdentity.Size = new Size(280, 44);
             txtIdentity.TabIndex = 2;
             txtIdentity.UnderlinedStyle = false;
             // 
@@ -81,23 +82,23 @@ namespace EstateFlow.Forms
             // 
             txtSecret.Anchor = AnchorStyles.None;
             txtSecret.BackColor = Color.White;
+            txtSecret.FocusBackgroundColor = Color.White;
             txtSecret.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtSecret.Content = "";
-            txtSecret.FocusBackgroundColor = Color.White;
             txtSecret.FocusImageTint = Color.White;
             txtSecret.FocusOutlineColor = Color.Black;
             txtSecret.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSecret.ForeColor = Color.Black;
-            txtSecret.Location = new Point(353, 195);
+            txtSecret.Location = new Point(352, 188);
             txtSecret.Name = "txtSecret";
             txtSecret.NormalImageTint = Color.White;
             txtSecret.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtSecret.Padding = new Padding(16, 14, 16, 0);
+            txtSecret.Padding = new Padding(14, 13, 14, 0);
             txtSecret.PasswordChar = false;
             txtSecret.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSecret.PlaceholderText = "Секретное слово..";
             txtSecret.Rounding = new Padding(12);
-            txtSecret.Size = new Size(266, 45);
+            txtSecret.Size = new Size(280, 44);
             txtSecret.TabIndex = 3;
             txtSecret.UnderlinedStyle = false;
             // 
@@ -107,27 +108,37 @@ namespace EstateFlow.Forms
             btnReset.BackColor = Color.White;
             btnReset.CheckButton = false;
             btnReset.Checked = false;
+            btnReset.CheckedBackground = Color.Black;
+            btnReset.CheckedForeColor = Color.White;
+            btnReset.CheckedImageTint = Color.White;
+            btnReset.CheckedOutline = Color.Black;
             btnReset.Content = "Сбросить";
             btnReset.Cursor = Cursors.Hand;
-            btnReset.Font = new Font("Segoe UI", 10.5F);
-            btnReset.ForeColor = Color.Black;
-            btnReset.HoverBackground = Color.White;
-            btnReset.HoverForeColor = Color.DimGray;
+            btnReset.DialogResult = DialogResult.None;
+            btnReset.Font = new Font("Segoe UI", 11.5F);
+            btnReset.ForeColor = Color.White;
+            btnReset.HoverBackground = Color.FromArgb(40, 40, 40);
+            btnReset.HoverForeColor = Color.White;
+            btnReset.HoverImageTint = Color.DimGray;
             btnReset.HoverOutline = Color.Black;
-            btnReset.Location = new Point(353, 252);
+            btnReset.Location = new Point(352, 248);
             btnReset.Name = "btnReset";
-            btnReset.NormalBackground = Color.White;
-            btnReset.NormalForeColor = Color.Black;
+            btnReset.NormalBackground = Color.Black;
+            btnReset.NormalForeColor = Color.White;
+            btnReset.NormalImageTint = Color.Black;
             btnReset.NormalOutline = Color.Black;
             btnReset.OutlineThickness = 1F;
             btnReset.Padding = new Padding(12);
-            btnReset.PressedBackground = Color.WhiteSmoke;
-            btnReset.PressedForeColor = Color.FromArgb(32, 32, 32);
-            btnReset.PressedOutline = Color.FromArgb(64, 128, 128, 128);
+            btnReset.PressedBackground = Color.FromArgb(65, 65, 65);
+            btnReset.PressedForeColor = Color.White;
+            btnReset.PressedImageTint = Color.White;
+            btnReset.PressedOutline = Color.Black;
             btnReset.Rounding = new Padding(20);
-            btnReset.Size = new Size(125, 45);
+            btnReset.Size = new Size(134, 45);
             btnReset.TabIndex = 4;
             btnReset.TextAlignment = StringAlignment.Center;
+            btnReset.TextPadding = 10;
+            btnReset.TextSpacing = 2;
             btnReset.Click += BtnReset_Click;
             // 
             // btnBack
@@ -136,28 +147,52 @@ namespace EstateFlow.Forms
             btnBack.BackColor = Color.White;
             btnBack.CheckButton = false;
             btnBack.Checked = false;
+            btnBack.CheckedBackground = Color.Black;
+            btnBack.CheckedForeColor = Color.White;
+            btnBack.CheckedImageTint = Color.White;
+            btnBack.CheckedOutline = Color.Black;
             btnBack.Content = "Назад";
             btnBack.Cursor = Cursors.Hand;
-            btnBack.Font = new Font("Segoe UI", 10.5F);
-            btnBack.ForeColor = Color.White;
-            btnBack.HoverBackground = Color.FromArgb(40, 40, 40);
-            btnBack.HoverForeColor = Color.White;
+            btnBack.DialogResult = DialogResult.None;
+            btnBack.Font = new Font("Segoe UI", 11.5F);
+            btnBack.ForeColor = Color.Black;
+            btnBack.HoverBackground = Color.FromArgb(242, 242, 242);
+            btnBack.HoverForeColor = Color.Black;
+            btnBack.HoverImageTint = Color.DimGray;
             btnBack.HoverOutline = Color.Black;
-            btnBack.Location = new Point(494, 252);
+            btnBack.Location = new Point(498, 248);
             btnBack.Name = "btnBack";
-            btnBack.NormalBackground = Color.Black;
-            btnBack.NormalForeColor = Color.White;
+            btnBack.NormalBackground = Color.White;
+            btnBack.NormalForeColor = Color.Black;
+            btnBack.NormalImageTint = Color.Black;
             btnBack.NormalOutline = Color.Black;
             btnBack.OutlineThickness = 1F;
             btnBack.Padding = new Padding(12);
-            btnBack.PressedBackground = Color.WhiteSmoke;
-            btnBack.PressedForeColor = Color.FromArgb(32, 32, 32);
-            btnBack.PressedOutline = Color.FromArgb(64, 128, 128, 128);
+            btnBack.PressedBackground = Color.FromArgb(230, 232, 236);
+            btnBack.PressedForeColor = Color.Black;
+            btnBack.PressedImageTint = Color.Black;
+            btnBack.PressedOutline = Color.Black;
             btnBack.Rounding = new Padding(20);
-            btnBack.Size = new Size(125, 45);
+            btnBack.Size = new Size(134, 45);
             btnBack.TabIndex = 5;
             btnBack.TextAlignment = StringAlignment.Center;
+            btnBack.TextPadding = 10;
+            btnBack.TextSpacing = 2;
             btnBack.Click += btnBack_Click;
+            // 
+            // lblError
+            // 
+            lblError.Anchor = AnchorStyles.None;
+            lblError.BackColor = Color.Transparent;
+            lblError.Font = new Font("Segoe UI", 9F);
+            lblError.ForeColor = Color.FromArgb(185, 28, 28);
+            lblError.Location = new Point(292, 304);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(400, 40);
+            lblError.TabIndex = 6;
+            lblError.Text = "";
+            lblError.TextAlign = ContentAlignment.MiddleCenter;
+            lblError.Visible = false;
             // 
             // lblResult
             // 
@@ -166,11 +201,12 @@ namespace EstateFlow.Forms
             lblResult.BorderStyle = BorderStyle.FixedSingle;
             lblResult.Font = new Font("Segoe UI", 9.5F);
             lblResult.ForeColor = Color.Black;
-            lblResult.Location = new Point(320, 310);
+            lblResult.Location = new Point(272, 308);
             lblResult.Name = "lblResult";
-            lblResult.Padding = new Padding(8);
-            lblResult.Size = new Size(335, 90);
-            lblResult.TabIndex = 6;
+            lblResult.Padding = new Padding(12, 8, 12, 8);
+            lblResult.Size = new Size(440, 96);
+            lblResult.TabIndex = 7;
+            lblResult.TextAlign = ContentAlignment.MiddleCenter;
             lblResult.Visible = false;
             // 
             // errorProvider1
@@ -182,6 +218,7 @@ namespace EstateFlow.Forms
             // 
             ClientSize = new Size(984, 461);
             Controls.Add(lblResult);
+            Controls.Add(lblError);
             Controls.Add(btnBack);
             Controls.Add(btnReset);
             Controls.Add(txtSecret);
@@ -189,6 +226,7 @@ namespace EstateFlow.Forms
             Controls.Add(lblSub);
             Controls.Add(picLogo);
             DoubleBuffered = true;
+            KeyPreview = true;
             Name = "ForgotPasswordForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Восстановление пароля";
@@ -205,6 +243,7 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiTextBox txtSecret;
         private HartUI.Controls.cuiButton btnReset;
         private HartUI.Controls.cuiButton btnBack;
+        private Label lblError;
         private Label lblResult;
         private ErrorProvider errorProvider1;
     }

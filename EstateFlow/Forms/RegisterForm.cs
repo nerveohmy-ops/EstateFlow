@@ -1,7 +1,8 @@
-using EstateFlow.Data;
+using System.Text.RegularExpressions;
 using EstateFlow.Helpers;
 using EstateFlow.Models;
 using EstateFlow.Services;
+using HartUI.Controls;
 
 namespace EstateFlow.Forms
 {
@@ -12,8 +13,94 @@ namespace EstateFlow.Forms
         public RegisterForm()
         {
             InitializeComponent();
-            cmbRole.SelectedIndex = 0;
             UiTheme.AttachPhoneMask(txtPhone);
+
+            cuiTextBox[] fields =
+            {
+                txtLastName, txtFirstName, txtMiddleName, txtPhone, txtEmail,
+                txtLogin, txtPassword, txtConfirmPassword, txtSecret
+            };
+
+            foreach (var tb in fields)
+            {
+                errorProvider1.SetIconPadding(tb, 6);
+                tb.ContentChanged += (_, _) =>
+                {
+                    if (!string.IsNullOrEmpty(errorProvider1.GetError(tb)))
+                        errorProvider1.SetError(tb, "");
+                    if (!string.IsNullOrEmpty(lblError.Text))
+                        lblError.Text = "";
+                };
+            }
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            ApplyLocalTheme();
+        }
+
+        protected override void OnThemeChanged()
+        {
+            base.OnThemeChanged();
+            ApplyLocalTheme();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            txtLastName.Focus();
+        }
+
+        private void ApplyLocalTheme()
+        {
+            lblError.ForeColor = UiTheme.IsDark
+                ? Color.FromArgb(255, 118, 118)
+                : Color.FromArgb(185, 28, 28);
+
+            if (UiTheme.IsDark)
+            {
+                btnRegister.PressedBackground = Color.FromArgb(205, 208, 216);
+                btnRegister.PressedForeColor = Color.Black;
+                btnRegister.PressedOutline = Color.White;
+
+                btnBack.PressedBackground = Color.FromArgb(62, 65, 74);
+                btnBack.PressedForeColor = Color.White;
+                btnBack.PressedOutline = Color.FromArgb(180, 180, 185);
+            }
+            else
+            {
+                btnRegister.PressedBackground = Color.FromArgb(65, 65, 65);
+                btnRegister.PressedForeColor = Color.White;
+                btnRegister.PressedOutline = Color.Black;
+
+                btnBack.PressedBackground = Color.FromArgb(230, 232, 236);
+                btnBack.PressedForeColor = Color.Black;
+                btnBack.PressedOutline = Color.Black;
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                btnBack_Click(this, EventArgs.Empty);
+                return true;
+            }
+
+            if (keyData == Keys.Enter)
+            {
+                if (ActiveControl is cuiButton btn)
+                {
+                    btn.PerformClick();
+                    return true;
+                }
+
+                btnRegister_Click(this, EventArgs.Empty);
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -47,14 +134,16 @@ namespace EstateFlow.Forms
 
             string fullName = "";
 
-            // проверка полей
             bool dbOk = UiTheme.Try(() =>
             {
                 string nameErr = Validator.FullNameParts(lastName, firstName, middleName, out fullName);
                 if (nameErr != null)
                 {
                     Control target = string.IsNullOrWhiteSpace(lastName) ? txtLastName :
-                                     string.IsNullOrWhiteSpace(firstName) ? txtFirstName : txtLastName;
+                                     string.IsNullOrWhiteSpace(firstName) ? txtFirstName :
+                                     (!string.IsNullOrWhiteSpace(middleName) &&
+                                      !Regex.IsMatch(middleName, @"^[А-Яа-яЁёA-Za-z\- ]+$")) ? txtMiddleName :
+                                     (!Regex.IsMatch(firstName, @"^[А-Яа-яЁёA-Za-z\- ]+$") ? txtFirstName : txtLastName);
                     AddError(target, nameErr);
                 }
 
@@ -67,17 +156,13 @@ namespace EstateFlow.Forms
                 AddError(txtPassword, Validator.Password(password));
                 AddError(txtConfirmPassword, string.IsNullOrEmpty(confirm) ? "Повторите пароль" : Validator.PasswordRepeat(password, confirm));
                 AddError(txtSecret, Validator.SecretWord(secret));
-
-                if (cmbRole.SelectedIndex == 1 && (txtInvite.Content ?? "").Trim() != AppConfig.Current.AgentInviteCode)
-                {
-                    AddError(txtInvite, "Неверный код сотрудника");
-                }
             });
             if (!dbOk) return;
 
             if (firstField != null)
             {
                 lblError.Text = firstError;
+                firstField.Focus();
                 toolTip1.Show(firstError, firstField, 0, firstField.Height + 4, 3500);
                 return;
             }
@@ -88,24 +173,18 @@ namespace EstateFlow.Forms
                 Login = login,
                 Email = email,
                 Phone = phone,
-                RoleId = cmbRole.SelectedIndex == 1 ? (int)UserRole.Agent : (int)UserRole.Client,
+                RoleId = (int)UserRole.Client,
                 SecretWord = secret
             };
 
-            if (UiTheme.Try(() => UserService.Create(user, password)))
+            if (UiTheme.Try(() => AuthService.Register(user, password)))
             {
                 RegisteredLogin = user.Login;
+                toolTip1.RemoveAll();
                 UiTheme.Info("Регистрация успешно завершена!");
                 DialogResult = DialogResult.OK;
                 Close();
             }
-        }
-
-        private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bool isAgent = cmbRole.SelectedIndex == 1;
-            txtInvite.Visible = isAgent;
-            if (!isAgent) errorProvider1.SetError(txtInvite, "");
         }
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -116,6 +195,7 @@ namespace EstateFlow.Forms
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            toolTip1.RemoveAll();
             DialogResult = DialogResult.Cancel;
             Close();
         }
