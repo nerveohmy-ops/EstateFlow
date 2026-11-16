@@ -37,10 +37,10 @@ namespace EstateFlow.Forms
             // picLogo
             // 
             picLogo.Anchor = AnchorStyles.None;
-            picLogo.BackColor = Color.White;
-            picLogo.Location = new Point(377, 2);
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Location = new Point(382, 6);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(220, 65);
+            picLogo.Size = new Size(220, 60);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 14;
             picLogo.TabStop = false;
@@ -51,9 +51,9 @@ namespace EstateFlow.Forms
             lblUserGreeting.BackColor = Color.White;
             lblUserGreeting.Font = new Font("Segoe UI", 10.5F);
             lblUserGreeting.ForeColor = Color.Black;
-            lblUserGreeting.Location = new Point(232, 70);
+            lblUserGreeting.Location = new Point(232, 68);
             lblUserGreeting.Name = "lblUserGreeting";
-            lblUserGreeting.Size = new Size(504, 22);
+            lblUserGreeting.Size = new Size(520, 24);
             lblUserGreeting.TabIndex = 1;
             lblUserGreeting.Text = "Пользователь (Администратор)";
             lblUserGreeting.TextAlign = ContentAlignment.MiddleCenter;
@@ -65,11 +65,11 @@ namespace EstateFlow.Forms
             lblStats.BorderStyle = BorderStyle.FixedSingle;
             lblStats.Font = new Font("Segoe UI", 9.5F);
             lblStats.ForeColor = Color.Black;
-            lblStats.Location = new Point(232, 92);
+            lblStats.Location = new Point(232, 94);
             lblStats.Name = "lblStats";
             lblStats.Size = new Size(520, 36);
             lblStats.TabIndex = 2;
-            lblStats.Text = "Свободно объектов: 0   |   Сделки в работе: 0   |   Просмотры: 0   |   Продажи: 0 ₽";
+            lblStats.Text = "Свободно объектов: 0  |  Сделки в работе: 0  |  Просмотры: 0  |  Продажи: 0 ₽";
             lblStats.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnProperties

@@ -30,6 +30,8 @@ namespace EstateFlow.Forms
             Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
         }
 
+        private bool themeSubscribed;
+
         private void InitializeThemeToggle()
         {
             if (!ShowThemeToggle) return;
@@ -37,6 +39,7 @@ namespace EstateFlow.Forms
             btnThemeToggle = new cuiButton
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
+                BackColor = Helpers.UiTheme.Background,
                 CheckButton = false,
                 Checked = false,
                 Content = Helpers.UiTheme.IsDark ? "Светлая тема" : "Тёмная тема",
@@ -50,15 +53,16 @@ namespace EstateFlow.Forms
                 Name = "btnThemeToggle",
                 NormalBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(32, 33, 37) : Color.White,
                 NormalForeColor = Helpers.UiTheme.TextMain,
-                NormalOutline = Helpers.UiTheme.Border,
+                NormalOutline = Helpers.UiTheme.TextBoxOutline,
                 OutlineThickness = 1F,
                 Padding = new Padding(6),
-                PressedBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(55, 57, 65) : Color.WhiteSmoke,
+                PressedBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(62, 65, 75) : Color.FromArgb(228, 228, 232),
                 PressedForeColor = Helpers.UiTheme.TextMain,
-                PressedOutline = Helpers.UiTheme.Border,
+                PressedOutline = Helpers.UiTheme.TextBoxOutline,
                 Rounding = new Padding(14),
-                Size = new Size(114, 30),
+                Size = new Size(124, 32),
                 TabIndex = 999,
+                TabStop = false,
                 TextAlignment = StringAlignment.Center
             };
 
@@ -83,14 +87,25 @@ namespace EstateFlow.Forms
             catch { }
         }
 
+        private static bool IsLocationVisible(Point loc, Size size)
+        {
+            var rect = new Rectangle(loc, size);
+            return Screen.AllScreens.Any(s => s.WorkingArea.IntersectsWith(rect));
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             InitializeThemeToggle();
-            Helpers.UiTheme.ThemeChanged += OnThemeChanged;
+            if (!themeSubscribed)
+            {
+                Helpers.UiTheme.ThemeChanged += OnThemeChanged;
+                themeSubscribed = true;
+            }
             Helpers.UiTheme.ApplyTheme(this);
             UpdateThemeButtonState();
 
-            if (sharedLocation.HasValue && sharedWindowState == FormWindowState.Normal)
+            if (sharedLocation.HasValue && sharedWindowState == FormWindowState.Normal &&
+                IsLocationVisible(sharedLocation.Value, Size))
             {
                 StartPosition = FormStartPosition.Manual;
                 Location = sharedLocation.Value;
@@ -113,13 +128,18 @@ namespace EstateFlow.Forms
         private void UpdateThemeButtonState()
         {
             if (btnThemeToggle == null || btnThemeToggle.IsDisposed) return;
+            btnThemeToggle.BackColor = Helpers.UiTheme.Background;
             btnThemeToggle.Content = Helpers.UiTheme.IsDark ? "Светлая тема" : "Тёмная тема";
+            btnThemeToggle.ForeColor = Helpers.UiTheme.TextMain;
             btnThemeToggle.NormalBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(35, 37, 42) : Color.White;
             btnThemeToggle.NormalForeColor = Helpers.UiTheme.TextMain;
-            btnThemeToggle.NormalOutline = Helpers.UiTheme.Border;
+            btnThemeToggle.NormalOutline = Helpers.UiTheme.TextBoxOutline;
             btnThemeToggle.HoverBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(50, 52, 60) : Color.FromArgb(240, 240, 240);
             btnThemeToggle.HoverForeColor = Helpers.UiTheme.TextMain;
             btnThemeToggle.HoverOutline = Helpers.UiTheme.TextMain;
+            btnThemeToggle.PressedBackground = Helpers.UiTheme.IsDark ? Color.FromArgb(62, 65, 75) : Color.FromArgb(228, 228, 232);
+            btnThemeToggle.PressedForeColor = Helpers.UiTheme.TextMain;
+            btnThemeToggle.PressedOutline = Helpers.UiTheme.TextBoxOutline;
             btnThemeToggle.BringToFront();
             btnThemeToggle.Invalidate();
         }
@@ -135,7 +155,6 @@ namespace EstateFlow.Forms
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-            btnThemeToggle?.BringToFront();
             Invalidate();
 
             if (IsHandleCreated && Visible && WindowState != FormWindowState.Minimized)
@@ -159,11 +178,35 @@ namespace EstateFlow.Forms
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            Helpers.UiTheme.ThemeChanged -= OnThemeChanged;
             SyncOwners();
             if (Owner is BaseForm ownerForm)
-                ownerForm.Refresh();
+                ownerForm.Invalidate(false);
             base.OnFormClosing(e);
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            if (themeSubscribed)
+            {
+                Helpers.UiTheme.ThemeChanged -= OnThemeChanged;
+                themeSubscribed = false;
+            }
+            base.OnFormClosed(e);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && themeSubscribed)
+            {
+                Helpers.UiTheme.ThemeChanged -= OnThemeChanged;
+                themeSubscribed = false;
+            }
+            base.Dispose(disposing);
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            // Фон целиком закрашивается в двойном буфере внутри OnPaint
         }
 
         private void SyncOwners()

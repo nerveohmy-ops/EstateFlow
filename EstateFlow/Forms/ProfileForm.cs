@@ -12,12 +12,25 @@ namespace EstateFlow.Forms
         public ProfileForm()
         {
             InitializeComponent();
+            UiTheme.SetTextBoxReadOnly(txtLogin, true);
             UiTheme.AttachPhoneMask(txtPhone);
+            KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Escape) btnClose_Click(this, EventArgs.Empty);
+            };
             if (Session.CurrentUser != null)
             {
                 lblTitle.Text = $"Личный кабинет ({Session.CurrentUser.RoleName})";
                 LoadData();
             }
+        }
+
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            bool hide = !chkShowPassword.Checked;
+            txtOldPassword.PasswordChar = hide;
+            txtNewPassword.PasswordChar = hide;
+            txtRepeatPassword.PasswordChar = hide;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

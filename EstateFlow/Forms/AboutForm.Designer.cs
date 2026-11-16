@@ -40,6 +40,7 @@ namespace EstateFlow.Forms
             lblSub.Anchor = AnchorStyles.None;
             lblSub.BackColor = Color.Transparent;
             lblSub.Font = new Font("Segoe UI", 11F);
+            lblSub.ForeColor = Color.DimGray;
             lblSub.Location = new Point(350, 70);
             lblSub.Name = "lblSub";
             lblSub.Size = new Size(284, 22);
@@ -58,8 +59,10 @@ namespace EstateFlow.Forms
             txtDetails.Multiline = true;
             txtDetails.Name = "txtDetails";
             txtDetails.ReadOnly = true;
+            txtDetails.ScrollBars = ScrollBars.Vertical;
             txtDetails.Size = new Size(552, 250);
             txtDetails.TabIndex = 2;
+            txtDetails.TabStop = false;
             txtDetails.Text = "Информационная система агентства недвижимости EstateFlow (г. Благовещенск, Амурская область)\r\n\r\n" +
                 "Назначение программы:\r\n" +
                 "Автоматизация учёта объектов недвижимости, риэлторских сделок купли-продажи, заявок клиентов на просмотр и формирования отчётности.\r\n\r\n" +
@@ -108,6 +111,7 @@ namespace EstateFlow.Forms
             Controls.Add(lblSub);
             Controls.Add(picLogo);
             DoubleBuffered = true;
+            KeyPreview = true;
             Name = "AboutForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "О программе — EstateFlow";

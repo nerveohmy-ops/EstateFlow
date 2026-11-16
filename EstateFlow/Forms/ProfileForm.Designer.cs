@@ -30,6 +30,7 @@ namespace EstateFlow.Forms
             txtOldPassword = new HartUI.Controls.cuiTextBox();
             txtNewPassword = new HartUI.Controls.cuiTextBox();
             txtRepeatPassword = new HartUI.Controls.cuiTextBox();
+            chkShowPassword = new HartUI.Controls.cuiCheckbox();
             btnChangePassword = new HartUI.Controls.cuiButton();
             btnClose = new HartUI.Controls.cuiButton();
             SuspendLayout();
@@ -39,10 +40,11 @@ namespace EstateFlow.Forms
             lblTitle.Anchor = AnchorStyles.None;
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.White;
-            lblTitle.Font = new Font("Microsoft Sans Serif", 18F);
-            lblTitle.Location = new Point(216, 16);
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.Black;
+            lblTitle.Location = new Point(216, 14);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(198, 29);
+            lblTitle.Size = new Size(185, 30);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Личный кабинет";
             // 
@@ -124,7 +126,6 @@ namespace EstateFlow.Forms
             txtLogin.BackColor = Color.White;
             txtLogin.BackgroundColor = Color.FromArgb(245, 246, 248);
             txtLogin.Content = "";
-            txtLogin.Enabled = false;
             txtLogin.FocusBackgroundColor = Color.White;
             txtLogin.FocusImageTint = Color.White;
             txtLogin.FocusOutlineColor = Color.Black;
@@ -141,6 +142,7 @@ namespace EstateFlow.Forms
             txtLogin.Rounding = new Padding(12);
             txtLogin.Size = new Size(176, 44);
             txtLogin.TabIndex = 4;
+            txtLogin.TabStop = false;
             txtLogin.UnderlinedStyle = false;
             // 
             // txtEmail
@@ -249,8 +251,9 @@ namespace EstateFlow.Forms
             lblPassHeader.Anchor = AnchorStyles.None;
             lblPassHeader.AutoSize = true;
             lblPassHeader.BackColor = Color.White;
-            lblPassHeader.Font = new Font("Segoe UI", 10.5F);
-            lblPassHeader.Location = new Point(216, 228);
+            lblPassHeader.Font = new Font("Segoe UI Semibold", 10.5F, FontStyle.Bold);
+            lblPassHeader.ForeColor = Color.Black;
+            lblPassHeader.Location = new Point(216, 226);
             lblPassHeader.Name = "lblPassHeader";
             lblPassHeader.Size = new Size(109, 19);
             lblPassHeader.TabIndex = 9;
@@ -328,6 +331,30 @@ namespace EstateFlow.Forms
             txtRepeatPassword.TabIndex = 12;
             txtRepeatPassword.UnderlinedStyle = false;
             // 
+            // chkShowPassword
+            // 
+            chkShowPassword.Anchor = AnchorStyles.None;
+            chkShowPassword.BackColor = Color.White;
+            chkShowPassword.Checked = false;
+            chkShowPassword.CheckedForeground = Color.Black;
+            chkShowPassword.CheckedOutlineColor = Color.Black;
+            chkShowPassword.CheckedSymbolColor = Color.White;
+            chkShowPassword.Content = "Показать пароли";
+            chkShowPassword.Cursor = Cursors.Hand;
+            chkShowPassword.Font = new Font("Segoe UI", 9.5F);
+            chkShowPassword.Location = new Point(216, 307);
+            chkShowPassword.MinimumSize = new Size(16, 16);
+            chkShowPassword.Name = "chkShowPassword";
+            chkShowPassword.OutlineThickness = 1F;
+            chkShowPassword.Rounding = 4;
+            chkShowPassword.ShowSymbols = true;
+            chkShowPassword.Size = new Size(160, 20);
+            chkShowPassword.TabIndex = 13;
+            chkShowPassword.UncheckedForeground = Color.Empty;
+            chkShowPassword.UncheckedOutlineColor = Color.Gray;
+            chkShowPassword.UncheckedSymbolColor = Color.Empty;
+            chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
+            // 
             // btnChangePassword
             // 
             btnChangePassword.Anchor = AnchorStyles.None;
@@ -341,7 +368,7 @@ namespace EstateFlow.Forms
             btnChangePassword.HoverBackground = Color.FromArgb(40, 40, 40);
             btnChangePassword.HoverForeColor = Color.White;
             btnChangePassword.HoverOutline = Color.Black;
-            btnChangePassword.Location = new Point(216, 325);
+            btnChangePassword.Location = new Point(216, 336);
             btnChangePassword.Name = "btnChangePassword";
             btnChangePassword.NormalBackground = Color.Black;
             btnChangePassword.NormalForeColor = Color.White;
@@ -353,7 +380,7 @@ namespace EstateFlow.Forms
             btnChangePassword.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnChangePassword.Rounding = new Padding(20);
             btnChangePassword.Size = new Size(266, 45);
-            btnChangePassword.TabIndex = 13;
+            btnChangePassword.TabIndex = 14;
             btnChangePassword.TextAlignment = StringAlignment.Center;
             btnChangePassword.Click += BtnChangePassword_Click;
             // 
@@ -370,7 +397,7 @@ namespace EstateFlow.Forms
             btnClose.HoverBackground = Color.White;
             btnClose.HoverForeColor = Color.DimGray;
             btnClose.HoverOutline = Color.Black;
-            btnClose.Location = new Point(502, 325);
+            btnClose.Location = new Point(502, 336);
             btnClose.Name = "btnClose";
             btnClose.NormalBackground = Color.White;
             btnClose.NormalForeColor = Color.Black;
@@ -382,7 +409,7 @@ namespace EstateFlow.Forms
             btnClose.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnClose.Rounding = new Padding(20);
             btnClose.Size = new Size(266, 45);
-            btnClose.TabIndex = 14;
+            btnClose.TabIndex = 15;
             btnClose.TextAlignment = StringAlignment.Center;
             btnClose.Click += btnClose_Click;
             // 
@@ -391,6 +418,7 @@ namespace EstateFlow.Forms
             ClientSize = new Size(984, 461);
             Controls.Add(btnClose);
             Controls.Add(btnChangePassword);
+            Controls.Add(chkShowPassword);
             Controls.Add(txtRepeatPassword);
             Controls.Add(txtNewPassword);
             Controls.Add(txtOldPassword);
@@ -405,6 +433,7 @@ namespace EstateFlow.Forms
             Controls.Add(txtLastName);
             Controls.Add(lblTitle);
             DoubleBuffered = true;
+            KeyPreview = true;
             Name = "ProfileForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Личный кабинет — EstateFlow";
@@ -427,6 +456,7 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiTextBox txtOldPassword;
         private HartUI.Controls.cuiTextBox txtNewPassword;
         private HartUI.Controls.cuiTextBox txtRepeatPassword;
+        private HartUI.Controls.cuiCheckbox chkShowPassword;
         private HartUI.Controls.cuiButton btnChangePassword;
         private HartUI.Controls.cuiButton btnClose;
     }

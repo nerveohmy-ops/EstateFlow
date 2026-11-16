@@ -29,6 +29,7 @@ namespace EstateFlow.Forms
             lblHeader.AutoSize = true;
             lblHeader.BackColor = Color.White;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.Black;
             lblHeader.Location = new Point(102, 16);
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(286, 30);
@@ -112,6 +113,7 @@ namespace EstateFlow.Forms
             Controls.Add(lstTopics);
             Controls.Add(lblHeader);
             DoubleBuffered = true;
+            KeyPreview = true;
             Name = "HelpForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Руководство пользователя — EstateFlow";

@@ -188,9 +188,10 @@ namespace EstateFlow.Helpers
         public static string PositiveDecimal(string value, string fieldName, out decimal result)
         {
             result = 0;
-            string normalized = (value ?? "").Replace(" ", "").Replace("\u00A0", "").Replace('.', ',');
-            if (!decimal.TryParse(normalized, System.Globalization.NumberStyles.Number,
-                    System.Globalization.CultureInfo.GetCultureInfo("ru-RU"), out result))
+            string normalized = (value ?? "").Trim().Replace(" ", "").Replace("\u00A0", "").Replace(',', '.');
+            if (!decimal.TryParse(normalized,
+                    System.Globalization.NumberStyles.AllowLeadingSign | System.Globalization.NumberStyles.AllowDecimalPoint,
+                    System.Globalization.CultureInfo.InvariantCulture, out result))
                 return $"Поле «{fieldName}» должно быть числом";
             if (result <= 0) return $"Поле «{fieldName}» должно быть больше нуля";
             return null;
