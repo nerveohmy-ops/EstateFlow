@@ -29,7 +29,6 @@ namespace EstateFlow.Forms
             btnReports = new HartUI.Controls.cuiButton();
             btnGuide = new HartUI.Controls.cuiButton();
             btnAbout = new HartUI.Controls.cuiButton();
-            btnLogout = new HartUI.Controls.cuiButton();
             btnExit = new HartUI.Controls.cuiButton();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
@@ -441,47 +440,6 @@ namespace EstateFlow.Forms
             btnAbout.TextSpacing = 2;
             btnAbout.Click += btnAbout_Click;
             // 
-            // btnLogout
-            // 
-            btnLogout.Anchor = AnchorStyles.None;
-            btnLogout.BackColor = Color.White;
-            btnLogout.CheckButton = false;
-            btnLogout.Checked = false;
-            btnLogout.CheckedBackground = Color.FromArgb(61, 24, 226);
-            btnLogout.CheckedForeColor = Color.White;
-            btnLogout.CheckedImageTint = Color.White;
-            btnLogout.CheckedOutline = Color.FromArgb(61, 24, 226);
-            btnLogout.Content = "Сменить аккаунт";
-            btnLogout.Cursor = Cursors.Hand;
-            btnLogout.DialogResult = DialogResult.None;
-            btnLogout.Font = new Font("Segoe UI", 10.5F);
-            btnLogout.ForeColor = Color.Black;
-            btnLogout.HoverBackground = Color.White;
-            btnLogout.HoverForeColor = Color.DimGray;
-            btnLogout.HoverImageTint = Color.DimGray;
-            btnLogout.HoverOutline = Color.Black;
-            btnLogout.Image = null;
-            btnLogout.ImageExpand = new Point(0, 0);
-            btnLogout.Location = new Point(409, 360);
-            btnLogout.Name = "btnLogout";
-            btnLogout.NormalBackground = Color.White;
-            btnLogout.NormalForeColor = Color.Black;
-            btnLogout.NormalImageTint = Color.Black;
-            btnLogout.NormalOutline = Color.Black;
-            btnLogout.OutlineThickness = 1F;
-            btnLogout.Padding = new Padding(12);
-            btnLogout.PressedBackground = Color.WhiteSmoke;
-            btnLogout.PressedForeColor = Color.FromArgb(32, 32, 32);
-            btnLogout.PressedImageTint = Color.FromArgb(32, 32, 32);
-            btnLogout.PressedOutline = Color.FromArgb(64, 128, 128, 128);
-            btnLogout.Rounding = new Padding(20);
-            btnLogout.Size = new Size(165, 42);
-            btnLogout.TabIndex = 12;
-            btnLogout.TextAlignment = StringAlignment.Center;
-            btnLogout.TextPadding = 12;
-            btnLogout.TextSpacing = 2;
-            btnLogout.Click += btnLogout_Click;
-            // 
             // btnExit
             // 
             btnExit.Anchor = AnchorStyles.None;
@@ -527,7 +485,6 @@ namespace EstateFlow.Forms
             // 
             ClientSize = new Size(984, 461);
             Controls.Add(btnExit);
-            Controls.Add(btnLogout);
             Controls.Add(btnAbout);
             Controls.Add(btnGuide);
             Controls.Add(btnReports);
@@ -540,8 +497,10 @@ namespace EstateFlow.Forms
             Controls.Add(lblStats);
             Controls.Add(lblUserGreeting);
             Controls.Add(picLogo);
+            ForeColor = Color.Black;
             KeyPreview = true;
             Name = "MainForm";
+            StartPosition = FormStartPosition.Manual;
             Text = "Главная — EstateFlow";
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);
@@ -561,7 +520,6 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiButton btnReports;
         private HartUI.Controls.cuiButton btnGuide;
         private HartUI.Controls.cuiButton btnAbout;
-        private HartUI.Controls.cuiButton btnLogout;
         private HartUI.Controls.cuiButton btnExit;
     }
 }

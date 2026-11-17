@@ -36,8 +36,6 @@ namespace EstateFlow.Forms
                 btnGuide.Location = new Point(232, 252);
                 btnAbout.Size = new Size(250, 45);
                 btnAbout.Location = new Point(502, 252);
-                btnLogout.Size = new Size(250, 45);
-                btnLogout.Location = new Point(232, 306);
                 btnExit.Size = new Size(250, 45);
                 btnExit.Location = new Point(502, 306);
             }
@@ -48,7 +46,6 @@ namespace EstateFlow.Forms
                 btnReports.Location = new Point(232, 252);
                 btnGuide.Location = new Point(502, 252);
                 btnAbout.Location = new Point(232, 306);
-                btnLogout.Location = new Point(409, 306);
                 btnExit.Location = new Point(587, 306);
             }
         }
