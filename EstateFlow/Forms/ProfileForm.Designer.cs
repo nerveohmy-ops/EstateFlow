@@ -24,7 +24,6 @@ namespace EstateFlow.Forms
             txtLogin = new HartUI.Controls.cuiTextBox();
             txtEmail = new HartUI.Controls.cuiTextBox();
             txtPhone = new HartUI.Controls.cuiTextBox();
-            txtSecret = new HartUI.Controls.cuiTextBox();
             btnSaveProfile = new HartUI.Controls.cuiButton();
             lblPassHeader = new Label();
             txtOldPassword = new HartUI.Controls.cuiTextBox();
@@ -193,30 +192,6 @@ namespace EstateFlow.Forms
             txtPhone.TabIndex = 6;
             txtPhone.UnderlinedStyle = false;
             // 
-            // txtSecret
-            // 
-            txtSecret.Anchor = AnchorStyles.None;
-            txtSecret.BackColor = Color.White;
-            txtSecret.BackgroundColor = Color.FromArgb(245, 246, 248);
-            txtSecret.Content = "";
-            txtSecret.FocusBackgroundColor = Color.White;
-            txtSecret.FocusImageTint = Color.White;
-            txtSecret.FocusOutlineColor = Color.Black;
-            txtSecret.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSecret.ForeColor = Color.Black;
-            txtSecret.Location = new Point(216, 166);
-            txtSecret.Name = "txtSecret";
-            txtSecret.NormalImageTint = Color.White;
-            txtSecret.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtSecret.Padding = new Padding(14, 12, 14, 0);
-            txtSecret.PasswordChar = false;
-            txtSecret.PlaceholderColor = Color.FromArgb(115, 115, 115);
-            txtSecret.PlaceholderText = "Секретное слово";
-            txtSecret.Rounding = new Padding(12);
-            txtSecret.Size = new Size(266, 44);
-            txtSecret.TabIndex = 7;
-            txtSecret.UnderlinedStyle = false;
-            // 
             // btnSaveProfile
             // 
             btnSaveProfile.Anchor = AnchorStyles.None;
@@ -230,7 +205,7 @@ namespace EstateFlow.Forms
             btnSaveProfile.HoverBackground = Color.FromArgb(40, 40, 40);
             btnSaveProfile.HoverForeColor = Color.White;
             btnSaveProfile.HoverOutline = Color.Black;
-            btnSaveProfile.Location = new Point(502, 166);
+            btnSaveProfile.Location = new Point(216, 166);
             btnSaveProfile.Name = "btnSaveProfile";
             btnSaveProfile.NormalBackground = Color.Black;
             btnSaveProfile.NormalForeColor = Color.White;
@@ -241,7 +216,7 @@ namespace EstateFlow.Forms
             btnSaveProfile.PressedForeColor = Color.FromArgb(32, 32, 32);
             btnSaveProfile.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnSaveProfile.Rounding = new Padding(20);
-            btnSaveProfile.Size = new Size(266, 44);
+            btnSaveProfile.Size = new Size(552, 44);
             btnSaveProfile.TabIndex = 8;
             btnSaveProfile.TextAlignment = StringAlignment.Center;
             btnSaveProfile.Click += BtnSaveProfile_Click;
@@ -424,7 +399,6 @@ namespace EstateFlow.Forms
             Controls.Add(txtOldPassword);
             Controls.Add(lblPassHeader);
             Controls.Add(btnSaveProfile);
-            Controls.Add(txtSecret);
             Controls.Add(txtPhone);
             Controls.Add(txtEmail);
             Controls.Add(txtLogin);
@@ -450,7 +424,6 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiTextBox txtLogin;
         private HartUI.Controls.cuiTextBox txtEmail;
         private HartUI.Controls.cuiTextBox txtPhone;
-        private HartUI.Controls.cuiTextBox txtSecret;
         private HartUI.Controls.cuiButton btnSaveProfile;
         private Label lblPassHeader;
         private HartUI.Controls.cuiTextBox txtOldPassword;

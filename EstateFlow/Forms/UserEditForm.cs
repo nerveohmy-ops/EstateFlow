@@ -70,7 +70,6 @@ namespace EstateFlow.Forms
                         txtEmail.Content = u.Email ?? "";
                         txtPhone.Content = u.Phone ?? "";
                         UiTheme.SelectById(cmbRole, u.RoleId);
-                        txtSecret.Content = u.SecretWord ?? "";
                     }
                 }
                 else
@@ -88,7 +87,6 @@ namespace EstateFlow.Forms
             string login = (txtLogin.Content ?? "").Trim();
             string email = (txtEmail.Content ?? "").Trim();
             string phone = (txtPhone.Content ?? "").Trim();
-            string secret = (txtSecret.Content ?? "").Trim();
             string pass = txtPassword.Content ?? "";
 
             string nameErr = Validator.FullNameParts(lastName, firstName, middleName, out string fullName);
@@ -136,17 +134,6 @@ namespace EstateFlow.Forms
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(secret))
-            {
-                string secretErr = Validator.SecretWord(secret);
-                if (secretErr != null)
-                {
-                    UiTheme.Warning(secretErr);
-                    txtSecret.Focus();
-                    return;
-                }
-            }
-
             if (userId == 0)
             {
                 string passErr = Validator.Password(pass);
@@ -158,8 +145,7 @@ namespace EstateFlow.Forms
                     Login = login,
                     Email = email,
                     Phone = phone,
-                    RoleId = roleItem.Id,
-                    SecretWord = secret
+                    RoleId = roleItem.Id
                 };
 
                 if (UiTheme.Try(() => UserService.Create(user, pass)))
@@ -178,8 +164,7 @@ namespace EstateFlow.Forms
                     Login = login,
                     Email = email,
                     Phone = phone,
-                    RoleId = roleItem.Id,
-                    SecretWord = secret
+                    RoleId = roleItem.Id
                 };
 
                 if (UiTheme.Try(() =>

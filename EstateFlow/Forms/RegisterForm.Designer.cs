@@ -26,7 +26,6 @@ namespace EstateFlow.Forms
             txtLogin = new HartUI.Controls.cuiTextBox();
             txtPassword = new HartUI.Controls.cuiTextBox();
             txtConfirmPassword = new HartUI.Controls.cuiTextBox();
-            txtSecret = new HartUI.Controls.cuiTextBox();
             btnRegister = new HartUI.Controls.cuiButton();
             btnBack = new HartUI.Controls.cuiButton();
             chkShowPassword = new HartUI.Controls.cuiCheckbox();
@@ -240,30 +239,6 @@ namespace EstateFlow.Forms
             txtConfirmPassword.TabIndex = 8;
             txtConfirmPassword.UnderlinedStyle = false;
             // 
-            // txtSecret
-            // 
-            txtSecret.Anchor = AnchorStyles.None;
-            txtSecret.BackColor = Color.White;
-            txtSecret.FocusBackgroundColor = Color.White;
-            txtSecret.BackgroundColor = Color.FromArgb(245, 246, 248);
-            txtSecret.Content = "";
-            txtSecret.FocusImageTint = Color.White;
-            txtSecret.FocusOutlineColor = Color.Black;
-            txtSecret.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSecret.ForeColor = Color.Black;
-            txtSecret.Location = new Point(510, 242);
-            txtSecret.Name = "txtSecret";
-            txtSecret.NormalImageTint = Color.White;
-            txtSecret.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtSecret.Padding = new Padding(14, 12, 14, 0);
-            txtSecret.PasswordChar = false;
-            txtSecret.PlaceholderColor = Color.FromArgb(115, 115, 115);
-            txtSecret.PlaceholderText = "Секретное слово";
-            txtSecret.Rounding = new Padding(12);
-            txtSecret.Size = new Size(260, 42);
-            txtSecret.TabIndex = 9;
-            txtSecret.UnderlinedStyle = false;
-            // 
             // chkShowPassword
             // 
             chkShowPassword.Anchor = AnchorStyles.None;
@@ -275,7 +250,7 @@ namespace EstateFlow.Forms
             chkShowPassword.Content = "Показать пароль";
             chkShowPassword.Cursor = Cursors.Hand;
             chkShowPassword.Font = new Font("Segoe UI", 9.5F);
-            chkShowPassword.Location = new Point(512, 304);
+            chkShowPassword.Location = new Point(512, 248);
             chkShowPassword.MinimumSize = new Size(16, 16);
             chkShowPassword.Name = "chkShowPassword";
             chkShowPassword.OutlineThickness = 1F;
@@ -398,7 +373,6 @@ namespace EstateFlow.Forms
             Controls.Add(chkShowPassword);
             Controls.Add(btnBack);
             Controls.Add(btnRegister);
-            Controls.Add(txtSecret);
             Controls.Add(txtConfirmPassword);
             Controls.Add(txtPassword);
             Controls.Add(txtLogin);
@@ -427,7 +401,6 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiTextBox txtPhone;
         private HartUI.Controls.cuiTextBox txtPassword;
         private HartUI.Controls.cuiTextBox txtConfirmPassword;
-        private HartUI.Controls.cuiTextBox txtSecret;
         private HartUI.Controls.cuiButton btnRegister;
         private HartUI.Controls.cuiButton btnBack;
         private HartUI.Controls.cuiCheckbox chkShowPassword;

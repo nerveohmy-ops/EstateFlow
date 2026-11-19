@@ -9,7 +9,7 @@ namespace EstateFlow.Services
     {
         private const string SelectUser =
             @"SELECT u.Id, u.Login, u.Password, u.Email, u.Phone, u.FullName, u.RoleId, r.Name AS RoleName,
-                     u.CreatedAt, u.SecretWord
+                     u.CreatedAt
               FROM Users u JOIN Roles r ON r.Id = u.RoleId ";
 
         private static User Map(DataRow r) => new User
@@ -22,8 +22,7 @@ namespace EstateFlow.Services
             FullName = r["FullName"].ToString(),
             RoleId = (int)r["RoleId"],
             RoleName = r["RoleName"].ToString(),
-            CreatedAt = r["CreatedAt"] as DateTime?,
-            SecretWord = r["SecretWord"] as string
+            CreatedAt = r["CreatedAt"] as DateTime?
         };
 
         public static User GetById(int id)
@@ -39,6 +38,13 @@ namespace EstateFlow.Services
             return t.Rows.Count == 0 ? null : Map(t.Rows[0]);
         }
 
+        public static User FindByEmail(string email)
+        {
+            var t = Database.GetTable(SelectUser + "WHERE LOWER(u.Email) = LOWER(@e)",
+                Database.P("@e", (email ?? "").Trim()));
+            return t.Rows.Count == 0 ? null : Map(t.Rows[0]);
+        }
+
         public static bool LoginExists(string login, int excludeId = 0) => Exists("Login", login, excludeId);
         public static bool EmailExists(string email, int excludeId = 0) => Exists("Email", email, excludeId);
         public static bool PhoneExists(string phone, int excludeId = 0) => Exists("Phone", phone, excludeId);
@@ -50,30 +56,28 @@ namespace EstateFlow.Services
         public static int Create(User user, string password)
         {
             return Convert.ToInt32(Database.Scalar(
-                @"INSERT INTO Users (Login, Password, Email, Phone, FullName, RoleId, CreatedAt, SecretWord)
-                  VALUES (@login, @pass, @email, @phone, @name, @role, GETDATE(), @secret);
+                @"INSERT INTO Users (Login, Password, Email, Phone, FullName, RoleId, CreatedAt)
+                  VALUES (@login, @pass, @email, @phone, @name, @role, GETDATE());
                   SELECT CAST(SCOPE_IDENTITY() AS INT);",
                 Database.P("@login", user.Login.Trim()),
                 Database.P("@pass", PasswordHasher.Hash(password)),
                 Database.P("@email", user.Email.Trim()),
                 Database.P("@phone", user.Phone),
                 Database.P("@name", user.FullName.Trim()),
-                Database.P("@role", user.RoleId),
-                Database.P("@secret", user.SecretWord?.Trim().ToLower())));
+                Database.P("@role", user.RoleId)));
         }
 
         public static void Update(User user)
         {
             Database.Execute(
                 @"UPDATE Users SET Login = @login, Email = @email, Phone = @phone, FullName = @name,
-                         RoleId = @role, SecretWord = @secret
+                         RoleId = @role
                   WHERE Id = @id",
                 Database.P("@login", user.Login.Trim()),
                 Database.P("@email", user.Email.Trim()),
                 Database.P("@phone", user.Phone),
                 Database.P("@name", user.FullName.Trim()),
                 Database.P("@role", user.RoleId),
-                Database.P("@secret", user.SecretWord?.Trim().ToLower()),
                 Database.P("@id", user.Id));
         }
 

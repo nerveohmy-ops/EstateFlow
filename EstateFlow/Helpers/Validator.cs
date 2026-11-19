@@ -59,13 +59,6 @@ namespace EstateFlow.Helpers
         public static string PasswordRepeat(string password, string repeat) =>
             password != repeat ? "Пароли не совпадают" : null;
 
-        public static string SecretWord(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value)) return "Введите секретное слово";
-            if (value.Trim().Length < 3) return "Секретное слово — минимум 3 символа";
-            return null;
-        }
-
         public static string FullNameParts(string lastName, string firstName, string middleName, out string fullName)
         {
             fullName = "";

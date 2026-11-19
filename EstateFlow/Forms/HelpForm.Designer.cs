@@ -44,18 +44,6 @@ namespace EstateFlow.Forms
             lstTopics.Font = new Font("Segoe UI", 9.5F);
             lstTopics.ForeColor = Color.Black;
             lstTopics.ItemHeight = 17;
-            lstTopics.Items.AddRange(new object[]
-            {
-                "1. Назначение программы",
-                "2. Вход и регистрация",
-                "3. Восстановление пароля",
-                "4. Роли пользователей",
-                "5. Объекты недвижимости",
-                "6. Учёт сделок",
-                "7. Заявки на просмотр",
-                "8. Личный кабинет",
-                "9. Отчёты и выгрузка"
-            });
             lstTopics.Location = new Point(102, 56);
             lstTopics.Name = "lstTopics";
             lstTopics.Size = new Size(235, 334);

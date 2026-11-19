@@ -18,7 +18,7 @@ namespace EstateFlow.Forms
             cuiTextBox[] fields =
             {
                 txtLastName, txtFirstName, txtMiddleName, txtPhone, txtEmail,
-                txtLogin, txtPassword, txtConfirmPassword, txtSecret
+                txtLogin, txtPassword, txtConfirmPassword
             };
 
             foreach (var tb in fields)
@@ -116,7 +116,6 @@ namespace EstateFlow.Forms
             string phone = (txtPhone.Content ?? "").Trim();
             string password = txtPassword.Content ?? "";
             string confirm = txtConfirmPassword.Content ?? "";
-            string secret = (txtSecret.Content ?? "").Trim();
 
             Control firstField = null;
             string firstError = null;
@@ -155,7 +154,6 @@ namespace EstateFlow.Forms
                     (UserService.PhoneExists(phone) ? "Такой телефон уже зарегистрирован" : null));
                 AddError(txtPassword, Validator.Password(password));
                 AddError(txtConfirmPassword, string.IsNullOrEmpty(confirm) ? "Повторите пароль" : Validator.PasswordRepeat(password, confirm));
-                AddError(txtSecret, Validator.SecretWord(secret));
             });
             if (!dbOk) return;
 
@@ -173,8 +171,7 @@ namespace EstateFlow.Forms
                 Login = login,
                 Email = email,
                 Phone = phone,
-                RoleId = (int)UserRole.Client,
-                SecretWord = secret
+                RoleId = (int)UserRole.Client
             };
 
             if (UiTheme.Try(() => AuthService.Register(user, password)))

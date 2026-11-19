@@ -18,7 +18,6 @@ namespace EstateFlow.Models
         public int RoleId { get; set; }
         public string RoleName { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public string SecretWord { get; set; }
 
         public UserRole Role => (UserRole)RoleId;
         public bool IsAdmin => Role == UserRole.Admin;

@@ -49,7 +49,6 @@ namespace EstateFlow.Forms
             txtLogin.Content = u.Login;
             txtEmail.Content = u.Email;
             txtPhone.Content = u.Phone;
-            txtSecret.Content = u.SecretWord;
         }
 
         private void BtnSaveProfile_Click(object sender, EventArgs e)
@@ -59,7 +58,6 @@ namespace EstateFlow.Forms
             string middleName = (txtMiddleName.Content ?? "").Trim();
             string email = (txtEmail.Content ?? "").Trim();
             string phone = (txtPhone.Content ?? "").Trim();
-            string secret = (txtSecret.Content ?? "").Trim();
 
             string nameErr = Validator.FullNameParts(lastName, firstName, middleName, out string fullName);
             if (nameErr != null)
@@ -89,9 +87,6 @@ namespace EstateFlow.Forms
                 return;
             }
 
-            string secretErr = Validator.SecretWord(secret);
-            if (secretErr != null) { UiTheme.Warning(secretErr); txtSecret.Focus(); return; }
-
             var updated = new User
             {
                 Id = Session.CurrentUser.Id,
@@ -100,8 +95,7 @@ namespace EstateFlow.Forms
                 RoleName = Session.CurrentUser.RoleName,
                 FullName = fullName,
                 Email = email,
-                Phone = phone,
-                SecretWord = secret
+                Phone = phone
             };
 
             if (UiTheme.Try(() => UserService.Update(updated)))
@@ -109,7 +103,6 @@ namespace EstateFlow.Forms
                 Session.CurrentUser.FullName = updated.FullName;
                 Session.CurrentUser.Email = updated.Email;
                 Session.CurrentUser.Phone = updated.Phone;
-                Session.CurrentUser.SecretWord = updated.SecretWord;
                 UiTheme.Info("Данные профиля обновлены.");
             }
         }

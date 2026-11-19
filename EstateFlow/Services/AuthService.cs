@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using EstateFlow.Helpers;
 using EstateFlow.Models;
 
@@ -38,7 +39,6 @@ namespace EstateFlow.Services
             string login = (user.Login ?? "").Trim();
             string email = (user.Email ?? "").Trim();
             string phone = (user.Phone ?? "").Trim();
-            string secretWord = (user.SecretWord ?? "").Trim();
 
             string nameErr = Validator.FullName(fullName);
             if (nameErr != null) throw new InvalidOperationException(nameErr);
@@ -55,9 +55,6 @@ namespace EstateFlow.Services
             string passErr = Validator.Password(password);
             if (passErr != null) throw new InvalidOperationException(passErr);
 
-            string secretErr = Validator.SecretWord(secretWord);
-            if (secretErr != null) throw new InvalidOperationException(secretErr);
-
             if (UserService.LoginExists(login))
                 throw new InvalidOperationException("Такой логин уже занят.");
             if (UserService.EmailExists(email))
@@ -71,40 +68,42 @@ namespace EstateFlow.Services
                 Login = login,
                 Email = email,
                 Phone = phone,
-                RoleId = (int)UserRole.Client,
-                SecretWord = secretWord
+                RoleId = (int)UserRole.Client
             };
 
             return UserService.Create(clientUser, password);
         }
 
-        public static string ResetPassword(string identity, string secretWord, out string newPassword,
-            out bool emailSent, out string email)
+        public static string SendRecoveryCode(string emailInput, out string code, out bool emailSent, out User matchedUser)
         {
-            newPassword = null;
+            code = null;
             emailSent = false;
-            email = null;
+            matchedUser = null;
 
-            if (string.IsNullOrWhiteSpace(identity))
-                return "Введите логин, email или телефон.";
-            if (string.IsNullOrWhiteSpace(secretWord))
-                return "Введите секретное слово.";
+            string email = (emailInput ?? "").Trim();
+            string emailErr = Validator.Email(email);
+            if (emailErr != null)
+                return emailErr;
 
-            var user = UserService.FindByIdentity(identity);
-            if (user == null)
-                return "Пользователь не найден.";
+            matchedUser = UserService.FindByEmail(email);
+            if (matchedUser == null)
+                return "Пользователь с таким email не найден.";
 
-            if (!string.Equals(user.SecretWord?.Trim(), secretWord?.Trim(), StringComparison.OrdinalIgnoreCase))
-                return "Секретное слово указано неверно.";
+            code = RandomNumberGenerator.GetInt32(100000, 1000000).ToString();
+            emailSent = EmailService.TrySend(matchedUser.Email, "EstateFlow — код восстановления пароля",
+                $"Здравствуйте, {matchedUser.FullName}!\n\n" +
+                $"Ваш код подтверждения для смены пароля: {code}\n" +
+                "Никому не передавайте этот код.");
+            return null;
+        }
 
-            newPassword = PasswordHasher.Generate();
-            UserService.ChangePassword(user.Id, newPassword);
-            email = user.Email;
+        public static string ChangePasswordByUserId(int userId, string newPassword)
+        {
+            string passErr = Validator.Password(newPassword);
+            if (passErr != null)
+                return passErr;
 
-            emailSent = EmailService.TrySend(user.Email, "EstateFlow — восстановление пароля",
-                $"Здравствуйте, {user.FullName}!\n\n" +
-                $"Ваш новый пароль: {newPassword}\n" +
-                "После входа рекомендуем сменить его в личном кабинете.");
+            UserService.ChangePassword(userId, newPassword);
             return null;
         }
     }

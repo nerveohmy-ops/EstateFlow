@@ -27,8 +27,7 @@ CREATE TABLE dbo.Users
     Phone      NVARCHAR(20)  NOT NULL UNIQUE,
     FullName   NVARCHAR(150) NOT NULL,
     RoleId     INT NOT NULL FOREIGN KEY REFERENCES dbo.Roles(Id),
-    CreatedAt  DATETIME NULL DEFAULT GETDATE(),
-    SecretWord NVARCHAR(100) NULL
+    CreatedAt  DATETIME NULL DEFAULT GETDATE()
 );
 GO
 
@@ -90,8 +89,8 @@ CREATE TABLE dbo.Showings
 );
 GO
 
-IF COL_LENGTH(N'dbo.Users', N'SecretWord') IS NULL
-    ALTER TABLE dbo.Users ADD SecretWord NVARCHAR(100) NULL;
+IF COL_LENGTH(N'dbo.Users', N'SecretWord') IS NOT NULL
+    ALTER TABLE dbo.Users DROP COLUMN SecretWord;
 GO
 IF COL_LENGTH(N'dbo.Properties', N'Description') IS NULL
     ALTER TABLE dbo.Properties ADD Description NVARCHAR(1000) NULL;
@@ -156,32 +155,29 @@ GO
 IF NOT EXISTS (SELECT 1 FROM dbo.Users)
 BEGIN
     SET IDENTITY_INSERT dbo.Users ON;
-    INSERT INTO dbo.Users (Id, Login, Password, Email, Phone, FullName, RoleId, SecretWord) VALUES
-    (1,  N'admin',    N'Admin1234567!', N'i.ivanov@realestate.ru',    N'+7(916)234-56-78', N'Иванов Иван Иванович',        1, N'недвижимость'),
-    (2,  N'agent01',  N'Agent1234567!', N'p.petrov@realestate.ru',    N'+7(925)345-67-89', N'Петров Пётр Петрович',        2, N'недвижимость'),
-    (3,  N'agent02',  N'Agent1234568!', N'a.sidorova@realestate.ru',  N'+7(903)456-78-90', N'Сидорова Анна Сергеевна',     2, N'недвижимость'),
-    (4,  N'agent03',  N'Agent1234569!', N'd.kuznetsov@realestate.ru', N'+7(926)567-89-01', N'Кузнецов Дмитрий Олегович',   2, N'недвижимость'),
-    (5,  N'agent04',  N'Agent1234570!', N'o.smirnova@realestate.ru',  N'+7(909)678-90-12', N'Смирнова Ольга Ивановна',     2, N'недвижимость'),
-    (6,  N'morozov',  N'Client123456!', N'a.morozov@gmail.com',       N'+7(917)789-01-23', N'Морозов Алексей Викторович',  3, N'недвижимость'),
-    (7,  N'volkova',  N'Client123457!', N'm.volkova@yandex.ru',       N'+7(999)890-12-34', N'Волкова Мария Андреевна',     3, N'недвижимость'),
-    (8,  N'zaytsev',  N'Client123458!', N'n.zaytsev@gmail.com',       N'+7(915)901-23-45', N'Зайцев Никита Павлович',      3, N'недвижимость'),
-    (9,  N'lebedeva', N'Client123459!', N'e.lebedeva@bk.ru',          N'+7(968)012-34-56', N'Лебедева Екатерина Игоревна', 3, N'недвижимость'),
-    (10, N'sokolov',  N'Client123460!', N'a.sokolov@yandex.ru',       N'+7(985)123-45-67', N'Соколов Артём Денисович',     3, N'недвижимость'),
-    (11, N'pavlova',  N'Client123461!', N'd.pavlova@gmail.com',       N'+7(977)234-56-78', N'Павлова Дарья Романовна',     3, N'недвижимость'),
-    (12, N'golubev',  N'Client123462!', N'e.golubev@inbox.ru',        N'+7(962)345-67-89', N'Голубев Егор Максимович',     3, N'недвижимость'),
-    (13, N'titova',   N'Client123463!', N'p.titova@yandex.ru',        N'+7(936)456-78-90', N'Титова Полина Артёмовна',     3, N'недвижимость'),
-    (14, N'fedorov',  N'Client123464!', N'k.fedorov@gmail.com',       N'+7(910)567-89-01', N'Фёдоров Кирилл Иванович',     3, N'недвижимость'),
-    (15, N'egorova',  N'Client123465!', N's.egorova@list.ru',         N'+7(924)678-90-12', N'Егорова София Максимовна',    3, N'недвижимость'),
-    (16, N'agent05',  N'Agent1234571!', N'v.nikolaev@realestate.ru',  N'+7(929)789-01-23', N'Николаев Владислав Петрович', 2, N'недвижимость'),
-    (17, N'agent06',  N'Agent1234572!', N'v.andreeva@realestate.ru',  N'+7(921)890-12-34', N'Андреева Виктория Олеговна',  2, N'недвижимость'),
-    (18, N'romanov',  N'Client123466!', N'm.romanov@gmail.com',       N'+7(988)901-23-45', N'Романов Максим Сергеевич',    3, N'недвижимость'),
-    (19, N'belova',   N'Client123467!', N'a.belova@yandex.ru',        N'+7(950)012-34-56', N'Белова Алиса Дмитриевна',     3, N'недвижимость'),
-    (20, N'orlov',    N'Client123468!', N't.orlov@bk.ru',             N'+7(996)123-45-67', N'Орлов Тимофей Андреевич',     3, N'недвижимость');
+    INSERT INTO dbo.Users (Id, Login, Password, Email, Phone, FullName, RoleId) VALUES
+    (1,  N'admin',    N'Admin1234567!', N'i.ivanov@realestate.ru',    N'+7(916)234-56-78', N'Иванов Иван Иванович',        1),
+    (2,  N'agent01',  N'Agent1234567!', N'p.petrov@realestate.ru',    N'+7(925)345-67-89', N'Петров Пётр Петрович',        2),
+    (3,  N'agent02',  N'Agent1234568!', N'a.sidorova@realestate.ru',  N'+7(903)456-78-90', N'Сидорова Анна Сергеевна',     2),
+    (4,  N'agent03',  N'Agent1234569!', N'd.kuznetsov@realestate.ru', N'+7(926)567-89-01', N'Кузнецов Дмитрий Олегович',   2),
+    (5,  N'agent04',  N'Agent1234570!', N'o.smirnova@realestate.ru',  N'+7(909)678-90-12', N'Смирнова Ольга Ивановна',     2),
+    (6,  N'morozov',  N'Client123456!', N'a.morozov@gmail.com',       N'+7(917)789-01-23', N'Морозов Алексей Викторович',  3),
+    (7,  N'volkova',  N'Client123457!', N'm.volkova@yandex.ru',       N'+7(999)890-12-34', N'Волкова Мария Андреевна',     3),
+    (8,  N'zaytsev',  N'Client123458!', N'n.zaytsev@gmail.com',       N'+7(915)901-23-45', N'Зайцев Никита Павлович',      3),
+    (9,  N'lebedeva', N'Client123459!', N'e.lebedeva@bk.ru',          N'+7(968)012-34-56', N'Лебедева Екатерина Игоревна', 3),
+    (10, N'sokolov',  N'Client123460!', N'a.sokolov@yandex.ru',       N'+7(985)123-45-67', N'Соколов Артём Денисович',     3),
+    (11, N'pavlova',  N'Client123461!', N'd.pavlova@gmail.com',       N'+7(977)234-56-78', N'Павлова Дарья Романовна',     3),
+    (12, N'golubev',  N'Client123462!', N'e.golubev@inbox.ru',        N'+7(962)345-67-89', N'Голубев Егор Максимович',     3),
+    (13, N'titova',   N'Client123463!', N'p.titova@yandex.ru',        N'+7(936)456-78-90', N'Титова Полина Артёмовна',     3),
+    (14, N'fedorov',  N'Client123464!', N'k.fedorov@gmail.com',       N'+7(910)567-89-01', N'Фёдоров Кирилл Иванович',     3),
+    (15, N'egorova',  N'Client123465!', N's.egorova@list.ru',         N'+7(924)678-90-12', N'Егорова София Максимовна',    3),
+    (16, N'agent05',  N'Agent1234571!', N'v.nikolaev@realestate.ru',  N'+7(929)789-01-23', N'Николаев Владислав Петрович', 2),
+    (17, N'agent06',  N'Agent1234572!', N'v.andreeva@realestate.ru',  N'+7(921)890-12-34', N'Андреева Виктория Олеговна',  2),
+    (18, N'romanov',  N'Client123466!', N'm.romanov@gmail.com',       N'+7(988)901-23-45', N'Романов Максим Сергеевич',    3),
+    (19, N'belova',   N'Client123467!', N'a.belova@yandex.ru',        N'+7(950)012-34-56', N'Белова Алиса Дмитриевна',     3),
+    (20, N'orlov',    N'Client123468!', N't.orlov@bk.ru',             N'+7(996)123-45-67', N'Орлов Тимофей Андреевич',     3);
     SET IDENTITY_INSERT dbo.Users OFF;
 END
-GO
-
-UPDATE dbo.Users SET SecretWord = N'недвижимость' WHERE SecretWord IS NULL;
 GO
 
 IF NOT EXISTS (SELECT 1 FROM dbo.Properties)

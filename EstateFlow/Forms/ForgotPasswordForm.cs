@@ -1,4 +1,5 @@
 using EstateFlow.Helpers;
+using EstateFlow.Models;
 using EstateFlow.Services;
 using HartUI.Controls;
 
@@ -8,19 +9,60 @@ namespace EstateFlow.Forms
     {
         protected override bool ShowThemeToggle => false;
 
-        public ForgotPasswordForm(string initialIdentity = "")
+        private enum RecoveryStage
         {
-            InitializeComponent();
-            txtIdentity.Content = initialIdentity ?? "";
-
-            errorProvider1.SetIconPadding(txtIdentity, 6);
-            errorProvider1.SetIconPadding(txtSecret, 6);
-
-            txtIdentity.ContentChanged += (_, _) => ClearFieldError(txtIdentity);
-            txtSecret.ContentChanged += (_, _) => ClearFieldError(txtSecret);
+            EnterEmail,
+            EnterCode,
+            SetPassword
         }
 
-        private void ClearFieldError(Control ctrl)
+        private RecoveryStage stage = RecoveryStage.EnterEmail;
+        private string expectedCode = "";
+        private User matchedUser;
+        private bool smtpSent = false;
+
+        public ForgotPasswordForm(string initialEmail = "")
+        {
+            InitializeComponent();
+            UiTheme.AttachIntMask(txtCode, 6);
+
+            if (!string.IsNullOrWhiteSpace(initialEmail) && initialEmail.Contains('@'))
+                txtEmail.Content = initialEmail.Trim();
+
+            foreach (var tb in new[] { txtEmail, txtCode, txtNewPassword, txtConfirmPassword })
+                errorProvider1.SetIconPadding(tb, 6);
+
+            txtEmail.ContentChanged += (_, _) =>
+            {
+                ClearError(txtEmail);
+                if (stage != RecoveryStage.EnterEmail)
+                    ResetToEmailStage();
+            };
+
+            txtCode.ContentChanged += (_, _) =>
+            {
+                ClearError(txtCode);
+                if (stage == RecoveryStage.EnterCode && !string.IsNullOrEmpty(expectedCode))
+                {
+                    string entered = (txtCode.Content ?? "").Trim();
+                    if (entered == expectedCode)
+                    {
+                        AdvanceToPasswordStage();
+                    }
+                    else if (entered.Length == 6)
+                    {
+                        ShowError(txtCode, "Неверный 6-значный код подтверждения");
+                    }
+                }
+            };
+
+            txtNewPassword.ContentChanged += (_, _) => ClearError(txtNewPassword);
+            txtConfirmPassword.ContentChanged += (_, _) => ClearError(txtConfirmPassword);
+
+            UpdateStageUi();
+        }
+
+        private void ClearError(Control ctrl)
         {
             if (!string.IsNullOrEmpty(errorProvider1.GetError(ctrl)))
                 errorProvider1.SetError(ctrl, "");
@@ -31,10 +73,106 @@ namespace EstateFlow.Forms
             }
         }
 
+        private void ShowError(Control ctrl, string msg)
+        {
+            errorProvider1.SetError(ctrl, msg);
+            lblError.Text = msg;
+            lblError.Visible = true;
+            lblError.BringToFront();
+        }
+
+        private void ResetToEmailStage()
+        {
+            stage = RecoveryStage.EnterEmail;
+            expectedCode = "";
+            matchedUser = null;
+            smtpSent = false;
+            txtCode.Content = "";
+            txtNewPassword.Content = "";
+            txtConfirmPassword.Content = "";
+            UiTheme.SetTextBoxReadOnly(txtCode, false);
+            UpdateStageUi();
+        }
+
+        private void AdvanceToPasswordStage()
+        {
+            ClearError(txtCode);
+            stage = RecoveryStage.SetPassword;
+            UiTheme.SetTextBoxReadOnly(txtCode, true);
+            UpdateStageUi();
+            txtNewPassword.Focus();
+        }
+
+        private void UpdateStageUi()
+        {
+            int cx = (ClientSize.Width - 320) / 2;
+            int errX = (ClientSize.Width - 440) / 2;
+
+            if (stage == RecoveryStage.EnterEmail)
+            {
+                lblCodeBanner.Visible = false;
+                txtCode.Visible = false;
+                txtNewPassword.Visible = false;
+                txtConfirmPassword.Visible = false;
+                chkShowPassword.Visible = false;
+
+                btnReset.Content = "Получить код";
+                btnReset.Location = new Point(cx, 166);
+                btnBack.Location = new Point(cx + 166, 166);
+                lblError.Location = new Point(errX, 222);
+            }
+            else if (stage == RecoveryStage.EnterCode)
+            {
+                lblCodeBanner.Visible = true;
+                lblCodeBanner.Location = new Point(cx, 158);
+                lblCodeBanner.Size = new Size(320, 42);
+                lblCodeBanner.Text = smtpSent
+                    ? $"Код отправлен на почту: {expectedCode}\n(скопирован в буфер обмена)"
+                    : $"Код подтверждения: {expectedCode}\n(скопирован в буфер — введите ниже)";
+
+                txtCode.Visible = true;
+                txtCode.Location = new Point(cx, 208);
+                txtNewPassword.Visible = false;
+                txtConfirmPassword.Visible = false;
+                chkShowPassword.Visible = false;
+
+                btnReset.Content = "Проверить код";
+                btnReset.Location = new Point(cx, 264);
+                btnBack.Location = new Point(cx + 166, 264);
+                lblError.Location = new Point(errX, 318);
+            }
+            else
+            {
+                lblCodeBanner.Visible = true;
+                lblCodeBanner.Location = new Point(cx, 158);
+                lblCodeBanner.Size = new Size(320, 30);
+                lblCodeBanner.Text = "✓ Код подтверждён — задайте новый пароль";
+
+                txtCode.Visible = true;
+                txtCode.Location = new Point(cx, 196);
+
+                txtNewPassword.Visible = true;
+                txtNewPassword.Location = new Point(cx, 246);
+
+                txtConfirmPassword.Visible = true;
+                txtConfirmPassword.Location = new Point(cx, 294);
+
+                chkShowPassword.Visible = true;
+                chkShowPassword.Location = new Point(cx + 4, 340);
+
+                btnReset.Content = "Сменить пароль";
+                btnReset.Location = new Point(cx, 368);
+                btnBack.Location = new Point(cx + 166, 368);
+                lblError.Location = new Point(errX, 416);
+            }
+
+            ApplyLocalTheme();
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            ApplyLocalTheme();
+            UpdateStageUi();
         }
 
         protected override void OnThemeChanged()
@@ -46,20 +184,17 @@ namespace EstateFlow.Forms
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            if (!string.IsNullOrWhiteSpace(txtIdentity.Content))
-                txtSecret.Focus();
-            else
-                txtIdentity.Focus();
+            txtEmail.Focus();
         }
 
         private void ApplyLocalTheme()
         {
-            lblError.ForeColor = UiTheme.IsDark
-                ? Color.FromArgb(255, 118, 118)
-                : Color.FromArgb(185, 28, 28);
+            lblError.ForeColor = UiTheme.ErrorText;
 
-            lblResult.BackColor = UiTheme.CardBg;
-            lblResult.ForeColor = UiTheme.TextMain;
+            lblCodeBanner.BackColor = UiTheme.CardBg;
+            lblCodeBanner.ForeColor = stage == RecoveryStage.SetPassword
+                ? (UiTheme.IsDark ? Color.FromArgb(110, 231, 183) : Color.FromArgb(5, 150, 105))
+                : UiTheme.TextMain;
 
             if (UiTheme.IsDark)
             {
@@ -93,6 +228,7 @@ namespace EstateFlow.Forms
                 btnBack.PressedForeColor = Color.Black;
                 btnBack.PressedOutline = Color.Black;
             }
+            btnReset.ForeColor = btnReset.NormalForeColor;
             btnReset.Invalidate();
             btnBack.Invalidate();
         }
@@ -120,6 +256,13 @@ namespace EstateFlow.Forms
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            bool hide = !chkShowPassword.Checked;
+            txtNewPassword.PasswordChar = hide;
+            txtConfirmPassword.PasswordChar = hide;
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();
@@ -130,64 +273,97 @@ namespace EstateFlow.Forms
             errorProvider1.Clear();
             lblError.Text = "";
             lblError.Visible = false;
-            lblResult.Visible = false;
-            lblResult.Text = "";
 
-            string id = (txtIdentity.Content ?? "").Trim();
-            string secret = (txtSecret.Content ?? "").Trim();
-
-            if (string.IsNullOrEmpty(id))
+            if (stage == RecoveryStage.EnterEmail)
             {
-                const string msg = "Введите логин, email или телефон";
-                errorProvider1.SetError(txtIdentity, msg);
-                lblError.Text = msg;
-                lblError.Visible = true;
-                lblError.BringToFront();
-                txtIdentity.Focus();
-                return;
+                string email = (txtEmail.Content ?? "").Trim();
+                string err = null;
+                string generated = null;
+                bool sent = false;
+                User user = null;
+
+                if (!UiTheme.Try(() => err = AuthService.SendRecoveryCode(email, out generated, out sent, out user)))
+                    return;
+
+                if (err != null)
+                {
+                    ShowError(txtEmail, err);
+                    txtEmail.Focus();
+                    return;
+                }
+
+                expectedCode = generated;
+                matchedUser = user;
+                smtpSent = sent;
+                try { Clipboard.SetText(expectedCode); } catch { }
+
+                stage = RecoveryStage.EnterCode;
+                txtCode.Content = "";
+                UpdateStageUi();
+                txtCode.Focus();
             }
-            if (string.IsNullOrEmpty(secret))
+            else if (stage == RecoveryStage.EnterCode)
             {
-                const string msg = "Введите секретное слово";
-                errorProvider1.SetError(txtSecret, msg);
-                lblError.Text = msg;
-                lblError.Visible = true;
-                lblError.BringToFront();
-                txtSecret.Focus();
-                return;
+                string entered = (txtCode.Content ?? "").Trim();
+                if (string.IsNullOrEmpty(entered))
+                {
+                    ShowError(txtCode, "Введите 6-значный код подтверждения");
+                    txtCode.Focus();
+                    return;
+                }
+                if (entered != expectedCode)
+                {
+                    ShowError(txtCode, "Неверный код подтверждения");
+                    txtCode.Focus();
+                    return;
+                }
+
+                AdvanceToPasswordStage();
             }
-
-            string error = null;
-            string newPass = null;
-            bool sent = false;
-            string email = null;
-
-            if (!UiTheme.Try(() => error = AuthService.ResetPassword(id, secret, out newPass, out sent, out email)))
-                return;
-
-            if (error != null)
+            else
             {
-                Control errCtrl = error.Contains("Пользователь", StringComparison.OrdinalIgnoreCase)
-                    ? txtIdentity
-                    : txtSecret;
-                errorProvider1.SetError(errCtrl, error);
-                lblError.Text = error;
-                lblError.Visible = true;
-                lblError.BringToFront();
-                errCtrl.Focus();
-                UiTheme.Warning(error);
-                return;
+                if (matchedUser == null)
+                {
+                    ResetToEmailStage();
+                    return;
+                }
+
+                string newPass = txtNewPassword.Content ?? "";
+                string confirmPass = txtConfirmPassword.Content ?? "";
+
+                string passErr = Validator.Password(newPass);
+                if (passErr != null)
+                {
+                    ShowError(txtNewPassword, passErr);
+                    txtNewPassword.Focus();
+                    return;
+                }
+
+                string repErr = string.IsNullOrEmpty(confirmPass)
+                    ? "Повторите новый пароль"
+                    : Validator.PasswordRepeat(newPass, confirmPass);
+                if (repErr != null)
+                {
+                    ShowError(txtConfirmPassword, repErr);
+                    txtConfirmPassword.Focus();
+                    return;
+                }
+
+                string saveErr = null;
+                if (!UiTheme.Try(() => saveErr = AuthService.ChangePasswordByUserId(matchedUser.Id, newPass)))
+                    return;
+
+                if (saveErr != null)
+                {
+                    ShowError(txtNewPassword, saveErr);
+                    txtNewPassword.Focus();
+                    return;
+                }
+
+                UiTheme.Info("Пароль успешно изменён! Теперь вы можете войти с новым паролем.");
+                DialogResult = DialogResult.OK;
+                Close();
             }
-
-            lblError.Text = "";
-            lblError.Visible = false;
-            lblResult.Text = sent
-                ? $"Новый пароль отправлен на {email}\nВременный пароль: {newPass}\n(скопирован в буфер обмена)"
-                : $"Ваш новый пароль: {newPass}\n(скопирован в буфер обмена, смените его в профиле)";
-            lblResult.Visible = true;
-            lblResult.BringToFront();
-
-            try { Clipboard.SetText(newPass); } catch { }
         }
     }
 }

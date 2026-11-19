@@ -26,7 +26,6 @@ namespace EstateFlow.Forms
             txtLogin = new HartUI.Controls.cuiTextBox();
             txtEmail = new HartUI.Controls.cuiTextBox();
             txtPhone = new HartUI.Controls.cuiTextBox();
-            txtSecret = new HartUI.Controls.cuiTextBox();
             txtPassword = new HartUI.Controls.cuiTextBox();
             btnGeneratePassword = new HartUI.Controls.cuiButton();
             btnSave = new HartUI.Controls.cuiButton();
@@ -209,33 +208,9 @@ namespace EstateFlow.Forms
             txtPhone.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtPhone.PlaceholderText = "Телефон +7(XXX)XXX-XX-XX";
             txtPhone.Rounding = new Padding(12);
-            txtPhone.Size = new Size(266, 44);
+            txtPhone.Size = new Size(552, 44);
             txtPhone.TabIndex = 8;
             txtPhone.UnderlinedStyle = false;
-            // 
-            // txtSecret
-            // 
-            txtSecret.Anchor = AnchorStyles.None;
-            txtSecret.BackColor = Color.White;
-            txtSecret.BackgroundColor = Color.FromArgb(245, 246, 248);
-            txtSecret.Content = "";
-            txtSecret.FocusBackgroundColor = Color.White;
-            txtSecret.FocusImageTint = Color.White;
-            txtSecret.FocusOutlineColor = Color.Black;
-            txtSecret.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSecret.ForeColor = Color.Black;
-            txtSecret.Location = new Point(502, 182);
-            txtSecret.Name = "txtSecret";
-            txtSecret.NormalImageTint = Color.White;
-            txtSecret.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtSecret.Padding = new Padding(14, 12, 14, 0);
-            txtSecret.PasswordChar = false;
-            txtSecret.PlaceholderColor = Color.FromArgb(115, 115, 115);
-            txtSecret.PlaceholderText = "Секретное слово";
-            txtSecret.Rounding = new Padding(12);
-            txtSecret.Size = new Size(266, 44);
-            txtSecret.TabIndex = 9;
-            txtSecret.UnderlinedStyle = false;
             // 
             // txtPassword
             // 
@@ -355,7 +330,6 @@ namespace EstateFlow.Forms
             Controls.Add(btnSave);
             Controls.Add(btnGeneratePassword);
             Controls.Add(txtPassword);
-            Controls.Add(txtSecret);
             Controls.Add(txtPhone);
             Controls.Add(txtEmail);
             Controls.Add(txtLogin);
@@ -384,7 +358,6 @@ namespace EstateFlow.Forms
         private HartUI.Controls.cuiTextBox txtLogin;
         private HartUI.Controls.cuiTextBox txtEmail;
         private HartUI.Controls.cuiTextBox txtPhone;
-        private HartUI.Controls.cuiTextBox txtSecret;
         private HartUI.Controls.cuiTextBox txtPassword;
         private HartUI.Controls.cuiButton btnGeneratePassword;
         private HartUI.Controls.cuiButton btnSave;
