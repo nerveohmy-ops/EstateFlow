@@ -23,7 +23,7 @@ namespace EstateFlow
                 UiTheme.Error("Не удалось подключиться к БД:\n" + ex.Message);
                 return;
             }
-
+            Application.Idle += (_, _) => FormIconHelper.ApplyToAllOpenForms();
             Application.Run(new LoginForm());
         }
     }

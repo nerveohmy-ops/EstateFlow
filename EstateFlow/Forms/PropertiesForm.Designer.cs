@@ -169,7 +169,7 @@ namespace EstateFlow.Forms
             txtSearch.Name = "txtSearch";
             txtSearch.NormalImageTint = Color.White;
             txtSearch.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtSearch.Padding = new Padding(12, 10, 12, 0);
+            txtSearch.Padding = new Padding(17, 11, 17, 0);
             txtSearch.PasswordChar = false;
             txtSearch.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtSearch.PlaceholderText = "Поиск по адресу, району, ЖК...";
@@ -189,7 +189,7 @@ namespace EstateFlow.Forms
             pnlRooms.Controls.Add(btnRoom4);
             pnlRooms.Location = new Point(266, 48);
             pnlRooms.Name = "pnlRooms";
-            pnlRooms.Size = new Size(252, 36);
+            pnlRooms.Size = new Size(296, 36);
             pnlRooms.TabIndex = 5;
             pnlRooms.WrapContents = false;
             // 
@@ -240,7 +240,7 @@ namespace EstateFlow.Forms
             btnRoom0.CheckedForeColor = Color.White;
             btnRoom0.CheckedImageTint = Color.White;
             btnRoom0.CheckedOutline = Color.FromArgb(61, 24, 226);
-            btnRoom0.Content = "Ст";
+            btnRoom0.Content = "Студия";
             btnRoom0.Cursor = Cursors.Hand;
             btnRoom0.DialogResult = DialogResult.None;
             btnRoom0.Font = new Font("Segoe UI", 8.5F);
@@ -265,7 +265,7 @@ namespace EstateFlow.Forms
             btnRoom0.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom0.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom0.Rounding = new Padding(12);
-            btnRoom0.Size = new Size(40, 34);
+            btnRoom0.Size = new Size(78, 34);
             btnRoom0.TabIndex = 1;
             btnRoom0.TextAlignment = StringAlignment.Center;
             btnRoom0.TextPadding = 2;
@@ -290,7 +290,7 @@ namespace EstateFlow.Forms
             btnRoom1.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom1.Image = null;
             btnRoom1.ImageExpand = new Point(0, 0);
-            btnRoom1.Location = new Point(91, 0);
+            btnRoom1.Location = new Point(129, 0);
             btnRoom1.Margin = new Padding(1, 0, 1, 0);
             btnRoom1.Name = "btnRoom1";
             btnRoom1.NormalBackground = Color.White;
@@ -329,7 +329,7 @@ namespace EstateFlow.Forms
             btnRoom2.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom2.Image = null;
             btnRoom2.ImageExpand = new Point(0, 0);
-            btnRoom2.Location = new Point(129, 0);
+            btnRoom2.Location = new Point(167, 0);
             btnRoom2.Margin = new Padding(1, 0, 1, 0);
             btnRoom2.Name = "btnRoom2";
             btnRoom2.NormalBackground = Color.White;
@@ -368,7 +368,7 @@ namespace EstateFlow.Forms
             btnRoom3.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom3.Image = null;
             btnRoom3.ImageExpand = new Point(0, 0);
-            btnRoom3.Location = new Point(167, 0);
+            btnRoom3.Location = new Point(205, 0);
             btnRoom3.Margin = new Padding(1, 0, 1, 0);
             btnRoom3.Name = "btnRoom3";
             btnRoom3.NormalBackground = Color.White;
@@ -407,7 +407,7 @@ namespace EstateFlow.Forms
             btnRoom4.HoverOutline = Color.FromArgb(32, 128, 128, 128);
             btnRoom4.Image = null;
             btnRoom4.ImageExpand = new Point(0, 0);
-            btnRoom4.Location = new Point(205, 0);
+            btnRoom4.Location = new Point(243, 0);
             btnRoom4.Margin = new Padding(1, 0, 1, 0);
             btnRoom4.Name = "btnRoom4";
             btnRoom4.NormalBackground = Color.White;
@@ -421,7 +421,7 @@ namespace EstateFlow.Forms
             btnRoom4.PressedImageTint = Color.FromArgb(32, 32, 32);
             btnRoom4.PressedOutline = Color.FromArgb(64, 128, 128, 128);
             btnRoom4.Rounding = new Padding(12);
-            btnRoom4.Size = new Size(44, 34);
+            btnRoom4.Size = new Size(34, 34);
             btnRoom4.TabIndex = 5;
             btnRoom4.TextAlignment = StringAlignment.Center;
             btnRoom4.TextPadding = 2;
@@ -431,7 +431,7 @@ namespace EstateFlow.Forms
             // 
             cmbDistrict.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDistrict.Font = new Font("Segoe UI", 9.5F);
-            cmbDistrict.Location = new Point(526, 53);
+            cmbDistrict.Location = new Point(568, 53);
             cmbDistrict.Name = "cmbDistrict";
             cmbDistrict.Size = new Size(145, 25);
             cmbDistrict.TabIndex = 6;
@@ -440,7 +440,7 @@ namespace EstateFlow.Forms
             // 
             cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbType.Font = new Font("Segoe UI", 9.5F);
-            cmbType.Location = new Point(679, 53);
+            cmbType.Location = new Point(719, 53);
             cmbType.Name = "cmbType";
             cmbType.Size = new Size(135, 25);
             cmbType.TabIndex = 7;
@@ -504,7 +504,7 @@ namespace EstateFlow.Forms
             txtMinPrice.Name = "txtMinPrice";
             txtMinPrice.NormalImageTint = Color.White;
             txtMinPrice.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtMinPrice.Padding = new Padding(12, 9, 12, 0);
+            txtMinPrice.Padding = new Padding(16, 10, 16, 0);
             txtMinPrice.PasswordChar = false;
             txtMinPrice.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtMinPrice.PlaceholderText = "Цена от (₽)";
@@ -533,7 +533,7 @@ namespace EstateFlow.Forms
             txtMaxPrice.Name = "txtMaxPrice";
             txtMaxPrice.NormalImageTint = Color.White;
             txtMaxPrice.OutlineColor = Color.FromArgb(95, 95, 95);
-            txtMaxPrice.Padding = new Padding(12, 9, 12, 0);
+            txtMaxPrice.Padding = new Padding(16, 10, 16, 0);
             txtMaxPrice.PasswordChar = false;
             txtMaxPrice.PlaceholderColor = Color.FromArgb(115, 115, 115);
             txtMaxPrice.PlaceholderText = "Цена до (₽)";
@@ -853,6 +853,7 @@ namespace EstateFlow.Forms
             Controls.Add(btnViewCards);
             Controls.Add(lblCount);
             Controls.Add(lblHeader);
+            ForeColor = Color.Black;
             MinimumSize = new Size(1050, 620);
             Name = "PropertiesForm";
             Text = "Каталог недвижимости — EstateFlow";
